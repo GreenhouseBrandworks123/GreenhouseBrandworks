@@ -1,0 +1,144 @@
+import React, { useState } from 'react';
+import { SVGIcon } from '../components/SVGIcon';
+import brandingImg from '../assets/branding.png';
+
+export const About = () => {
+  const [activeStep, setActiveStep] = useState(0);
+
+  const steps = [
+    {
+      num: "01",
+      title: "Practice",
+      tagline: "Repetition breeds instinct.",
+      description: "We work constantly on design principles, interface systems, and new technological updates. We experiment internally so that our solutions for our clients are proven and ready for immediate deployment.",
+      detailText: "Before we propose any direction to a partner, we design and validate multiple routes in-house. Our designers sketch, prototype, and build sandbox pages daily. This dedication builds the rapid reflexes needed to solve complex layouts and branding goals."
+    },
+    {
+      num: "02",
+      title: "Internalize",
+      tagline: "Understand the core truth.",
+      description: "We dive deep into your corporate goals, target client problems, and market bottlenecks. We don't just draft artwork; we digest your business goals to align every asset with your metrics.",
+      detailText: "Internalization is where design meets strategy. We run positioning workshops, analyze customer queries, and inspect competitor layouts. Only when we fully digest your commercial objectives do we begin drafting client-facing drafts."
+    },
+    {
+      num: "03",
+      title: "Execute",
+      tagline: "Deliver flawless performance.",
+      description: "We launch designs with strict quality checks. From responsive layout breakpoints and server loading efficiency to consistent graphic guidelines, we construct files to perform.",
+      detailText: "Execution is our final, high-standard phase. We run code linting, perform cross-device rendering audits, and verify form routes. This ensures that when the site launches, it runs at maximum speeds and looks flawless on every screen."
+    }
+  ];
+
+  return (
+    <div className="page-container">
+      {/* About Header */}
+      <section className="section" style={{ paddingBottom: '40px' }}>
+        <div className="section-container">
+          <span className="section-badge">Our Story</span>
+          <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '24px' }}>
+            Inside Greenhouse.
+          </h1>
+          <p style={{ fontSize: '1.2rem', maxWidth: '700px' }}>
+            We are a group of developers, graphic artists, and digital strategists working out of Bangalore, India. We construct identities that stick and systems that scale.
+          </p>
+        </div>
+      </section>
+
+      {/* Story & Visual Section */}
+      <section className="section section-bg" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+        <div className="section-container">
+          <div className="grid-2">
+            <div>
+              <h2 style={{ marginBottom: '24px' }}>Bridging design and commerce since 2006.</h2>
+              <p style={{ marginBottom: '20px', fontSize: '1.05rem' }}>
+                Greenhouse Brandworks was established to eliminate generic, templated designs. We realized that corporate leaders were tired of choosing between agencies that only made pretty graphics and tech groups that only wrote functional but visual-less systems.
+              </p>
+              <p style={{ marginBottom: '24px' }}>
+                We unified these practices. Over the past 20 years, we have scaled visual frameworks for over 50 global companies, delivering designs that increase customer trust and conversion-focused systems that capture verified sales leads.
+              </p>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', borderTop: '1px solid var(--border)', paddingTop: '32px' }}>
+                <div>
+                  <h3 style={{ fontSize: '2.5rem', color: 'var(--accent)', marginBottom: '4px' }}>20+</h3>
+                  <p style={{ fontWeight: '600', color: 'var(--text)' }}>Years of Refinement</p>
+                </div>
+                <div>
+                  <h3 style={{ fontSize: '2.5rem', color: 'var(--accent)', marginBottom: '4px' }}>98%</h3>
+                  <p style={{ fontWeight: '600', color: 'var(--text)' }}>Client Satisfaction</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="value-image" style={{ height: '480px' }}>
+              <img src={brandingImg} alt="Greenhouse design system desk layout" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission & Vision Panels */}
+      <section className="section">
+        <div className="section-container">
+          <div className="grid-2" style={{ alignItems: 'stretch' }}>
+            <div style={{ backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border)', padding: '48px', borderRadius: 'var(--radius-lg)', display: 'flex', flexDirection: 'column' }}>
+              <div style={{ color: 'var(--accent)', marginBottom: '24px' }}>
+                <SVGIcon name="branding" size={40} />
+              </div>
+              <h3 style={{ fontSize: '1.8rem', marginBottom: '16px' }}>Our Mission</h3>
+              <p style={{ fontSize: '1.05rem', flexGrow: 1 }}>
+                To empower companies with high-end, clean brand assets and ultra-responsive digital products that communicate values instantly, shorten sales cycles, and build customer loyalty.
+              </p>
+            </div>
+
+            <div style={{ backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border)', padding: '48px', borderRadius: 'var(--radius-lg)', display: 'flex', flexDirection: 'column' }}>
+              <div style={{ color: 'var(--accent)', marginBottom: '24px' }}>
+                <SVGIcon name="web" size={40} />
+              </div>
+              <h3 style={{ fontSize: '1.8rem', marginBottom: '16px' }}>Our Vision</h3>
+              <p style={{ fontSize: '1.05rem', flexGrow: 1 }}>
+                To set the global standard for high-performance creative agency systems, demonstrating that design brilliance and code efficiency are joint drivers of modern corporate expansion.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Philosophy Step Section */}
+      <section className="section section-bg">
+        <div className="section-container">
+          <div style={{ textAlign: 'center', marginBottom: '56px' }}>
+            <span className="section-badge">How We Think</span>
+            <h2>Our Creative Philosophy</h2>
+            <p style={{ maxWidth: '600px', margin: '0 auto' }}>
+              We design by a strict, three-stage operational loop to guarantee consistency and quality in our deliverables.
+            </p>
+          </div>
+
+          <div className="philosophy-steps">
+            {steps.map((step, idx) => (
+              <div
+                key={idx}
+                className={`philosophy-card ${activeStep === idx ? 'active' : ''}`}
+                onClick={() => setActiveStep(idx)}
+              >
+                <div className="philosophy-num">{step.num}</div>
+                <h3 style={{ fontSize: '1.6rem' }}>{step.title}</h3>
+                <p style={{ fontWeight: '600', color: 'var(--accent)', fontSize: '0.9rem', marginBottom: '12px' }}>
+                  {step.tagline}
+                </p>
+                <p style={{ fontSize: '0.95rem' }}>{step.description}</p>
+                
+                <div className="philosophy-details">
+                  <p style={{ color: 'var(--text)', borderTop: '1px solid var(--border)', paddingTop: '16px', fontSize: '0.9rem', lineHeight: '1.5' }}>
+                    {step.detailText}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+export default About;
