@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { SVGIcon } from '../components/SVGIcon';
 import { Lightbox } from '../components/Lightbox';
 
@@ -110,28 +110,23 @@ export const Portfolio = () => {
 
           {/* Grid list */}
           <div className="portfolio-grid">
-            {filteredProjects.map((project, index) => {
-              // Find the absolute project index in the full list for correct matching
-              const originalIndex = projects.findIndex(p => p.title === project.title);
-              
-              return (
-                <div
-                  key={index}
-                  className="portfolio-card"
-                  onClick={() => setLightboxIndex(index)}
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <img src={project.image} alt={project.title} />
-                  <div className="portfolio-overlay">
-                    <span>{project.category}</span>
-                    <h3>{project.title}</h3>
-                    <div className="portfolio-overlay-btn">
-                      <SVGIcon name="arrowRight" size={20} />
-                    </div>
+            {filteredProjects.map((project, index) => (
+              <div
+                key={index}
+                className="portfolio-card"
+                onClick={() => setLightboxIndex(index)}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <img src={project.image} alt={project.title} />
+                <div className="portfolio-overlay">
+                  <span>{project.category}</span>
+                  <h3>{project.title}</h3>
+                  <div className="portfolio-overlay-btn">
+                    <SVGIcon name="arrowRight" size={20} />
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
 
           {filteredProjects.length === 0 && (

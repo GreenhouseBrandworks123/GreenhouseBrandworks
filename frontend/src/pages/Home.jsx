@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { SVGIcon } from '../components/SVGIcon';
 import brandingImg from '../assets/branding.png';
 import webImg from '../assets/web.png';
@@ -38,8 +38,9 @@ const AnimatedCounter = ({ endValue, duration = 2000 }) => {
       observer.observe(elementRef.current);
     }
 
+    const element = elementRef.current;
     return () => {
-      if (elementRef.current) observer.unobserve(elementRef.current);
+      if (element) observer.unobserve(element);
     };
   }, [endValue, duration]);
 

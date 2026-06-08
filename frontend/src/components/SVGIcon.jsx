@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const SVGIcon = ({ name, className = '', size = 24 }) => {
   const icons = {
     branding: (

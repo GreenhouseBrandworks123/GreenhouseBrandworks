@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { SVGIcon } from '../components/SVGIcon';
 
 export const Contact = () => {

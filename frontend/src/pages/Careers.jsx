@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Modal } from '../components/Modal';
 import { SVGIcon } from '../components/SVGIcon';
 import { saveJobApplication, uploadResume } from '../firebaseUtils';

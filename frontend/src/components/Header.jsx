@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { SVGIcon } from './SVGIcon';
 
 export const Header = ({ currentPage, setCurrentPage, theme, toggleTheme }) => {

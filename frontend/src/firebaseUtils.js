@@ -19,7 +19,7 @@ export const saveContactSubmission = async (contactData) => {
     });
     return docRef.id;
   } catch (error) {
-    throw new Error(error.message);
+    throw new Error('Failed to save contact submission', { cause: error });
   }
 };
 
@@ -31,7 +31,7 @@ export const saveJobApplication = async (applicationData) => {
     });
     return docRef.id;
   } catch (error) {
-    throw new Error(error.message);
+    throw new Error('Failed to save job application', { cause: error });
   }
 };
 
@@ -51,7 +51,7 @@ export const uploadResume = async (file, jobId) => {
     
     return downloadURL;
   } catch (error) {
-    throw new Error(`Upload failed: ${error.message}`);
+    throw new Error('Resume upload failed', { cause: error });
   }
 };
 
@@ -69,6 +69,6 @@ export const uploadPortfolio = async (file, jobId) => {
     
     return downloadURL;
   } catch (error) {
-    throw new Error(`Upload failed: ${error.message}`);
+    throw new Error('Portfolio upload failed', { cause: error });
   }
 };
