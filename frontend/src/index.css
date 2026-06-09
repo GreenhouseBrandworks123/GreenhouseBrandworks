@@ -581,6 +581,7 @@ nav {
   border-radius: 100px;
   background-color: var(--bg-secondary);
   border: 1px solid var(--border);
+  color: var(--text);
   font-family: var(--font-title);
   font-weight: 600;
   cursor: pointer;

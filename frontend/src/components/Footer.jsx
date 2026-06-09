@@ -26,7 +26,7 @@ export const Footer = ({ setCurrentPage }) => {
           <div className="footer-brand">
             <h3 className="logo">
               <SVGIcon name="logo" size={24} />
-              GREENhouse<span>.</span>
+              Greenhouse Brandworks
             </h3>
             <p>
               An award-winning creative branding and digital design agency crafting premium identities and conversion-focused experiences.

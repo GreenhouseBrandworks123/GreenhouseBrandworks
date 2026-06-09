@@ -39,7 +39,7 @@ export const Header = ({ currentPage, setCurrentPage, theme, toggleTheme }) => {
         <div className="header-container">
           <a href="#" className="logo" onClick={(e) => { e.preventDefault(); navigateTo('home'); }}>
             <SVGIcon name="logo" size={28} />
-            GREENhouse<span>.</span>
+            Greenhouse Brandworks
           </a>
 
           <nav>
