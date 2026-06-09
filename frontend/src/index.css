@@ -530,12 +530,13 @@ nav {
 }
 
 .logo-ticker-item {
-  min-width: 250px;
+  min-width: 280px;
   padding:0 20px;
 
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 12px;
 
   white-space: nowrap;
 
@@ -559,6 +560,12 @@ nav {
   100% {
     transform: translateX(calc(-50%));
   }
+}
+.client-logo-img{
+  width:50px;
+  height:50px;
+  object-fit:contain;
+  flex-shrink:0;
 }
 
 /* --- PORTFOLIO PREVIEW / WORK PAGE --- */
