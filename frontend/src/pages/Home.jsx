@@ -307,7 +307,7 @@ export const Home = ({ setCurrentPage }) => {
           {clientLogos.concat(clientLogos).map((client, index) => (
             <div key={index} className="logo-ticker-item">
               <img src={client.logo} alt={client.name} className="client-logo-img"/>
-              <spam>{client.name}</spam>
+              <span>{client.name}</span>
             </div>
           ))}
         </div>
