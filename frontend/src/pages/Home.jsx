@@ -25,6 +25,11 @@ import timepayLogo from '../assets/client-logos/TimePay.png';
 import toyotaLogo from '../assets/client-logos/toyota-logo.png';
 import utthungaLogo from '../assets/client-logos/utthunga.png';
 import zaggleLogo from '../assets/client-logos/Zaggle-logo.png';
+
+import slide1 from '../assets/slider-images/slide1.jpeg';
+import slide2 from '../assets/slider-images/slide2.jpeg';
+import slide3 from '../assets/slider-images/slide3.jpeg';
+
 // Subcomponent for counting stats when they enter the viewport
 const AnimatedCounter = ({ endValue, duration = 2000 }) => {
   const [count, setCount] = useState(0);
@@ -112,6 +117,34 @@ export const Home = ({ setCurrentPage }) => {
     { name: 'Zaggle', logo: zaggleLogo }
   ];
 
+  const visionSlides = [
+  {
+    image: slide1,
+    quote: "Our powerful pitches Win Boardroom Decisions in favor of our clients",
+  
+  },
+  {
+    image: slide2,
+    quote: "We Help Top-Notch Companies Tell Their Story Convincingly",
+    
+  },
+  {
+    image: slide3,
+    quote: "We Help Clients Draw-in the Best Talent",
+   
+  }
+];
+
+const [currentSlide, setCurrentSlide] = useState(0);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentSlide((prev) => (prev + 1) % visionSlides.length);
+  }, 5000);
+
+  return () => clearInterval(interval);
+}, []);
+
   return (
     <div className="page-container">
       {/* --- HERO SECTION --- */}
@@ -133,6 +166,37 @@ export const Home = ({ setCurrentPage }) => {
           </div>
         </div>
       </section>
+
+      {/* --- BRAND VISION SLIDER --- */}
+<section className="vision-slider">
+  <div className="vision-slider-overlay">
+
+    <div className="vision-slider-content">
+      <span className="vision-badge">OUR VISION</span>
+
+      <h2>{visionSlides[currentSlide].quote}</h2>
+
+      <button
+        className="btn btn-primary vision-btn"
+        onClick={() => {
+          setCurrentPage('about');
+          window.scrollTo(0, 0);
+        }}
+      >
+        Learn More
+      </button>
+    </div>
+
+    <div className="vision-slider-image-wrapper">
+      <img
+        src={visionSlides[currentSlide].image}
+        alt={visionSlides[currentSlide].quote}
+        className="vision-slider-image"
+      />
+    </div>
+
+  </div>
+</section>
 
       {/* --- SERVICES OVERVIEW --- */}
       <section className="section section-bg">
