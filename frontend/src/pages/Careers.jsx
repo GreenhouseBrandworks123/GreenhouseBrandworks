@@ -5,13 +5,15 @@ import {
   saveJobApplication
 } from '../firebaseUtils';
 
+import ReCAPTCHA from "react-google-recaptcha";
+
 export const Careers = () => {
   const [selectedJob, setSelectedJob] = useState(null);
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', portfolio: '', resume: '', message: '' });
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
+const [captchaValue, setCaptchaValue] = useState(null);
   const jobs = [
     {
       id: "graphic-designer",
@@ -92,6 +94,9 @@ export const Careers = () => {
     } else if (!/^https:\/\//.test(formData.resume)) {
       newErrors.resume = 'Resume link must be a valid URL (starting with https://)';
     }
+    if (!captchaValue) {
+      newErrors.captcha = 'Please complete the reCAPTCHA';
+    }
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -114,6 +119,7 @@ export const Careers = () => {
 
       // Success response
       setIsSubmitted(true);
+      setCaptchaValue(null);
     } catch (error) {
       setErrors({ submit: error.message });
       console.error('Error submitting application:', error);
@@ -271,6 +277,19 @@ export const Careers = () => {
                 placeholder="Introduce yourself and describe your strategic drive..."
               ></textarea>
             </div>
+
+            <div style={{ marginTop: '20px' }}>
+  <ReCAPTCHA
+    sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+    onChange={(value) => setCaptchaValue(value)}
+  />
+
+  {errors.captcha && (
+    <span className="form-error">
+      {errors.captcha}
+    </span>
+  )}
+</div>
 
             <div style={{ display: 'flex', gap: '16px', marginTop: '32px' }}>
               <button 
