@@ -204,7 +204,7 @@ useEffect(() => {
           <div className="section-header">
             <span className="section-badge">Our Focus</span>
             <h2>Core capabilities.</h2>
-            <p>We combine design brilliance with engineering excellence to build tools that work for your business.</p>
+            <p>We help you connect with your prospects with a strong first impression, that sets your company apart from your competition. Check our services.</p>
           </div>
 
           <div className="grid-3">

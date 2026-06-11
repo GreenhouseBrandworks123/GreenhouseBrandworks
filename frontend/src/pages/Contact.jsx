@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { SVGIcon } from '../components/SVGIcon';
+import { saveContactSubmission } from '../firebaseUtils';
 
 export const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', company: '', message: '' });
@@ -14,7 +15,7 @@ export const Contact = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
 
@@ -37,7 +38,20 @@ export const Contact = () => {
     }
 
     // Process submission simulation
-    setIsSubmitted(true);
+    try {
+  await saveContactSubmission({
+    name: formData.name,
+    email: formData.email,
+    phone: formData.phone,
+    company: formData.company,
+    message: formData.message,
+  });
+
+  setIsSubmitted(true);
+} catch (error) {
+  console.error('Contact form error:', error);
+  alert('Failed to send message. Please try again.');
+}
   };
 
   return (

@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { Modal } from '../components/Modal';
 import { SVGIcon } from '../components/SVGIcon';
-import { saveJobApplication, uploadResume } from '../firebaseUtils';
+import {
+  saveJobApplication
+} from '../firebaseUtils';
 
 export const Careers = () => {
   const [selectedJob, setSelectedJob] = useState(null);
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', portfolio: '', resume: null, message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', portfolio: '', resume: '', message: '' });
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [resumeFileName, setResumeFileName] = useState('');
 
   const jobs = [
     {
@@ -67,35 +68,11 @@ export const Careers = () => {
   const handleApplyClick = (job) => {
     setSelectedJob(job);
     setIsSubmitted(false);
-    setFormData({ name: '', email: '', phone: '', portfolio: '', resume: null, message: '' });
-    setResumeFileName('');
+    setFormData({ name: '', email: '', phone: '', portfolio: '', resume: '', message: '' });
     setErrors({});
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      // Validate file type
-      if (file.type !== 'application/pdf') {
-        setErrors({ ...errors, resume: 'Only PDF files are allowed' });
-        setFormData({ ...formData, resume: null });
-        setResumeFileName('');
-        return;
-      }
-      // Validate file size (5MB max)
-      if (file.size > 5 * 1024 * 1024) {
-        setErrors({ ...errors, resume: 'File size must be less than 5MB' });
-        setFormData({ ...formData, resume: null });
-        setResumeFileName('');
-        return;
-      }
-      setFormData({ ...formData, resume: file });
-      setResumeFileName(file.name);
-      if (errors.resume) {
-        setErrors({ ...errors, resume: '' });
-      }
-    }
-  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -110,8 +87,10 @@ export const Careers = () => {
     if (!formData.phone.trim()) {
       newErrors.phone = 'Phone number is required';
     }
-    if (!formData.resume) {
-      newErrors.resume = 'Resume PDF is required';
+    if (!formData.resume.trim()) {
+      newErrors.resume = 'Resume Google Drive link is required';
+    } else if (!/^https:\/\//.test(formData.resume)) {
+      newErrors.resume = 'Resume link must be a valid URL (starting with https://)';
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -121,12 +100,6 @@ export const Careers = () => {
 
     setIsLoading(true);
     try {
-      // Upload resume to Firebase Storage
-      let resumeURL = null;
-      if (formData.resume) {
-        resumeURL = await uploadResume(formData.resume, selectedJob.id);
-      }
-
       // Save application to Firestore
       await saveJobApplication({
         jobId: selectedJob.id,
@@ -136,7 +109,7 @@ export const Careers = () => {
         phone: formData.phone,
         portfolio: formData.portfolio,
         message: formData.message,
-        resumeURL,
+        resumeURL: formData.resume,
       });
 
       // Success response
@@ -274,40 +247,16 @@ export const Careers = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="resume">Resume PDF *</label>
-              <div style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '12px',
-                padding: '12px',
-                border: `2px solid ${errors.resume ? '#dc3545' : '#e0e0e0'}`,
-                borderRadius: '4px',
-                backgroundColor: '#f9f9f9',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease'
-              }}>
-                <input
-                  type="file"
-                  id="resume"
-                  name="resume"
-                  accept=".pdf"
-                  onChange={handleFileChange}
-                  style={{ display: 'none' }}
-                />
-                <label htmlFor="resume" style={{ 
-                  flex: 1, 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '8px',
-                  cursor: 'pointer',
-                  margin: 0
-                }}>
-                  <SVGIcon name="upload" size={20} />
-                  <span style={{ color: resumeFileName ? '#333' : '#999' }}>
-                    {resumeFileName || 'Click to upload your resume (PDF only, max 5MB)'}
-                  </span>
-                </label>
-              </div>
+              <label htmlFor="resume">Resume Google Drive Link *</label>
+              <input
+                type="url"
+                id="resume"
+                name="resume"
+                className={`form-control ${errors.resume ? 'invalid' : ''}`}
+                value={formData.resume}
+                onChange={handleInputChange}
+                placeholder="https://drive.google.com/file/d/YOUR_FILE_ID/view"
+              />
               {errors.resume && <span className="form-error">{errors.resume}</span>}
             </div>
 
