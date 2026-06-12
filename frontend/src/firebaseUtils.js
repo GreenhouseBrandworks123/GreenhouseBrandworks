@@ -1,23 +1,18 @@
-import { 
-  collection, 
-  addDoc,
-} from 'firebase/firestore';
 import {
   ref,
   uploadBytes,
   getDownloadURL,
 } from 'firebase/storage';
-import { db, storage } from './firebase';
+import { httpsCallable } from 'firebase/functions';
+import { storage, functions } from './firebase';
 
-// ============== Firestore - Store Form Submissions ==============
+// ============== Firestore - Store Form Submissions (via Cloud Functions) ==============
 
 export const saveContactSubmission = async (contactData) => {
   try {
-    const docRef = await addDoc(collection(db, 'contactSubmissions'), {
-      ...contactData,
-      submittedAt: new Date(),
-    });
-    return docRef.id;
+    const submitContactFn = httpsCallable(functions, 'submitContact');
+    const result = await submitContactFn(contactData);
+    return result.data.id;
   } catch (error) {
     throw new Error('Failed to save contact submission', { cause: error });
   }
@@ -25,11 +20,9 @@ export const saveContactSubmission = async (contactData) => {
 
 export const saveJobApplication = async (applicationData) => {
   try {
-    const docRef = await addDoc(collection(db, 'jobApplications'), {
-      ...applicationData,
-      appliedAt: new Date(),
-    });
-    return docRef.id;
+    const submitJobApplicationFn = httpsCallable(functions, 'submitJobApplication');
+    const result = await submitJobApplicationFn(applicationData);
+    return result.data.id;
   } catch (error) {
     throw new Error('Failed to save job application', { cause: error });
   }
@@ -37,11 +30,25 @@ export const saveJobApplication = async (applicationData) => {
 
 // ============== Storage - Upload Files ==============
 
+const ALLOWED_RESUME_TYPES = [
+  'application/pdf', 
+  'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+];
+
 export const uploadResume = async (file, jobId) => {
+  // Client-side file type and size verification
+  if (!ALLOWED_RESUME_TYPES.includes(file.type)) {
+    throw new Error('Only PDF and Word documents are accepted.');
+  }
+  if (file.size > 10 * 1024 * 1024) {
+    throw new Error('File must be under 10 MB.');
+  }
+
   try {
-    // Create unique filename
-    const filename = `${jobId}/${Date.now()}_${file.name}`;
-    const storageRef = ref(storage, `resumes/${filename}`);
+    // Create unique filename inside jobId subfolder to match storage rules structure
+    const filename = `${Date.now()}_${file.name}`;
+    const storageRef = ref(storage, `resumes/${jobId}/${filename}`);
     
     // Upload file
     const snapshot = await uploadBytes(storageRef, file);
@@ -56,10 +63,15 @@ export const uploadResume = async (file, jobId) => {
 };
 
 export const uploadPortfolio = async (file, jobId) => {
+  // Client-side size verification (Max 20MB as per rules update)
+  if (file.size > 20 * 1024 * 1024) {
+    throw new Error('File must be under 20 MB.');
+  }
+
   try {
-    // Create unique filename
-    const filename = `${jobId}/${Date.now()}_${file.name}`;
-    const storageRef = ref(storage, `portfolios/${filename}`);
+    // Create unique filename inside jobId subfolder to match storage rules structure
+    const filename = `${Date.now()}_${file.name}`;
+    const storageRef = ref(storage, `portfolios/${jobId}/${filename}`);
     
     // Upload file
     const snapshot = await uploadBytes(storageRef, file);

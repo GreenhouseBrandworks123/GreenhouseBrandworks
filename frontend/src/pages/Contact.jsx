@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { SVGIcon } from '../components/SVGIcon';
 import { saveContactSubmission } from '../firebaseUtils';
+import ReCAPTCHA from "react-google-recaptcha";
 
 export const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', company: '', message: '' });
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [captchaValue, setCaptchaValue] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -19,17 +22,45 @@ export const Contact = () => {
     e.preventDefault();
     const newErrors = {};
 
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    // Validate name and size limit
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    } else if (formData.name.trim().length > 100) {
+      newErrors.name = 'Name must be under 100 characters';
+    }
+
+    // Validate email format and size limit
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
+    } else if (formData.email.trim().length > 100) {
+      newErrors.email = 'Email must be under 100 characters';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
+
+    // Validate phone number format
+    const phoneRegex = /^[+\d\s\-().]{7,20}$/;
     if (!formData.phone.trim()) {
       newErrors.phone = 'Phone number is required';
+    } else if (!phoneRegex.test(formData.phone)) {
+      newErrors.phone = 'Please enter a valid phone number (7-20 digits/characters)';
     }
+
+    // Validate optional company field size limit
+    if (formData.company && formData.company.trim().length > 100) {
+      newErrors.company = 'Company name must be under 100 characters';
+    }
+
+    // Validate message and size limit
     if (!formData.message.trim()) {
       newErrors.message = 'Message is required';
+    } else if (formData.message.trim().length > 2000) {
+      newErrors.message = 'Message must be under 2000 characters';
+    }
+
+    // Validate reCAPTCHA
+    if (!captchaValue) {
+      newErrors.captcha = 'Please complete the reCAPTCHA';
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -37,21 +68,25 @@ export const Contact = () => {
       return;
     }
 
-    // Process submission simulation
+    setIsLoading(true);
     try {
-  await saveContactSubmission({
-    name: formData.name,
-    email: formData.email,
-    phone: formData.phone,
-    company: formData.company,
-    message: formData.message,
-  });
+      await saveContactSubmission({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        message: formData.message,
+        captchaToken: captchaValue,
+      });
 
-  setIsSubmitted(true);
-} catch (error) {
-  console.error('Contact form error:', error);
-  alert('Failed to send message. Please try again.');
-}
+      setIsSubmitted(true);
+      setCaptchaValue(null);
+    } catch (error) {
+      console.error('Contact form error:', error);
+      setErrors({ submit: 'Something went wrong. Please try again later.' });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -214,11 +249,12 @@ export const Contact = () => {
                       type="text"
                       id="contact-company"
                       name="company"
-                      className="form-control"
+                      className={`form-control ${errors.company ? 'invalid' : ''}`}
                       value={formData.company}
                       onChange={handleInputChange}
                       placeholder="Your company name"
                     />
+                    {errors.company && <span className="form-error">{errors.company}</span>}
                   </div>
 
                   <div className="form-group">
@@ -234,9 +270,31 @@ export const Contact = () => {
                     {errors.message && <span className="form-error">{errors.message}</span>}
                   </div>
 
-                  <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '8px' }}>
-                    Send Inquiry Details
+                  <div style={{ marginTop: '20px' }}>
+                    <ReCAPTCHA
+                      sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                      onChange={(value) => setCaptchaValue(value)}
+                    />
+                    {errors.captcha && (
+                      <span className="form-error" style={{ display: 'block', marginTop: '4px' }}>
+                        {errors.captcha}
+                      </span>
+                    )}
+                  </div>
+
+                  <button 
+                    type="submit" 
+                    className="btn btn-primary" 
+                    style={{ width: '100%', marginTop: '24px' }}
+                    disabled={isLoading}
+                  >
+                    {isLoading ? 'Sending...' : 'Send Inquiry Details'}
                   </button>
+                  {errors.submit && (
+                    <span className="form-error" style={{ marginTop: '12px', display: 'block', textAlign: 'center' }}>
+                      {errors.submit}
+                    </span>
+                  )}
                 </form>
               )}
             </div>

@@ -1,0 +1,19 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Resumes: Must be PDF/Word, under 10MB, and placed inside jobId subdirectories
+    match /resumes/{jobId}/{file} {
+      allow write: if request.resource.contentType in [
+        'application/pdf', 
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      ] && request.resource.size < 10 * 1024 * 1024;
+      allow read: if false;
+    }
+    // Portfolios: Must be under 20MB, and placed inside jobId subdirectories
+    match /portfolios/{jobId}/{file} {
+      allow write: if request.resource.size < 20 * 1024 * 1024;
+      allow read: if false;
+    }
+  }
+}

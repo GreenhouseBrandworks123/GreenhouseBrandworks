@@ -80,20 +80,70 @@ const [captchaValue, setCaptchaValue] = useState(null);
     e.preventDefault();
     const newErrors = {};
 
-    if (!formData.name.trim()) newErrors.name = 'Full name is required';
+    // Validate name and size limit
+    if (!formData.name.trim()) {
+      newErrors.name = 'Full name is required';
+    } else if (formData.name.trim().length > 100) {
+      newErrors.name = 'Full name must be under 100 characters';
+    }
+
+    // Validate email format and size limit
     if (!formData.email.trim()) {
       newErrors.email = 'Email address is required';
+    } else if (formData.email.trim().length > 100) {
+      newErrors.email = 'Email must be under 100 characters';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Invalid email address';
     }
+
+    // Validate phone number format
+    const phoneRegex = /^[+\d\s\-().]{7,20}$/;
     if (!formData.phone.trim()) {
       newErrors.phone = 'Phone number is required';
+    } else if (!phoneRegex.test(formData.phone)) {
+      newErrors.phone = 'Please enter a valid phone number (7-20 digits/characters)';
     }
+
+    // Validate resume link domain and size limits
     if (!formData.resume.trim()) {
       newErrors.resume = 'Resume Google Drive link is required';
-    } else if (!/^https:\/\//.test(formData.resume)) {
-      newErrors.resume = 'Resume link must be a valid URL (starting with https://)';
+    } else if (formData.resume.trim().length > 500) {
+      newErrors.resume = 'Resume link must be under 500 characters';
+    } else if (!/^https:\/\//.test(formData.resume.trim())) {
+      newErrors.resume = 'Resume link must be a valid HTTPS URL';
+    } else {
+      try {
+        const ALLOWED_RESUME_DOMAINS = ['drive.google.com', 'docs.google.com', 'dropbox.com', 'onedrive.live.com', 'onedrive.com'];
+        const url = new URL(formData.resume.trim());
+        if (!ALLOWED_RESUME_DOMAINS.some(domain => url.hostname === domain || url.hostname.endsWith('.' + domain))) {
+          newErrors.resume = 'Please use Google Drive, Dropbox, or OneDrive for hosting your resume';
+        }
+      } catch {
+        newErrors.resume = 'Please enter a valid URL';
+      }
     }
+
+    // Validate optional portfolio link format and HTTPS
+    if (formData.portfolio && formData.portfolio.trim()) {
+      if (formData.portfolio.trim().length > 500) {
+        newErrors.portfolio = 'Portfolio link must be under 500 characters';
+      } else if (!/^https:\/\//.test(formData.portfolio.trim())) {
+        newErrors.portfolio = 'Portfolio link must be a secure HTTPS URL';
+      } else {
+        try {
+          new URL(formData.portfolio.trim());
+        } catch {
+          newErrors.portfolio = 'Please enter a valid URL';
+        }
+      }
+    }
+
+    // Validate optional message size limit
+    if (formData.message && formData.message.trim().length > 2000) {
+      newErrors.message = 'Message must be under 2000 characters';
+    }
+
+    // Validate reCAPTCHA
     if (!captchaValue) {
       newErrors.captcha = 'Please complete the reCAPTCHA';
     }
@@ -112,16 +162,17 @@ const [captchaValue, setCaptchaValue] = useState(null);
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
-        portfolio: formData.portfolio,
-        message: formData.message,
-        resumeURL: formData.resume,
+        portfolio: formData.portfolio ? formData.portfolio.trim() : '',
+        message: formData.message ? formData.message.trim() : '',
+        resumeURL: formData.resume.trim(),
+        captchaToken: captchaValue,
       });
 
       // Success response
       setIsSubmitted(true);
       setCaptchaValue(null);
     } catch (error) {
-      setErrors({ submit: error.message });
+      setErrors({ submit: 'Something went wrong. Please try again later.' });
       console.error('Error submitting application:', error);
     } finally {
       setIsLoading(false);
@@ -239,17 +290,18 @@ const [captchaValue, setCaptchaValue] = useState(null);
               {errors.phone && <span className="form-error">{errors.phone}</span>}
             </div>
 
-            <div className="form-group">
+             <div className="form-group">
               <label htmlFor="portfolio">Portfolio / Web Link</label>
               <input
                 type="url"
                 id="portfolio"
                 name="portfolio"
-                className="form-control"
+                className={`form-control ${errors.portfolio ? 'invalid' : ''}`}
                 value={formData.portfolio}
                 onChange={handleInputChange}
                 placeholder="https://yourportfolio.com"
               />
+              {errors.portfolio && <span className="form-error">{errors.portfolio}</span>}
             </div>
 
             <div className="form-group">
@@ -271,25 +323,26 @@ const [captchaValue, setCaptchaValue] = useState(null);
               <textarea
                 id="message"
                 name="message"
-                className="form-control"
+                className={`form-control ${errors.message ? 'invalid' : ''}`}
                 value={formData.message}
                 onChange={handleInputChange}
                 placeholder="Introduce yourself and describe your strategic drive..."
               ></textarea>
+              {errors.message && <span className="form-error">{errors.message}</span>}
             </div>
 
             <div style={{ marginTop: '20px' }}>
-  <ReCAPTCHA
-    sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-    onChange={(value) => setCaptchaValue(value)}
-  />
+              <ReCAPTCHA
+                sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                onChange={(value) => setCaptchaValue(value)}
+              />
 
-  {errors.captcha && (
-    <span className="form-error">
-      {errors.captcha}
-    </span>
-  )}
-</div>
+              {errors.captcha && (
+                <span className="form-error" style={{ display: 'block', marginTop: '4px' }}>
+                  {errors.captcha}
+                </span>
+              )}
+            </div>
 
             <div style={{ display: 'flex', gap: '16px', marginTop: '32px' }}>
               <button 
@@ -309,7 +362,7 @@ const [captchaValue, setCaptchaValue] = useState(null);
                 Cancel
               </button>
             </div>
-            {errors.submit && <span className="form-error" style={{ marginTop: '12px', display: 'block' }}>{errors.submit}</span>}
+            {errors.submit && <span className="form-error" style={{ marginTop: '12px', display: 'block', textAlign: 'center' }}>{errors.submit}</span>}
           </form>
         )}
       </Modal>
