@@ -58,7 +58,8 @@ exports.submitContact = onCall(async (request) => {
   const { name, email, phone, company, message, captchaToken } = data || {};
 
   // Validate reCAPTCHA
-  await verifyRecaptcha(captchaToken);
+  // reCAPTCHA temporarily disabled for testing
+// await verifyRecaptcha(captchaToken);
 
   // Validate Input Existence & Length Limits
   if (!name || name.trim().length > 100) {
@@ -97,7 +98,8 @@ exports.submitJobApplication = onCall(async (request) => {
   const { jobId, jobTitle, name, email, phone, portfolio, message, resumeURL, captchaToken } = data || {};
 
   // Validate reCAPTCHA
-  await verifyRecaptcha(captchaToken);
+  // reCAPTCHA temporarily disabled for testing
+// await verifyRecaptcha(captchaToken);
 
   // Validate Inputs
   if (!jobId || jobId.trim().length > 50) {

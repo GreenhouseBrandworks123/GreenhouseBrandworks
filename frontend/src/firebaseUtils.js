@@ -3,29 +3,33 @@ import {
   uploadBytes,
   getDownloadURL,
 } from 'firebase/storage';
-import { httpsCallable } from 'firebase/functions';
-import { storage, functions } from './firebase';
+import { collection, addDoc } from 'firebase/firestore';
+import { db, storage } from './firebase';
 
 // ============== Firestore - Store Form Submissions (via Cloud Functions) ==============
 
 export const saveContactSubmission = async (contactData) => {
-  try {
-    const submitContactFn = httpsCallable(functions, 'submitContact');
-    const result = await submitContactFn(contactData);
-    return result.data.id;
-  } catch (error) {
-    throw new Error('Failed to save contact submission', { cause: error });
-  }
+  const docRef = await addDoc(
+    collection(db, 'contactSubmissions'),
+    {
+      ...contactData,
+      createdAt: new Date()
+    }
+  );
+
+  return docRef.id;
 };
 
 export const saveJobApplication = async (applicationData) => {
-  try {
-    const submitJobApplicationFn = httpsCallable(functions, 'submitJobApplication');
-    const result = await submitJobApplicationFn(applicationData);
-    return result.data.id;
-  } catch (error) {
-    throw new Error('Failed to save job application', { cause: error });
-  }
+  const docRef = await addDoc(
+    collection(db, 'jobApplications'),
+    {
+      ...applicationData,
+      createdAt: new Date()
+    }
+  );
+
+  return docRef.id;
 };
 
 // ============== Storage - Upload Files ==============

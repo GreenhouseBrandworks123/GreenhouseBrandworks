@@ -62,8 +62,8 @@ const [captchaValue, setCaptchaValue] = useState(null);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    if (errors[name]) {
-      setErrors({ ...errors, [name]: '' });
+    if (errors[name] || errors.submit) {
+      setErrors({ ...errors, [name]: '', submit: '' });
     }
   };
 
@@ -72,6 +72,7 @@ const [captchaValue, setCaptchaValue] = useState(null);
     setIsSubmitted(false);
     setFormData({ name: '', email: '', phone: '', portfolio: '', resume: '', message: '' });
     setErrors({});
+    setCaptchaValue(null);
   };
 
 
@@ -79,42 +80,48 @@ const [captchaValue, setCaptchaValue] = useState(null);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedPhone = formData.phone.trim();
+    const trimmedResume = formData.resume.trim();
+    const trimmedPortfolio = formData.portfolio ? formData.portfolio.trim() : '';
+    const trimmedMessage = formData.message ? formData.message.trim() : '';
 
     // Validate name and size limit
-    if (!formData.name.trim()) {
+    if (!trimmedName) {
       newErrors.name = 'Full name is required';
-    } else if (formData.name.trim().length > 100) {
+    } else if (trimmedName.length > 100) {
       newErrors.name = 'Full name must be under 100 characters';
     }
 
     // Validate email format and size limit
-    if (!formData.email.trim()) {
+    if (!trimmedEmail) {
       newErrors.email = 'Email address is required';
-    } else if (formData.email.trim().length > 100) {
+    } else if (trimmedEmail.length > 100) {
       newErrors.email = 'Email must be under 100 characters';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    } else if (!/\S+@\S+\.\S+/.test(trimmedEmail)) {
       newErrors.email = 'Invalid email address';
     }
 
     // Validate phone number format
     const phoneRegex = /^[+\d\s\-().]{7,20}$/;
-    if (!formData.phone.trim()) {
+    if (!trimmedPhone) {
       newErrors.phone = 'Phone number is required';
-    } else if (!phoneRegex.test(formData.phone)) {
+    } else if (!phoneRegex.test(trimmedPhone)) {
       newErrors.phone = 'Please enter a valid phone number (7-20 digits/characters)';
     }
 
     // Validate resume link domain and size limits
-    if (!formData.resume.trim()) {
+    if (!trimmedResume) {
       newErrors.resume = 'Resume Google Drive link is required';
-    } else if (formData.resume.trim().length > 500) {
+    } else if (trimmedResume.length > 500) {
       newErrors.resume = 'Resume link must be under 500 characters';
-    } else if (!/^https:\/\//.test(formData.resume.trim())) {
+    } else if (!/^https:\/\//.test(trimmedResume)) {
       newErrors.resume = 'Resume link must be a valid HTTPS URL';
     } else {
       try {
         const ALLOWED_RESUME_DOMAINS = ['drive.google.com', 'docs.google.com', 'dropbox.com', 'onedrive.live.com', 'onedrive.com'];
-        const url = new URL(formData.resume.trim());
+        const url = new URL(trimmedResume);
         if (!ALLOWED_RESUME_DOMAINS.some(domain => url.hostname === domain || url.hostname.endsWith('.' + domain))) {
           newErrors.resume = 'Please use Google Drive, Dropbox, or OneDrive for hosting your resume';
         }
@@ -124,22 +131,24 @@ const [captchaValue, setCaptchaValue] = useState(null);
     }
 
     // Validate optional portfolio link format and HTTPS
-    if (formData.portfolio && formData.portfolio.trim()) {
-      if (formData.portfolio.trim().length > 500) {
+    if (trimmedPortfolio) {
+      if (trimmedPortfolio.length > 500) {
         newErrors.portfolio = 'Portfolio link must be under 500 characters';
-      } else if (!/^https:\/\//.test(formData.portfolio.trim())) {
+      } else if (!/^https:\/\//.test(trimmedPortfolio)) {
         newErrors.portfolio = 'Portfolio link must be a secure HTTPS URL';
       } else {
         try {
-          new URL(formData.portfolio.trim());
+          new URL(trimmedPortfolio);
         } catch {
           newErrors.portfolio = 'Please enter a valid URL';
         }
       }
     }
 
-    // Validate optional message size limit
-    if (formData.message && formData.message.trim().length > 2000) {
+    // Validate required message and size limit
+    if (!trimmedMessage) {
+      newErrors.message = 'Message is required';
+    } else if (trimmedMessage.length > 2000) {
       newErrors.message = 'Message must be under 2000 characters';
     }
 
@@ -159,12 +168,12 @@ const [captchaValue, setCaptchaValue] = useState(null);
       await saveJobApplication({
         jobId: selectedJob.id,
         jobTitle: selectedJob.title,
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        portfolio: formData.portfolio ? formData.portfolio.trim() : '',
-        message: formData.message ? formData.message.trim() : '',
-        resumeURL: formData.resume.trim(),
+        name: trimmedName,
+        email: trimmedEmail,
+        phone: trimmedPhone,
+        portfolio: trimmedPortfolio,
+        message: trimmedMessage,
+        resumeURL: trimmedResume,
         captchaToken: captchaValue,
       });
 
@@ -172,7 +181,11 @@ const [captchaValue, setCaptchaValue] = useState(null);
       setIsSubmitted(true);
       setCaptchaValue(null);
     } catch (error) {
-      setErrors({ submit: 'Something went wrong. Please try again later.' });
+      const submitErrorMessage =
+        error?.message ||
+        error?.cause?.message ||
+        'Something went wrong. Please try again later.';
+      setErrors({ submit: submitErrorMessage });
       console.error('Error submitting application:', error);
     } finally {
       setIsLoading(false);
@@ -334,7 +347,12 @@ const [captchaValue, setCaptchaValue] = useState(null);
             <div style={{ marginTop: '20px' }}>
               <ReCAPTCHA
                 sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-                onChange={(value) => setCaptchaValue(value)}
+                onChange={(value) => {
+                  setCaptchaValue(value);
+                  if (errors.captcha || errors.submit) {
+                    setErrors({ ...errors, captcha: '', submit: '' });
+                  }
+                }}
               />
 
               {errors.captcha && (
