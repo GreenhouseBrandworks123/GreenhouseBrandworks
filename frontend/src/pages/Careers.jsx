@@ -181,12 +181,13 @@ const [captchaValue, setCaptchaValue] = useState(null);
       setIsSubmitted(true);
       setCaptchaValue(null);
     } catch (error) {
+      console.error('Error submitting application:', error);
+      const code = error?.code?.replace('functions/', '');
       const submitErrorMessage =
-        error?.message ||
-        error?.cause?.message ||
+        code === 'invalid-argument' ? error.message :
+        code === 'unavailable' ? 'Service temporarily unavailable. Please try again in a moment.' :
         'Something went wrong. Please try again later.';
       setErrors({ submit: submitErrorMessage });
-      console.error('Error submitting application:', error);
     } finally {
       setIsLoading(false);
     }
