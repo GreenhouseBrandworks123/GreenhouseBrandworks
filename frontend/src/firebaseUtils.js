@@ -4,8 +4,8 @@ import {
   getDownloadURL,
 } from 'firebase/storage';
 import { collection, addDoc } from 'firebase/firestore';
-import { getFunctions, httpsCallable } from "firebase/functions";
-import { db, storage } from './firebase';
+import { httpsCallable } from "firebase/functions";
+import { db, storage, functions } from './firebase';
 
 // ============== Firestore - Store Form Submissions (via Cloud Functions) ==============
 
@@ -22,16 +22,8 @@ export const saveContactSubmission = async (contactData) => {
 };
 
 export const saveJobApplication = async (applicationData) => {
-
-  const functions = getFunctions();
-
-  const submitJobApplication = httpsCallable(
-    functions,
-    "submitJobApplication"
-  );
-
+  const submitJobApplication = httpsCallable(functions, "submitJobApplication");
   const result = await submitJobApplication(applicationData);
-
   return result.data;
 };
 
