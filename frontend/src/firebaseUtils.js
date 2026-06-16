@@ -22,9 +22,18 @@ export const saveContactSubmission = async (contactData) => {
 };
 
 export const saveJobApplication = async (applicationData) => {
+  console.log("[debug] functions instance:", functions ? "OK" : "NULL");
+  console.log("[debug] project:", functions?.app?.options?.projectId);
   const submitJobApplication = httpsCallable(functions, "submitJobApplication");
-  const result = await submitJobApplication(applicationData);
-  return result.data;
+  console.log("[debug] httpsCallable created, calling...");
+  try {
+    const result = await submitJobApplication(applicationData);
+    console.log("[debug] result:", result);
+    return result.data;
+  } catch (e) {
+    console.error("[debug] error code:", e.code, "message:", e.message, "details:", JSON.stringify(e));
+    throw e;
+  }
 };
 
 // ============== Storage - Upload Files ==============
