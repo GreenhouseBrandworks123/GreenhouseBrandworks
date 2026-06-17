@@ -12,5 +12,8 @@
         "*.local"
       ]
     }
-  ]
+  ],
+  "storage": {
+    "rules": "frontend/storage.rules"
+  }
 }
