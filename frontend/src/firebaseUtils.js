@@ -3,22 +3,15 @@ import {
   uploadBytes,
   getDownloadURL,
 } from 'firebase/storage';
-import { collection, addDoc } from 'firebase/firestore';
 import { httpsCallable } from "firebase/functions";
 import { db, storage, functions } from './firebase';
 
 // ============== Firestore - Store Form Submissions (via Cloud Functions) ==============
 
 export const saveContactSubmission = async (contactData) => {
-  const docRef = await addDoc(
-    collection(db, 'contactSubmissions'),
-    {
-      ...contactData,
-      createdAt: new Date()
-    }
-  );
-
-  return docRef.id;
+  const submitContact = httpsCallable(functions, "submitContact");
+  const result = await submitContact(contactData);
+  return result.data.id;
 };
 
 export const saveJobApplication = async (applicationData) => {

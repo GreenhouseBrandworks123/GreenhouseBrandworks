@@ -11,16 +11,46 @@ const gmailPass = defineSecret("GMAIL_PASS");
 const recaptchaSecret = defineSecret("RECAPTCHA_SECRET");
 
 
-exports.submitContact = onCall(async (request) => {
-  const data = request.data;
+function escapeHtml(str) {
+  if (typeof str !== "string") return "";
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
 
-  const docRef = await db.collection("contactSubmissions").add({
-    ...data,
-    createdAt: admin.firestore.FieldValue.serverTimestamp(),
-  });
+exports.submitContact = onCall(
+  { secrets: [recaptchaSecret] },
+  async (request) => {
+    const data = request.data;
 
-  return { success: true, id: docRef.id };
-});
+    let captchaResult;
+    try {
+      const captchaRes = await fetch(
+        `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecret.value()}&response=${data.captchaToken}`,
+        { method: "POST" }
+      );
+      captchaResult = await captchaRes.json();
+    } catch (err) {
+      throw new HttpsError("internal", "Could not verify reCAPTCHA. Please try again.");
+    }
+
+    if (!captchaResult.success) {
+      throw new HttpsError("invalid-argument", "reCAPTCHA verification failed. Please try again.");
+    }
+
+    const { captchaToken, ...safeData } = data;
+
+    const docRef = await db.collection("contactSubmissions").add({
+      ...safeData,
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    return { success: true, id: docRef.id };
+  }
+);
 
 
 exports.submitJobApplication = onCall(
@@ -49,11 +79,12 @@ exports.submitJobApplication = onCall(
         throw new HttpsError("invalid-argument", "reCAPTCHA verification failed. Please try again.");
       }
 
-      // Save to Firestore
+      // Save to Firestore (exclude captchaToken — verified above, no need to persist)
+      const { captchaToken, ...applicationData } = data;
       let docRef;
       try {
         docRef = await db.collection("jobApplications").add({
-          ...data,
+          ...applicationData,
           createdAt: admin.firestore.FieldValue.serverTimestamp(),
         });
         console.log("Saved to Firestore:", docRef.id);
@@ -72,19 +103,27 @@ exports.submitJobApplication = onCall(
           },
         });
 
+        const safeName = escapeHtml(data.name);
+        const safeEmail = escapeHtml(data.email);
+        const safePhone = escapeHtml(data.phone);
+        const safeJobTitle = escapeHtml(data.jobTitle);
+        const safeResumeURL = escapeHtml(data.resumeURL);
+        const safePortfolio = data.portfolio ? escapeHtml(data.portfolio) : "Not provided";
+        const safeMessage = escapeHtml(data.message);
+
         await transporter.sendMail({
           from: "greenhousebrandworks123@gmail.com",
           to: "greenhousebrandworks123@gmail.com",
-          subject: `New Application: ${data.jobTitle}`,
+          subject: `New Application: ${safeJobTitle}`,
           html: `
             <h2>New Job Application</h2>
-            <p><b>Name:</b> ${data.name}</p>
-            <p><b>Email:</b> ${data.email}</p>
-            <p><b>Phone:</b> ${data.phone}</p>
-            <p><b>Role:</b> ${data.jobTitle}</p>
-            <p><b>Resume:</b> <a href="${data.resumeURL}">View Resume</a></p>
-            <p><b>Portfolio:</b> ${data.portfolio || "Not provided"}</p>
-            <p><b>Message:</b><br/>${data.message}</p>
+            <p><b>Name:</b> ${safeName}</p>
+            <p><b>Email:</b> ${safeEmail}</p>
+            <p><b>Phone:</b> ${safePhone}</p>
+            <p><b>Role:</b> ${safeJobTitle}</p>
+            <p><b>Resume:</b> <a href="${safeResumeURL}">View Resume</a></p>
+            <p><b>Portfolio:</b> ${safePortfolio}</p>
+            <p><b>Message:</b><br/>${safeMessage}</p>
           `,
         });
 
@@ -93,8 +132,8 @@ exports.submitJobApplication = onCall(
           to: data.email,
           subject: "Application Received - Greenhouse Brandworks",
           html: `
-            <h2>Hello ${data.name},</h2>
-            <p>Thank you for applying for the <b>${data.jobTitle}</b> position.</p>
+            <h2>Hello ${safeName},</h2>
+            <p>Thank you for applying for the <b>${safeJobTitle}</b> position.</p>
             <p>We have received your application successfully. Our team will review it and contact you if shortlisted.</p>
             <br/>
             <p>Regards,<br/>Greenhouse Brandworks Team</p>
