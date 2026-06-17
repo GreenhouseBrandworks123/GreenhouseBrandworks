@@ -21,38 +21,6 @@ function escapeHtml(str) {
     .replace(/'/g, "&#039;");
 }
 
-exports.submitContact = onCall(
-  { secrets: [recaptchaSecret], invoker: "public" },
-  async (request) => {
-    const data = request.data;
-
-    let captchaResult;
-    try {
-      const captchaRes = await fetch(
-        `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecret.value()}&response=${data.captchaToken}`,
-        { method: "POST" }
-      );
-      captchaResult = await captchaRes.json();
-    } catch (err) {
-      throw new HttpsError("internal", "Could not verify reCAPTCHA. Please try again.");
-    }
-
-    if (!captchaResult.success) {
-      throw new HttpsError("invalid-argument", "reCAPTCHA verification failed. Please try again.");
-    }
-
-    const { captchaToken, ...safeData } = data;
-
-    const docRef = await db.collection("contactSubmissions").add({
-      ...safeData,
-      createdAt: admin.firestore.FieldValue.serverTimestamp(),
-    });
-
-    return { success: true, id: docRef.id };
-  }
-);
-
-
 exports.submitJobApplication = onCall(
   { secrets: [gmailUser, gmailPass, recaptchaSecret] },
   async (request) => {

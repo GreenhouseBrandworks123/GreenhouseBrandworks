@@ -15,5 +15,8 @@
   ],
   "storage": {
     "rules": "frontend/storage.rules"
+  },
+  "firestore": {
+    "rules": "frontend/firestore.rules"
   }
 }

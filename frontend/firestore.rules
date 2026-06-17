@@ -1,7 +1,16 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Completely deny all direct client-side reads and writes
+    // Allow contact form submissions (create only — no read/update/delete)
+    match /contactSubmissions/{doc} {
+      allow create: if request.resource.data.keys().hasAll(['name', 'email', 'message'])
+        && request.resource.data.name is string
+        && request.resource.data.email is string
+        && request.resource.data.message is string;
+      allow read, update, delete: if false;
+    }
+
+    // All other collections locked — job applications go through Cloud Function
     match /{document=**} {
       allow read, write: if false;
     }
