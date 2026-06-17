@@ -22,7 +22,7 @@ function escapeHtml(str) {
 }
 
 exports.submitContact = onCall(
-  { secrets: [recaptchaSecret] },
+  { secrets: [recaptchaSecret], invoker: "public" },
   async (request) => {
     const data = request.data;
 
