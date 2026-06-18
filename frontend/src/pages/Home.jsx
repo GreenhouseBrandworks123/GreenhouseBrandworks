@@ -136,14 +136,15 @@ export const Home = ({ setCurrentPage }) => {
 ];
 
 const [currentSlide, setCurrentSlide] = useState(0);
+const [visionPaused, setVisionPaused] = useState(false);
 
 useEffect(() => {
+  if (visionPaused) return;
   const interval = setInterval(() => {
     setCurrentSlide((prev) => (prev + 1) % visionSlides.length);
   }, 5000);
-
   return () => clearInterval(interval);
-}, []);
+}, [visionPaused, currentSlide]);
 
   return (
     <div className="page-container">
@@ -152,8 +153,15 @@ useEffect(() => {
         <div className="hero-mesh"></div>
         <div className="hero-container">
           <div className="hero-badge">Greenhouse Brandworks</div>
-          <h1>We help your <span>brand grow</span>.</h1>
-          <p className="hero-subtext">
+          <h1 className="hero-headline">
+            <span className="hero-word" style={{ '--i': 0 }}>We</span>{' '}
+            <span className="hero-word" style={{ '--i': 1 }}>help</span>{' '}
+            <span className="hero-word" style={{ '--i': 2 }}>your</span>{' '}
+            <span className="hero-word hero-word--accent" style={{ '--i': 3 }}>brand</span>{' '}
+            <span className="hero-word hero-word--accent" style={{ '--i': 4 }}>grow</span>
+            <span className="hero-word" style={{ '--i': 5 }}>.</span>
+          </h1>
+          <p className="hero-subtext hero-subtext--animate">
             We are a premium creative agency crafting modern identity systems, bespoke web experiences, and data-driven digital campaigns that drive commercial success.
           </p>
           <div className="hero-ctas">
@@ -168,38 +176,75 @@ useEffect(() => {
       </section>
 
       {/* --- BRAND VISION SLIDER --- */}
-<section className="vision-slider">
-  <div className="vision-slider-overlay">
-
-    <div className="vision-slider-content">
-      <span className="vision-badge">OUR VISION</span>
-
-      <h2>{visionSlides[currentSlide].quote}</h2>
-
-      <button
-        className="btn btn-primary vision-btn"
-        onClick={() => {
-          setCurrentPage('about');
-          window.scrollTo(0, 0);
-        }}
+      <section
+        className="vision-slider"
+        onMouseEnter={() => setVisionPaused(true)}
+        onMouseLeave={() => setVisionPaused(false)}
       >
-        Learn More
-      </button>
-    </div>
+        <div className="vision-slider-overlay">
 
-    <div className="vision-slider-image-wrapper">
-      <img
-        src={visionSlides[currentSlide].image}
-        alt={visionSlides[currentSlide].quote}
-        className="vision-slider-image"
-      />
-    </div>
+          <div className="vision-slider-content">
+            <span className="vision-badge">OUR VISION</span>
 
-  </div>
-</section>
+            <h2 key={currentSlide} className="vision-quote-animate">
+              {visionSlides[currentSlide].quote}
+            </h2>
+
+            <div className="vision-nav">
+              <button
+                className="vision-arrow"
+                onClick={() => setCurrentSlide((p) => (p - 1 + visionSlides.length) % visionSlides.length)}
+                aria-label="Previous slide"
+              >
+                &#8592;
+              </button>
+
+              <div className="vision-dots">
+                {visionSlides.map((_, i) => (
+                  <button
+                    key={i}
+                    className={`vision-dot${i === currentSlide ? ' active' : ''}`}
+                    onClick={() => setCurrentSlide(i)}
+                    aria-label={`Go to slide ${i + 1}`}
+                  >
+                    {i === currentSlide && (
+                      <span key={currentSlide} className={`vision-dot-fill${visionPaused ? ' paused' : ''}`} />
+                    )}
+                  </button>
+                ))}
+              </div>
+
+              <button
+                className="vision-arrow"
+                onClick={() => setCurrentSlide((p) => (p + 1) % visionSlides.length)}
+                aria-label="Next slide"
+              >
+                &#8594;
+              </button>
+            </div>
+
+            <button
+              className="btn btn-primary vision-btn"
+              onClick={() => { setCurrentPage('about'); window.scrollTo(0, 0); }}
+            >
+              Learn More
+            </button>
+          </div>
+
+          <div className="vision-slider-image-wrapper">
+            <img
+              key={currentSlide}
+              src={visionSlides[currentSlide].image}
+              alt={visionSlides[currentSlide].quote}
+              className="vision-slider-image vision-image-animate"
+            />
+          </div>
+
+        </div>
+      </section>
 
       {/* --- SERVICES OVERVIEW --- */}
-      <section className="section section-bg">
+      <section className="section section-dot">
         <div className="section-container">
           <div className="section-header">
             <span className="section-badge">Our Focus</span>
@@ -250,8 +295,25 @@ useEffect(() => {
         </div>
       </section>
 
+      {/* --- BRAND PROMISE QUOTE --- */}
+      <section className="brand-promise-section">
+        <div className="brand-promise-bg-glow"></div>
+        <div className="brand-promise-inner">
+          <div className="brand-promise-curly brand-promise-curly--open">&ldquo;</div>
+          <div className="brand-promise-accent-line"></div>
+          <blockquote className="brand-promise-quote">
+            <span className="brand-promise-highlight">If you have an established brand,</span>{' '}
+            we'll follow your guidelines.{' '}
+            <span className="brand-promise-highlight">If you don't,</span>{' '}
+            we'll create the brand for you!
+          </blockquote>
+          <div className="brand-promise-accent-line"></div>
+          <div className="brand-promise-curly brand-promise-curly--close">&rdquo;</div>
+        </div>
+      </section>
+
       {/* --- WHY CHOOSE US --- */}
-      <section className="section">
+      <section className="section section-mesh-left">
         <div className="section-container">
           <div className="grid-2">
             <div>
@@ -285,7 +347,7 @@ useEffect(() => {
       </section>
 
       {/* --- VALUE PROPOSITION SECTION --- */}
-      <section className="section section-bg">
+      <section className="section section-bg section-mesh-right">
         <div className="section-container">
           <div className="grid-2">
             <div className="value-image" style={{ height: '400px' }}>
@@ -345,7 +407,7 @@ useEffect(() => {
       </section>
 
       {/* --- STATISTICS SECTION --- */}
-      <section className="section section-bg">
+      <section className="section section-dark">
         <div className="section-container">
           <div className="stats-container">
             <div className="stat-item">
@@ -378,7 +440,7 @@ useEffect(() => {
       </section>
 
       {/* --- FINAL CTA SECTION --- */}
-      <section className="section" style={{ textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+      <section className="section section-dark section-cta" style={{ textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
         <div className="hero-mesh" style={{ top: 'auto', bottom: '-20%', left: '20%', right: '20%' }}></div>
         <div className="section-container" style={{ maxWidth: '800px' }}>
           <span className="section-badge">Start Today</span>
