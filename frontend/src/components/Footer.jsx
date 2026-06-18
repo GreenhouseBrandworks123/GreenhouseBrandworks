@@ -32,16 +32,11 @@ export const Footer = ({ setCurrentPage }) => {
               An award-winning creative branding and digital design agency crafting premium identities and conversion-focused experiences.
             </p>
             <div className="contact-socials">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Facebook">
-                <SVGIcon name="facebook" size={18} />
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Twitter">
-                <SVGIcon name="twitter" size={18} />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram">
+              
+              <a href="https://www.instagram.com/greenhousebrand/?hl=en" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram">
                 <SVGIcon name="instagram" size={18} />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/company/greenhouse_brandworks/" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="LinkedIn">
                 <SVGIcon name="linkedin" size={18} />
               </a>
             </div>
