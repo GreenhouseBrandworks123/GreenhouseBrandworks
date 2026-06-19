@@ -159,7 +159,7 @@ useEffect(() => {
             <span className="hero-word" style={{ '--i': 2 }}>your</span>{' '}
             <span className="hero-word hero-word--accent" style={{ '--i': 3 }}>brand</span>{' '}
             <span className="hero-word hero-word--accent" style={{ '--i': 4 }}>grow</span>
-            <span className="hero-word" style={{ '--i': 5 }}>.</span>
+            
           </h1>
           <p className="hero-subtext hero-subtext--animate">
             We are a premium creative agency crafting modern identity systems, bespoke web experiences, and data-driven digital campaigns that drive commercial success.

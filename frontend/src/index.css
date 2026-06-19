@@ -4,18 +4,25 @@
   --font-body: 'Poppins', sans-serif;
   --font-title: 'Poppins', sans-serif;
 
-  /* Color Palette - Light Mode Default */
-  --bg: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-tertiary: #f1f5f9;
-  --text: #0f172a;
-  --text-muted: #64748b;
+  /* Color Palette - Light Mode
+     Warm off-white surfaces with subtle sage-green tint — premium, brand-aligned */
+  --bg: #fcfcfb;
+  --bg-secondary: #f5f6f1;
+  --bg-tertiary: #ecede8;
+  --text: #0f1a08;
+  --text-muted: #5e6758;
   --accent: #A8BC00;
   --accent-hover: #95A800;
-  --accent-soft: rgba(34, 197, 94, 0.08);
-  --border: #e2e8f0;
-  --card-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.05);
-  --nav-bg: rgba(255, 255, 255, 0.85);
+  --accent-soft: rgba(168, 188, 0, 0.08);
+  --border: #dfe1d8;
+
+  /* Semantic surface tokens */
+  --surface-card: #ffffff;
+  --surface-elevated: #ffffff;
+
+  --card-shadow: 0 1px 3px rgba(15, 26, 8, 0.04), 0 8px 24px -4px rgba(15, 26, 8, 0.06);
+  --card-shadow-hover: 0 4px 12px rgba(15, 26, 8, 0.06), 0 20px 48px -8px rgba(15, 26, 8, 0.11);
+  --nav-bg: rgba(252, 252, 251, 0.88);
   --vision-slider-image-shadow: 0 16px 48px rgba(15, 23, 42, 0.14), 0 0 32px rgba(168, 188, 0, 0.1);
 
   /* ── Vision Slider (light mode) ── */
@@ -35,8 +42,9 @@
   --bp-color: var(--text);
   --bp-glow: color-mix(in srgb, var(--accent) 22%, transparent);
 
-  /* ── Dark Statement Sections — Stats + CTA (light mode) ── */
-  --sd-bg: var(--bg-secondary);
+  /* ── Dark Statement Sections — Stats + CTA (light mode)
+     Distinct sage-tinted surface, clearly different from bg-secondary ── */
+  --sd-bg: #e8ebe0;
   --sd-color: var(--text);
   --sd-muted: var(--text-muted);
   --sd-heading: var(--text);
@@ -49,42 +57,49 @@
 }
 
 .dark {
-  /* Color Palette - Dark Mode */
-  --bg: #090b0d;
-  --bg-secondary: #12161a;
-  --bg-tertiary: #1a2026;
-  --text: #f8fafc;
-  --text-muted: #94a3b8;
+  /* Color Palette - Dark Mode
+     Deep green-black surfaces, warm and layered — not pure black */
+  --bg: #0b0d09;
+  --bg-secondary: #131710;
+  --bg-tertiary: #1b2016;
+  --text: #eef0e6;
+  --text-muted: #8a9a80;
   --accent: #A8BC00;
   --accent-hover: #B8CF00;
-  --accent-soft: rgba(34, 197, 94, 0.15);
-  --border: #2e353f;
-  --card-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.7);
-  --nav-bg: rgba(9, 11, 13, 0.85);
+  --accent-soft: rgba(168, 188, 0, 0.12);
+  --border: #252c1e;
+
+  /* Semantic surface tokens */
+  --surface-card: #161a12;
+  --surface-elevated: #1e2419;
+
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 20px 60px -12px rgba(0, 0, 0, 0.5);
+  --card-shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.4), 0 32px 80px -16px rgba(0, 0, 0, 0.65);
+  --nav-bg: rgba(11, 13, 9, 0.88);
   --vision-slider-image-shadow: 0 28px 70px rgba(0, 0, 0, 0.55), 0 0 60px rgba(168, 188, 0, 0.18);
 
   /* ── Vision Slider (dark mode) ── */
-  --vs-bg: #080d09;
-  --vs-color: #e8f0d0;
-  --vs-muted: rgba(232, 240, 208, 0.65);
+  --vs-bg: #080d06;
+  --vs-color: #e2eacb;
+  --vs-muted: rgba(226, 234, 203, 0.65);
   --vs-badge-color: var(--accent);
   --vs-badge-border: rgba(168, 188, 0, 0.35);
-  --vs-dot: rgba(232, 240, 208, 0.25);
+  --vs-dot: rgba(226, 234, 203, 0.25);
   --vs-dot-active: rgba(168, 188, 0, 0.25);
   --vs-arrow-border: rgba(168, 188, 0, 0.35);
   --vs-arrow-bg: rgba(255, 255, 255, 0.05);
-  --vs-arrow-color: #e8f0d0;
+  --vs-arrow-color: #e2eacb;
 
   /* ── Brand Promise (dark mode) ── */
-  --bp-bg: #060d01;
-  --bp-color: #e8f0d0;
+  --bp-bg: #070e02;
+  --bp-color: #e2eacb;
   --bp-glow: color-mix(in srgb, var(--accent) 28%, transparent);
 
   /* ── Dark Statement Sections (dark mode) ── */
-  --sd-bg: #09110a;
-  --sd-color: #e8f0d0;
-  --sd-muted: rgba(240, 244, 232, 0.65);
-  --sd-heading: #f0f4e8;
+  --sd-bg: #090e07;
+  --sd-color: #e2eacb;
+  --sd-muted: rgba(226, 234, 203, 0.65);
+  --sd-heading: #eef2dc;
 }
 
 /* Reset and Global Styles */
@@ -162,7 +177,7 @@ a {
 .btn-primary:hover {
   background-color: var(--accent-hover);
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px -5px rgba(34, 197, 94, 0.3);
+  box-shadow: 0 10px 20px -5px rgba(168, 188, 0, 0.28);
 }
 
 .btn-secondary {
@@ -172,7 +187,7 @@ a {
 }
 
 .btn-secondary:hover {
-  background-color: var(--bg-tertiary);
+  background-color: var(--surface-card);
   transform: translateY(-2px);
 }
 
@@ -200,6 +215,22 @@ a {
   .vision-btn {
     align-self: center;
   }
+}
+
+/* Utility: elevated surface card */
+.card {
+  background-color: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+}
+
+/* Utility: centered section header */
+.section-header--center {
+  text-align: center;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Header & Navigation */
@@ -345,6 +376,8 @@ nav {
   padding: 100px 0 140px;
   position: relative;
   overflow: hidden;
+  /* Gentle depth that transitions into the vision slider below */
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-secondary) 100%);
 }
 
 .hero-mesh {
@@ -353,13 +386,13 @@ nav {
   right: -20%;
   width: 60%;
   height: 80%;
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.12) 0%, rgba(255, 255, 255, 0) 70%);
+  background: radial-gradient(circle, rgba(168, 188, 0, 0.12) 0%, rgba(252, 252, 251, 0) 70%);
   z-index: -1;
   pointer-events: none;
 }
 
 .dark .hero-mesh {
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.08) 0%, rgba(9, 11, 13, 0) 70%);
+  background: radial-gradient(circle, rgba(168, 188, 0, 0.08) 0%, rgba(11, 13, 9, 0) 70%);
 }
 
 .hero-container {
@@ -457,7 +490,7 @@ nav {
   background-size: 28px 28px;
 }
 .dark .section-dot {
-  background-image: radial-gradient(circle, rgba(168, 188, 0, 0.12) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(168, 188, 0, 0.10) 1px, transparent 1px);
 }
 
 /* ambient left-side glow — why choose us */
@@ -540,12 +573,6 @@ nav {
     radial-gradient(ellipse 55% 70% at 15% 80%, color-mix(in srgb, var(--accent) 12%, transparent), transparent),
     radial-gradient(ellipse 45% 55% at 85% 20%, color-mix(in srgb, var(--accent) 8%, transparent), transparent);
 }
-.section-cta h2 {
-  color: var(--sd-heading) !important;
-}
-.section-cta p {
-  color: var(--sd-muted) !important;
-}
 .section-cta .section-badge {
   color: var(--accent);
 }
@@ -593,7 +620,7 @@ nav {
 
 /* --- SERVICES SECTION & CARD --- */
 .service-card {
-  background-color: var(--bg);
+  background-color: var(--surface-card);
   border: 1px solid var(--border);
   padding: 48px;
   border-radius: var(--radius-lg);
@@ -607,7 +634,7 @@ nav {
 .service-card:hover {
   transform: translateY(-8px);
   border-color: var(--accent);
-  box-shadow: 0 20px 40px -15px rgba(34, 197, 94, 0.1);
+  box-shadow: var(--card-shadow-hover), 0 20px 48px -12px rgba(168, 188, 0, 0.12);
 }
 
 .service-icon {
@@ -715,7 +742,7 @@ nav {
 .logo-ticker {
   overflow: hidden;
   padding: 48px 0;
-  background-color: var(--bg);
+  background-color: var(--bg-secondary);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   /* edge-fade mask so logos dissolve into nothing at left/right */
@@ -1043,7 +1070,7 @@ nav {
 
 .philosophy-card:hover,
 .philosophy-card.active {
-  background-color: var(--bg);
+  background-color: var(--surface-elevated);
   transform: translateY(-5px);
   border-color: var(--accent);
   box-shadow: var(--card-shadow);
@@ -1102,7 +1129,7 @@ nav {
 }
 
 .job-card:hover {
-  background-color: var(--bg);
+  background-color: var(--surface-elevated);
   border-color: var(--accent);
   box-shadow: var(--card-shadow);
   transform: translateX(4px);
@@ -1141,7 +1168,7 @@ nav {
 }
 
 .modal-content {
-  background-color: var(--bg);
+  background-color: var(--surface-elevated);
   border: 1px solid var(--border);
   width: 100%;
   max-width: 600px;
@@ -1510,19 +1537,19 @@ footer {
     grid-template-columns: 1fr 1fr;
     gap: 40px;
   }
-  
+
   .philosophy-steps {
     grid-template-columns: 1fr;
     gap: 24px;
   }
-  
+
   .lightbox-content {
     flex-direction: column;
     overflow-y: auto;
     max-height: 80vh;
     gap: 24px;
   }
-  
+
   .lightbox-details {
     width: 100%;
   }
@@ -1532,30 +1559,30 @@ footer {
   nav {
     display: none;
   }
-  
+
   .menu-btn {
     display: block;
     color: var(--text);
   }
-  
+
   .hero {
     padding: 60px 0 80px;
   }
-  
+
   .section {
     padding: 80px 0;
   }
-  
+
   .job-card {
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
   }
-  
+
   .job-card .btn {
     width: 100%;
   }
-  
+
   .footer-grid {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -1735,25 +1762,8 @@ footer {
   transform: scale(1.1);
 }
 
-/* image */
-.vision-slider-image-wrapper {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.vision-image-animate {
-  width: 100%;
-  max-width: 650px;
-  height: 450px;
-  object-fit: cover;
-  border-radius: 24px;
-  box-shadow: var(--vision-slider-image-shadow);
-  animation: visionImageIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
+/* Shared image styles — consolidated from vision-image-animate + vision-slider-image */
+.vision-image-animate,
 .vision-slider-image {
   width: 100%;
   max-width: 650px;
@@ -1761,11 +1771,28 @@ footer {
   object-fit: cover;
   border-radius: 24px;
   box-shadow: var(--vision-slider-image-shadow);
+}
+
+/* Animated entrance — applied only on initial render */
+.vision-image-animate {
+  animation: visionImageIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Static hover transition for non-animated state */
+.vision-slider-image {
   transition: all 0.8s ease;
 }
 
 .vision-slider-image:hover {
   transform: translateY(-8px);
+}
+
+.vision-slider-image-wrapper {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* =========================
