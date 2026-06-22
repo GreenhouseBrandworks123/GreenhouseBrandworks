@@ -8,26 +8,27 @@ export const About = () => {
   const steps = [
     {
       num: "01",
-      title: "Practice",
-      tagline: "Repetition breeds instinct.",
-      description: "We work constantly on design principles, interface systems, and new technological updates. We experiment internally so that our solutions for our clients are proven and ready for immediate deployment.",
-      detailText: "Before we propose any direction to a partner, we design and validate multiple routes in-house. Our designers sketch, prototype, and build sandbox pages daily. This dedication builds the rapid reflexes needed to solve complex layouts and branding goals."
+      title: "PRACTICE",
+      description: "Practice that incorporates extensive experience in creative advertising communication and deep knowledge of branding technologies"
     },
     {
       num: "02",
-      title: "Internalize",
-      tagline: "Understand the core truth.",
-      description: "We dive deep into your corporate goals, target client problems, and market bottlenecks. We don't just draft artwork; we digest your business goals to align every asset with your metrics.",
-      detailText: "Internalization is where design meets strategy. We run positioning workshops, analyze customer queries, and inspect competitor layouts. Only when we fully digest your commercial objectives do we begin drafting client-facing drafts."
+      title: "INTERNALIZE",
+      description: "The capability to quickly Internalize emerging brand building platform and set the narrative for optimized value"
     },
     {
       num: "03",
-      title: "Execute",
-      tagline: "Deliver flawless performance.",
-      description: "We launch designs with strict quality checks. From responsive layout breakpoints and server loading efficiency to consistent graphic guidelines, we construct files to perform.",
-      detailText: "Execution is our final, high-standard phase. We run code linting, perform cross-device rendering audits, and verify form routes. This ensures that when the site launches, it runs at maximum speeds and looks flawless on every screen."
+      title: "EXTEND",
+      description: "Extend an optimized combination of practice and technology to bring the best value to the brand"
     }
   ];
+
+  // Helper function to return beautiful theme colors with explicit light-mode fallbacks
+  const getActiveColor = (step) => {
+    if (step === 0) return 'var(--color-practice, var(--accent, #65a30d))';
+    if (step === 1) return 'var(--color-internalize, #15803d)'; // Rich Emerald Green
+    return 'var(--color-extend, #4b5563)'; // Balanced Slate Gray
+  };
 
   return (
     <div className="page-container">
@@ -104,41 +105,108 @@ export const About = () => {
       </section>
 
       {/* Philosophy Step Section */}
-      <section className="section section-bg">
-        <div className="section-container">
-          <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-            <span className="section-badge">How We Think</span>
+      <section className="philosophy-section">
+        <div className="philosophy-container">
+          
+          {/* Section Heading */}
+          <div className="philosophy-header">
+            <span className="section-badge-text">How We Think</span>
             <h2>Our Creative Philosophy</h2>
-            <p style={{ maxWidth: '600px', margin: '0 auto' }}>
-              We design by a strict, three-stage operational loop to guarantee consistency and quality in our deliverables.
+            <p>
+              Get a taste of the PIE (Practice - Internalize - Extend)
             </p>
           </div>
 
-          <div className="philosophy-steps">
-            {steps.map((step, idx) => (
-              <div
-                key={idx}
-                className={`philosophy-card ${activeStep === idx ? 'active' : ''}`}
-                onClick={() => setActiveStep(idx)}
-              >
-                <div className="philosophy-num">{step.num}</div>
-                <h3 style={{ fontSize: '1.6rem' }}>{step.title}</h3>
-                <p style={{ fontWeight: '600', color: 'var(--accent)', fontSize: '0.9rem', marginBottom: '12px' }}>
-                  {step.tagline}
-                </p>
-                <p style={{ fontSize: '0.95rem' }}>{step.description}</p>
+          {/* Interactive Core Layout Split */}
+          <div className="philosophy-grid">
+            
+            {/* LEFT COLUMN: Interactive SVG Pie Diagram */}
+            <div className="pie-visual-wrapper">
+              <svg viewBox="0 0 200 200" className="pie-svg">
+                {/* Slice 01: Practice */}
+                <path
+                  d="M 100 100 L 100 10 A 90 90 0 0 1 177.94 145 Z"
+                  fill={activeStep === 0 ? getActiveColor(0) : 'var(--pie-slice-1-muted, #f1f5e9)'}
+                  className="pie-slice-path"
+                  style={{ transform: activeStep === 0 ? 'scale(1.04)' : 'scale(1)' }}
+                  onClick={() => setActiveStep(0)}
+                />
+                {/* Slice 02: Internalize */}
+                <path
+                  d="M 100 100 L 177.94 145 A 90 90 0 0 1 22.06 145 Z"
+                  fill={activeStep === 1 ? getActiveColor(1) : 'var(--pie-slice-2-muted, #e8f0dc)'}
+                  className="pie-slice-path"
+                  style={{ transform: activeStep === 1 ? 'scale(1.04)' : 'scale(1)' }}
+                  onClick={() => setActiveStep(1)}
+                />
+                {/* Slice 03: Extend */}
+                <path
+                  d="M 100 100 L 22.06 145 A 90 90 0 0 1 100 10 Z"
+                  fill={activeStep === 2 ? getActiveColor(2) : 'var(--pie-slice-3-muted, #f3f4f6)'}
+                  className="pie-slice-path"
+                  style={{ transform: activeStep === 2 ? 'scale(1.04)' : 'scale(1)' }}
+                  onClick={() => setActiveStep(2)}
+                />
+
+                {/* Center Cutout Donut Hole - Dynamically follows background themes */}
+                <circle cx="100" cy="100" r="35" fill="var(--pie-center-bg, var(--bg, #ffffff))" className="pie-center-circle" />
                 
-                <div className="philosophy-details">
-                  <p style={{ color: 'var(--text)', borderTop: '1px solid var(--border)', paddingTop: '16px', fontSize: '0.9rem', lineHeight: '1.5' }}>
-                    {step.detailText}
-                  </p>
-                </div>
+                {/* Inner Static Label */}
+                <text x="100" y="105" textAnchor="middle" fill="var(--pie-center-text, var(--text, #111827))" className="pie-center-text">
+                  PIE
+                </text>
+              </svg>
+
+              {/* Outside Quick-Click floating buttons */}
+              <button 
+                onClick={() => setActiveStep(0)} 
+                className={`pie-label-btn btn-practice ${activeStep === 0 ? 'active-0' : ''}`}>
+                01. Practice
+              </button>
+              <button 
+                onClick={() => setActiveStep(1)} 
+                className={`pie-label-btn btn-internalize ${activeStep === 1 ? 'active-1' : ''}`}>
+                02. Internalize
+              </button>
+              <button 
+                onClick={() => setActiveStep(2)} 
+                className={`pie-label-btn btn-extend ${activeStep === 2 ? 'active-2' : ''}`}>
+                03. Extend
+              </button>
+            </div>
+
+            {/* RIGHT COLUMN: Clean Single Info Display Panel */}
+            <div className="info-card-wrapper">
+              {/* Dynamic Left Colored Accent Strip */}
+              <div 
+                className="card-accent-strip"
+                style={{ backgroundColor: getActiveColor(activeStep) }}
+              />
+
+              {/* Dynamic Info Content */}
+              <div key={activeStep} className="animate-text-fade">
+                <span 
+                  className="info-stage-num"
+                  style={{ color: getActiveColor(activeStep) }}
+                >
+                  STAGE {steps[activeStep].num}
+                </span>
+                
+                <h3 className="info-title">
+                  {steps[activeStep].title}
+                </h3>
+                
+                <p className="info-desc">
+                  {steps[activeStep].description}
+                </p>
               </div>
-            ))}
+            </div>
+
           </div>
         </div>
       </section>
     </div>
   );
 };
+
 export default About;

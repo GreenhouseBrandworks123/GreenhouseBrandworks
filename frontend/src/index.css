@@ -1034,80 +1034,261 @@ nav {
 }
 
 /* --- ABOUT: PHILOSOPHY STEPS --- */
-.philosophy-steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-top: 56px;
+/* ==========================================================================
+   ABOUT PAGE: THEME-DRIVEN INTERACTIVE PIE CHART SECTION
+   ========================================================================== */
+
+/* Theme-specific custom variables for the unique pie slices */
+:root {
+  /* Inactive background colors for slices */
+  --pie-slice-1-muted: #eef1e6;
+  --pie-slice-2-muted: #e2e6d7;
+  --pie-slice-3-muted: #d5dac7;
+  
+  /* PREMIUM LIGHT MODE ACTIVE COLORS */
+  --pie-active-1: var(--accent, #65a30d);    /* High-contrast brand lime green */
+  --pie-active-2: #16a34a;                   /* Rich vibrant Emerald Green */
+  --pie-active-3: #4b5563;                   /* Sleek premium Slate Charcoal */
+
+  /* Button styling overrides */
+  --pie-btn-active-text-1: #0f1a08;
+  --pie-btn-active-text-2: #ffffff;
+  --pie-btn-active-text-3: #ffffff;
+  --pie-btn-active-bg-2:   var(--pie-active-2);
+  --pie-btn-active-bg-3:   var(--pie-active-3);
 }
 
-.philosophy-card {
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 40px;
-  cursor: pointer;
-  transition: var(--transition-smooth);
-  position: relative;
-  overflow: hidden;
+.dark {
+  /* Inactive background colors for dark mode slices */
+  --pie-slice-1-muted: #181d13;
+  --pie-slice-2-muted: #12180d;
+  --pie-slice-3-muted: #22281d;
+  
+  /* PREMIUM DARK MODE ACTIVE COLORS */
+  --pie-active-1: var(--accent, #a3e635);    /* Electric neon lime */
+  --pie-active-2: #22c55e;                   /* Radiant active Emerald Green */
+  --pie-active-3: #9ca3af;                   /* Metallic silver slate gray */
+
+  /* Button styling overrides for dark mode */
+  --pie-btn-active-text-1: #0b0d09;
+  --pie-btn-active-text-2: #ffffff;
+  --pie-btn-active-text-3: #111827;
+  --pie-btn-active-bg-2:   var(--pie-active-2);
+  --pie-btn-active-bg-3:   var(--pie-active-3);
 }
 
-.philosophy-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 4px;
-  width: 0;
-  background-color: var(--accent);
-  transition: var(--transition-smooth);
+.philosophy-section {
+  background-color: var(--bg); /* Smoothly transitions using your global theme values */
+  color: var(--text);
+  padding: 80px 24px;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-.philosophy-card:hover::before,
-.philosophy-card.active::before {
+.philosophy-container {
+  max-width: 1100px;
+  margin: 0 auto;
   width: 100%;
 }
 
-.philosophy-card:hover,
-.philosophy-card.active {
-  background-color: var(--surface-elevated);
-  transform: translateY(-5px);
-  border-color: var(--accent);
-  box-shadow: var(--card-shadow);
+.philosophy-header {
+  text-align: center;
+  margin-bottom: 56px;
 }
 
-.philosophy-num {
-  font-family: var(--font-title);
-  font-size: 3rem;
+.section-badge-text {
+  color: var(--accent); /* Hooks into your brand green */
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: block;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.philosophy-header h2 {
+  font-size: 2.5rem;
   font-weight: 700;
-  color: var(--accent);
-  opacity: 0.2;
-  margin-bottom: 24px;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.5px;
+  color: var(--text);
+}
+
+.philosophy-header p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Responsive layout grid framework */
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+/* Side-by-Side layout for computers and laptops */
+@media (min-width: 768px) {
+  .philosophy-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* --- LEFT COLUMN: PIE WHEEL STYLES --- */
+.pie-visual-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.pie-svg {
+  width: 280px;
+  height: 280px;
+  filter: drop-shadow(0 12px 32px rgba(15, 26, 8, 0.04));
+}
+
+@media (min-width: 640px) {
+  .pie-svg {
+    width: 360px;
+    height: 360px;
+  }
+}
+
+.pie-slice-path {
+  cursor: pointer;
+  transition: fill 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: 100px 100px;
+}
+
+.pie-slice-path:hover {
+  opacity: 0.95;
+}
+
+/* Fixes the donut hole background contrast issue from changing themes */
+.pie-center-circle {
+  fill: var(--bg);
+  transition: fill 0.4s ease;
+}
+
+.pie-center-text {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-family: monospace;
+  dominant-baseline: central;
+  fill: var(--text);
+  transition: fill 0.4s ease;
+}
+
+/* Floating labels around the graphic circle */
+.pie-label-btn {
+  position: absolute;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  background: var(--bg-secondary);
+  color: var(--text-muted);
   transition: var(--transition-fast);
 }
 
-.philosophy-card:hover .philosophy-num,
-.philosophy-card.active .philosophy-num {
-  opacity: 1;
+.pie-label-btn:hover {
+  color: var(--text);
+  border-color: var(--text-muted);
 }
 
-.philosophy-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 16px;
+.btn-practice { top: 10px; right: 10px; }
+.btn-internalize { bottom: 10px; left: 50%; transform: translateX(-50%); }
+.btn-extend { top: 10px; left: 10px; }
+
+/* Active background states for buttons */
+.btn-practice.active-0 {
+  background-color: var(--pie-active-1);
+  color: var(--pie-btn-active-text-1);
+  border-color: var(--pie-active-1);
 }
 
-.philosophy-details {
-  max-height: 0;
+.btn-internalize.active-1 {
+  background-color: var(--pie-btn-active-bg-2);
+  color: var(--pie-btn-active-text-2);
+  border-color: var(--pie-btn-active-bg-2);
+}
+
+.btn-extend.active-2 {
+  background-color: var(--pie-btn-active-bg-3);
+  color: var(--pie-btn-active-text-3);
+  border-color: var(--pie-btn-active-bg-3);
+}
+
+/* --- RIGHT COLUMN: INFO PANEL STYLES --- */
+.info-card-wrapper {
+  background-color: var(--surface-card); /* Flips cleanly to crisp white on Light mode */
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
   overflow: hidden;
-  opacity: 0;
+  box-shadow: var(--card-shadow);
   transition: var(--transition-smooth);
-  margin-top: 0;
 }
 
-.philosophy-card.active .philosophy-details {
-  max-height: 200px;
-  opacity: 1;
-  margin-top: 16px;
+.info-card-wrapper:hover {
+  box-shadow: var(--card-shadow-hover);
+}
+
+.card-accent-strip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  transition: background-color 0.4s ease;
+}
+
+.info-stage-num {
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: monospace;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 8px;
+  transition: color 0.4s ease;
+}
+
+.info-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin: 0 0 16px 0;
+  color: var(--text);
+}
+
+.info-desc {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Smooth Fade-In Animation when clicking options */
+@keyframes textContentFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-text-fade {
+  animation: textContentFadeIn 0.35s ease-out forwards;
 }
 
 /* --- CAREERS: JOB LISTINGS & FORM --- */
