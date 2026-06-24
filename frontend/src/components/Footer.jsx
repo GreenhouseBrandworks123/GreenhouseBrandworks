@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { SVGIcon } from './SVGIcon';
+import greenhouseLogo from '../assets/greenhouse-logo.png';
 
 export const Footer = ({ setCurrentPage }) => {
   const [email, setEmail] = useState('');
@@ -25,7 +26,7 @@ export const Footer = ({ setCurrentPage }) => {
         <div className="footer-grid">
           <div className="footer-brand">
             <h3 className="logo">
-              <SVGIcon name="logo" size={24} />
+              <img src={greenhouseLogo} alt="Greenhouse Brandworks logo" className="logo-img footer-logo-img" />
               Greenhouse Brandworks
             </h3>
             <p>

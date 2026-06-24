@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { SVGIcon } from './SVGIcon';
+import greenhouseLogo from '../assets/greenhouse-logo.png';
 
 export const Header = ({ currentPage, setCurrentPage, theme, toggleTheme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,7 +39,11 @@ export const Header = ({ currentPage, setCurrentPage, theme, toggleTheme }) => {
       <header className={isScrolled ? 'scrolled' : ''}>
         <div className="header-container">
           <a href="#" className="logo" onClick={(e) => { e.preventDefault(); navigateTo('home'); }}>
-            <SVGIcon name="logo" size={28} />
+            <img
+              src={greenhouseLogo}
+              alt="Greenhouse Brandworks logo"
+              className={`logo-img${isScrolled ? ' logo-img--scrolled' : ''}`}
+            />
             Greenhouse Brandworks
           </a>
 

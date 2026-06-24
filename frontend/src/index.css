@@ -272,11 +272,27 @@ header.scrolled .header-container {
   font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .logo span {
   color: var(--accent);
+}
+
+.logo-img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: height var(--transition-fast);
+}
+
+.logo-img--scrolled {
+  height: 44px;
+}
+
+.footer-logo-img {
+  height: 36px;
 }
 
 nav {
