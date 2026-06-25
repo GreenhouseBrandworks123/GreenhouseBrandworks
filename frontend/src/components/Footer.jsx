@@ -66,33 +66,37 @@ export const Footer = ({ setCurrentPage }) => {
             </ul>
           </div>
 
-          <div className="footer-col">
-            <h4>Newsletter</h4>
-            <p style={{ marginBottom: '16px', fontSize: '0.95rem' }}>
-              Subscribe to receive insights on branding, design, and growth.
-            </p>
-            {subscribed ? (
-              <div style={{ color: 'var(--accent)', fontWeight: '600', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <SVGIcon name="check" size={16} />
-                Subscribed successfully!
-              </div>
-            ) : (
-              <form className="newsletter-form" onSubmit={handleSubscribe}>
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  className="form-control"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  style={{ fontSize: '0.9rem' }}
-                />
-                <button type="submit" className="btn btn-primary" aria-label="Subscribe">
-                  <SVGIcon name="arrowRight" size={16} />
-                </button>
-              </form>
-            )}
-          </div>
+         <div className="footer-col">
+  <h4>Start a Project</h4>
+
+  <p style={{ marginBottom: '16px', fontSize: '0.95rem' }}>
+    Have an idea? Let's create a strong brand and digital experience together.
+  </p>
+
+  <a
+    href="/contact"
+    className="btn btn-primary"
+    style={{
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '8px',
+      fontSize: '0.9rem'
+    }}
+  >
+    Get in Touch
+    <SVGIcon name="arrowRight" size={16} />
+  </a>
+
+  <div
+    style={{
+      marginTop: '18px',
+      fontSize: '0.85rem',
+      color: 'var(--text-muted)'
+    }}
+  >
+    <span>Available for branding, UI/UX & growth projects.</span>
+  </div>
+</div>
         </div>
 
         <div className="footer-bottom">

@@ -122,8 +122,8 @@ export const Contact = () => {
                   <SVGIcon name="mapPin" size={20} />
                 </div>
                 <div className="contact-info-text">
-                  <h4>Studio Location</h4>
-                  <p>12 Greenhouse Arcade, Indiranagar, Bangalore, India - 560038</p>
+                  <h4>Office Location</h4>
+                  <p>828,10th A Main Road, Indiranagar 2nd Stage, Bangalore - 560038</p>
                 </div>
               </div>
 
@@ -133,7 +133,7 @@ export const Contact = () => {
                 </div>
                 <div className="contact-info-text">
                   <h4>Email Address</h4>
-                  <a href="mailto:hello@greenhousebrandworks.com">hello@greenhousebrandworks.com</a>
+                 <p>info@greenhousebrandworks.com</p> 
                 </div>
               </div>
 
@@ -143,20 +143,20 @@ export const Contact = () => {
                 </div>
                 <div className="contact-info-text">
                   <h4>Phone Lines</h4>
-                  <a href="tel:+918045678910">+91 80 4567 8910</a>
+                  <p>+91 80 4567 8910</p>
                 </div>
               </div>
 
               {/* Map Mockup */}
               <div className="map-card">
-                <SVGIcon name="logo" size={32} style={{ color: 'var(--accent)', marginBottom: '12px' }} />
+               
                 <h4 style={{ color: 'var(--text)', marginBottom: '4px', fontFamily: 'var(--font-title)' }}>
-                  Greenhouse Brandworks Studio
+                  Greenhouse Brandworks Office
                 </h4>
-                <p style={{ fontSize: '0.85rem' }}>12.9716° N, 77.5946° E • Bangalore, India</p>
+                <p style={{ fontSize: '0.85rem' }}>Indiranagar • Bangalore, India</p>
                 <div style={{ display: 'flex', gap: '8px', marginTop: '12px' }}>
                   <span className="job-tag" style={{ fontSize: '0.75rem', backgroundColor: 'var(--accent-soft)', color: 'var(--accent)' }}>Active Studio</span>
-                  <span className="job-tag" style={{ fontSize: '0.75rem' }}>Open: 9 AM - 6 PM</span>
+                  <span className="job-tag" style={{ fontSize: '0.75rem' }}>Open: 10:30 AM - 6:30 PM</span>
                 </div>
                 <div className="map-accent-line"></div>
               </div>
@@ -165,12 +165,6 @@ export const Contact = () => {
               <div style={{ marginTop: '16px' }}>
                 <h4 style={{ fontSize: '1rem', marginBottom: '12px' }}>Follow Our Grid</h4>
                 <div className="contact-socials">
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Facebook">
-                    <SVGIcon name="facebook" size={18} />
-                  </a>
-                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Twitter">
-                    <SVGIcon name="twitter" size={18} />
-                  </a>
                   <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram">
                     <SVGIcon name="instagram" size={18} />
                   </a>
