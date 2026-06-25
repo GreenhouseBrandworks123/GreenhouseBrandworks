@@ -12,9 +12,17 @@ service firebase.storage {
         && request.resource.size < 10 * 1024 * 1024;
       allow read: if false;
     }
-    // Portfolios: Must be under 20MB, and only for known job IDs
+
+    // Fix #4: Portfolios now restricted to image types and PDF only (was size-only before)
     match /portfolios/{jobId}/{file} {
       allow write: if jobId in ['graphic-designer', 'website-designer', 'bd-executive']
+        && request.resource.contentType in [
+          'image/jpeg',
+          'image/png',
+          'image/webp',
+          'image/gif',
+          'application/pdf'
+        ]
         && request.resource.size < 20 * 1024 * 1024;
       allow read: if false;
     }
