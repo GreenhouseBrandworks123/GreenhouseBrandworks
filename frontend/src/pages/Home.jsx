@@ -388,11 +388,6 @@ useEffect(() => {
               >
                 <img src={project.image} alt={project.title} />
                 <div className="portfolio-overlay">
-                  <span>{project.category}</span>
-                  <h3>{project.title}</h3>
-                  <div className="portfolio-overlay-btn">
-                    <SVGIcon name="arrowRight" size={20} />
-                  </div>
                 </div>
               </div>
             ))}
