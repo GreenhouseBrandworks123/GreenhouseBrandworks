@@ -30,6 +30,10 @@ import slide1 from '../assets/slider-images/slide1.jpeg';
 import slide2 from '../assets/slider-images/slide2.jpeg';
 import slide3 from '../assets/slider-images/slide3.jpeg';
 
+import differentiator1 from '../assets/differentiators/differentiator1.png';
+import differentiator2 from '../assets/differentiators/differentiator2.png';
+import differentiator3 from '../assets/differentiators/differentiator3.png';
+
 // Subcomponent for counting stats when they enter the viewport
 const AnimatedCounter = ({ endValue, duration = 2000 }) => {
   const [count, setCount] = useState(0);
@@ -74,6 +78,21 @@ const AnimatedCounter = ({ endValue, duration = 2000 }) => {
 };
 
 export const Home = ({ setCurrentPage }) => {
+  const differentiators = [
+    {
+      description: "We leverage a unique blend of insights gleaned from traditional advertising, and knowledge of emerging branding platforms, to deliver highly relevant and unified campaigns for today's customers",
+      image: differentiator1
+    },
+    {
+      description: "Our top clients, are a loyal following, staying wth us from our early days. Not only have they repeatedly rehired our services, they have also referred us to top notch technology providers",
+      image: differentiator2
+    },
+    {
+      description: "Our team of professionals possess deep experience in design and content writing, garnered from having worked with creative agencies extensively",
+      image: differentiator3
+    }
+  ];
+
   const featuredProjects = [
     {
       title: "Nordic Minimal Identity",
@@ -323,36 +342,34 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* --- WHY CHOOSE US --- */}
-      <section className="section section-mesh-left">
+      {/* --- OUR DIFFERENTIATORS --- */}
+      <section className="section differentiators-section">
         <div className="section-container">
-          <div className="grid-2">
-            <div>
-              <span className="section-badge">The Difference</span>
-              <h2>How we build success.</h2>
-              <p style={{ marginBottom: '32px' }}>
-                We bridge the gap between creative storytelling and logical conversion systems, ensuring your brand isn't just beautiful, but highly commercial.
-              </p>
-              
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                <div className="why-card">
-                  <h3>Creativity</h3>
-                  <p>Rejecting generic templates to craft bespoke visuals that set your agency apart from standard competition.</p>
+          <div className="differentiators-header">
+            <h2 className="differentiators-title">
+              <span className="differentiators-title--plain">OUR </span>
+              <span className="differentiators-title--accent">Differentiators</span>
+            </h2>
+          </div>
+          <div className="differentiators-list">
+            {differentiators.map((item, i) => (
+              <div
+                key={i}
+                className={`differentiator-row${i % 2 === 1 ? ' differentiator-row--reverse' : ''}`}
+              >
+                <div className="differentiator-image-col">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="differentiator-img"
+                  />
                 </div>
-                <div className="why-card">
-                  <h3>Strategy</h3>
-                  <p>In-depth market investigation, positioning logic, and funnel alignment to capture high-value leads.</p>
-                </div>
-                <div className="why-card">
-                  <h3>Execution</h3>
-                  <p>Flawless delivery, micro-interactions, responsive coding, and robust, reliable launch checks.</p>
+                <div className="differentiator-text-col">
+                  <h3 className="differentiator-item-title">{item.title}</h3>
+                  <p className="differentiator-item-desc">{item.description}</p>
                 </div>
               </div>
-            </div>
-
-            <div className="value-image">
-              <img src={brandingImg} alt="Branding process" />
-            </div>
+            ))}
           </div>
         </div>
       </section>

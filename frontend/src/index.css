@@ -509,26 +509,6 @@ nav {
   background-image: radial-gradient(circle, rgba(168, 188, 0, 0.10) 1px, transparent 1px);
 }
 
-/* ambient left-side glow — why choose us */
-.section-mesh-left {
-  position: relative;
-  background: var(--bg);
-  overflow: hidden;
-}
-.section-mesh-left::before {
-  content: '';
-  position: absolute;
-  left: -15%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 55%;
-  height: 80%;
-  background: radial-gradient(ellipse at left center, color-mix(in srgb, var(--accent) 10%, transparent) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-.section-mesh-left > * { position: relative; z-index: 1; }
-
 /* ambient right-side glow — value proposition */
 .section-mesh-right {
   position: relative;
@@ -717,21 +697,111 @@ nav {
   gap: 12px;
 }
 
-/* --- WHY CHOOSE US --- */
-.why-card {
-  padding: 32px;
-  border-left: 3px solid var(--border);
-  transition: var(--transition-fast);
+/* ===========================
+   OUR DIFFERENTIATORS
+=========================== */
+
+.differentiators-section {
+  background-color: var(--bg);
 }
 
-.why-card:hover {
-  border-left-color: var(--accent);
-  background-color: var(--bg-secondary);
+.differentiators-header {
+  text-align: center;
+  margin-bottom: 80px;
 }
 
-.why-card h3 {
-  font-size: 1.3rem;
-  margin-bottom: 12px;
+.differentiators-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.differentiators-title--plain {
+  color: var(--text);
+}
+
+.differentiators-title--accent {
+  color: var(--accent);
+}
+
+.differentiators-list {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.differentiator-row {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.differentiator-row--reverse {
+  flex-direction: row-reverse;
+}
+
+.differentiator-image-col {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.differentiator-img {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.differentiator-text-col {
+  flex: 1;
+  max-width: 420px;
+}
+
+.differentiator-item-title {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+.differentiator-item-desc {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.dark .differentiator-item-desc {
+  color: #ffffff;
+}
+
+@media (max-width: 900px) {
+  .differentiator-row,
+  .differentiator-row--reverse {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 32px;
+  }
+
+  .differentiator-text-col {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .differentiators-list {
+    gap: 56px;
+  }
+
+  .differentiator-img {
+    max-width: 240px;
+  }
 }
 
 /* --- STORYTELLING VALUE PROP --- */
