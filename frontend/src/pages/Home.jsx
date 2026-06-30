@@ -247,34 +247,12 @@ useEffect(() => {
       <section className="section section-dot">
         <div className="section-container">
           <div className="section-header">
-            <span className="section-badge">Our Focus</span>
-            <h2>Core capabilities.</h2>
+            {/* <span className="section-badge">Our Focus</span> */}
+            <h2>What We Offer</h2>
             <p>We help you connect with your prospects with a strong first impression, that sets your company apart from your competition. Check our services.</p>
           </div>
 
-          <div className="grid-3">
-            <div className="service-card">
-              <div className="service-icon">
-                <SVGIcon name="branding" size={28} />
-              </div>
-              <h3>Branding & Identity</h3>
-              <p>Designing memorable logo marks, visual system structures, typography standards, and brand guidelines.</p>
-              <a href="#services" className="service-link" onClick={(e) => { e.preventDefault(); setCurrentPage('services'); window.scrollTo(0,0); }}>
-                Read More <SVGIcon name="arrowRight" size={16} />
-              </a>
-            </div>
-
-            <div className="service-card">
-              <div className="service-icon">
-                <SVGIcon name="web" size={28} />
-              </div>
-              <h3>Website Design</h3>
-              <p>Developing ultra-fast, premium layouts, interface architecture, and interactions customized for conversion.</p>
-              <a href="#services" className="service-link" onClick={(e) => { e.preventDefault(); setCurrentPage('services'); window.scrollTo(0,0); }}>
-                Read More <SVGIcon name="arrowRight" size={16} />
-              </a>
-            </div>
-
+          <div className="grid-4">
             <div className="service-card">
               <div className="service-icon">
                 <SVGIcon name="marketing" size={28} />
@@ -285,11 +263,44 @@ useEffect(() => {
                 Read More <SVGIcon name="arrowRight" size={16} />
               </a>
             </div>
+
+            <div className="service-card">
+              <div className="service-icon">
+                <SVGIcon name="outdoor" size={28} />
+              </div>
+              <h3>Outdoor Advertising</h3>
+              <p>Eye-catching outdoor advertising campaigns that grab attention and drive results</p>
+              <a href="#services" className="service-link" onClick={(e) => { e.preventDefault(); setCurrentPage('services'); window.scrollTo(0,0); }}>
+                Read More <SVGIcon name="arrowRight" size={16} />
+              </a>
+            </div>
+
+            <div className="service-card">
+              <div className="service-icon">
+                <SVGIcon name="web" size={28} />
+              </div>
+              <h3>Website/App Design</h3>
+              <p>Developing ultra-fast, premium layouts, interface architecture, and interactions customized for conversion.</p>
+              <a href="#services" className="service-link" onClick={(e) => { e.preventDefault(); setCurrentPage('services'); window.scrollTo(0,0); }}>
+                Read More <SVGIcon name="arrowRight" size={16} />
+              </a>
+            </div>
+
+            <div className="service-card">
+              <div className="service-icon">
+                <SVGIcon name="print" size={28} />
+              </div>
+              <h3>Print Solutions</h3>
+              <p>Tactile materials create strong physical connections. We print on premium stocks with high-end typography layout rules.</p>
+              <a href="#services" className="service-link" onClick={(e) => { e.preventDefault(); setCurrentPage('services'); window.scrollTo(0,0); }}>
+                Read More <SVGIcon name="arrowRight" size={16} />
+              </a>
+            </div>
           </div>
 
           <div style={{ textAlign: 'center', marginTop: '56px' }}>
             <button className="btn btn-secondary" onClick={() => { setCurrentPage('services'); window.scrollTo(0,0); }}>
-              Explore All 10 Services
+              Explore Services
             </button>
           </div>
         </div>

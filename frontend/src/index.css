@@ -627,6 +627,25 @@ nav {
   gap: 32px;
 }
 
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+@media (max-width: 1024px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
 .grid-2 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
@@ -638,7 +657,7 @@ nav {
 .service-card {
   background-color: var(--surface-card);
   border: 1px solid var(--border);
-  padding: 48px;
+  padding: 32px;
   border-radius: var(--radius-lg);
   box-shadow: var(--card-shadow);
   transition: var(--transition-smooth);
@@ -654,15 +673,15 @@ nav {
 }
 
 .service-icon {
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
   background-color: var(--accent-soft);
   color: var(--accent);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   transition: var(--transition-fast);
 }
 
@@ -673,13 +692,14 @@ nav {
 }
 
 .service-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 16px;
+  font-size: 1.25rem;
+  margin-bottom: 10px;
 }
 
 .service-card p {
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   flex-grow: 1;
+  font-size: 0.9rem;
 }
 
 .service-link {
