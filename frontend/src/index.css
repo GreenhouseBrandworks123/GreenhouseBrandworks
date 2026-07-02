@@ -2146,7 +2146,6 @@ footer {
   min-height: 850px; 
   padding: 120px 32px;
   
-  /* Points perfectly to your public/bg.png file */
   background-image: url('/bg.png'); 
   background-size: cover;
   background-position: center;
@@ -2158,27 +2157,33 @@ footer {
   overflow: hidden;
 }
 
-/* The Frosted Glass Container */
+/* New Animation & Width Control Wrapper */
+.brand-promise-anim-wrap {
+  width: 92% !important;          
+  max-width: 1260px !important;   
+  display: flex;
+  justify-content: center;
+  /* The animation lives here now, away from the blur filter */
+  animation: bpFadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Stable Glass Card Container */
 .brand-promise-glass-card {
   position: relative;
   z-index: 1;
-  width: 92%;          
-  max-width: 1260px;   
+  width: 100%; 
   padding: 80px 40px;
   box-sizing: border-box; 
   
-  /* Dark translucent overlay + Blur */
-  background: rgba(10, 10, 10, 0.45); 
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px); /* Safari support */
-  will-change: backdrop-filter;        /* Forces optimization on Vercel */
+  /* Translucent overlay + Blur */
+  background: rgba(10, 10, 10, 0.45) !important; 
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important; /* Crucial for Safari production */
   
   border-radius: 16px;
   text-align: center;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.05); 
-  
-  animation: bpFadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .brand-promise-quote {
@@ -2204,15 +2209,18 @@ footer {
   color: #a3e635; 
 }
 
-/* Combined & Cleaned Mobile Responsiveness */
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
   .brand-promise-section {
     padding: 80px 20px;
     min-height: auto; 
   }
   
+  .brand-promise-anim-wrap {
+    width: 100% !important;
+  }
+  
   .brand-promise-glass-card {
-    width: 100%;
     padding: 50px 20px;
   }
   

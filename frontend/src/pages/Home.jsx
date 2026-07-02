@@ -330,17 +330,23 @@ useEffect(() => {
       {/* --- BRAND PROMISE QUOTE --- */}
       {/* --- BRAND PROMISE QUOTE --- */}
 <section className="brand-promise-section">
-  <div className="brand-promise-glass-card">
-  <p className="brand-promise-quote">
-  <span className="brand-promise-line">
-    If you have an established brand, we'll follow your guidelines.
-  </span>
-  <span className="brand-promise-line brand-promise-highlight">
-    If you don't, we'll create the brand for you!
-  </span>
-</p>
-  </div>
-</section>
+      {/* 1. This wrapper completely isolates the fade-up animation */}
+      <div className="brand-promise-anim-wrap">
+        
+        {/* 2. The glass card stays static inside, preserving the blur perfectly */}
+        <div className="brand-promise-glass-card">
+          <p className="brand-promise-quote">
+            <span className="brand-promise-line">
+              If you have an established brand, we'll follow your guidelines.
+            </span>
+            <span className="brand-promise-line brand-promise-highlight">
+              If you don't, we'll create the brand for you!
+            </span>
+          </p>
+        </div>
+
+      </div>
+    </section>
 
       {/* --- OUR DIFFERENTIATORS --- */}
       <section className="section differentiators-section">
