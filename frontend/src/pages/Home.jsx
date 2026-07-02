@@ -30,6 +30,8 @@ import slide1 from '../assets/slider-images/slide1.jpeg';
 import slide2 from '../assets/slider-images/slide2.jpeg';
 import slide3 from '../assets/slider-images/slide3.jpeg';
 
+
+
 import differentiator1 from '../assets/differentiators/differentiator1.png';
 import differentiator2 from '../assets/differentiators/differentiator2.png';
 import differentiator3 from '../assets/differentiators/differentiator3.png';
