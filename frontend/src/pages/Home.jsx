@@ -326,21 +326,19 @@ useEffect(() => {
       </section>
 
       {/* --- BRAND PROMISE QUOTE --- */}
-      <section className="brand-promise-section">
-        <div className="brand-promise-bg-glow"></div>
-        <div className="brand-promise-inner">
-          <div className="brand-promise-curly brand-promise-curly--open">&ldquo;</div>
-          <div className="brand-promise-accent-line"></div>
-          <blockquote className="brand-promise-quote">
-            <span className="brand-promise-highlight">If you have an established brand,</span>{' '}
-            we'll follow your guidelines.{' '}
-            <span className="brand-promise-highlight">If you don't,</span>{' '}
-            we'll create the brand for you!
-          </blockquote>
-          <div className="brand-promise-accent-line"></div>
-          <div className="brand-promise-curly brand-promise-curly--close">&rdquo;</div>
-        </div>
-      </section>
+      {/* --- BRAND PROMISE QUOTE --- */}
+<section className="brand-promise-section">
+  <div className="brand-promise-glass-card">
+  <p className="brand-promise-quote">
+  <span className="brand-promise-line">
+    If you have an established brand, we'll follow your guidelines.
+  </span>
+  <span className="brand-promise-line brand-promise-highlight">
+    If you don't, we'll create the brand for you!
+  </span>
+</p>
+  </div>
+</section>
 
       {/* --- OUR DIFFERENTIATORS --- */}
       <section className="section differentiators-section">

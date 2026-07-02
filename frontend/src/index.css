@@ -2134,115 +2134,90 @@ footer {
     justify-content: center;
   }
 }
-
 /* ─── BRAND PROMISE QUOTE ─── */
 @keyframes bpFadeUp {
   from { opacity: 0; transform: translateY(40px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-@keyframes bpAccentGrow {
-  from { width: 0; opacity: 0; }
-  to   { width: 80px; opacity: 1; }
-}
-@keyframes bpCurlyPop {
-  0%   { opacity: 0; transform: scale(0.5) rotate(-8deg); }
-  70%  { transform: scale(1.1) rotate(2deg); }
-  100% { opacity: 1; transform: scale(1) rotate(0deg); }
-}
-@keyframes bpGlowPulse {
-  0%, 100% { opacity: 0.35; transform: scale(1); }
-  50%       { opacity: 0.55; transform: scale(1.08); }
-}
 
 .brand-promise-section {
   position: relative;
-  min-height: 100vh;
-  padding: 0 32px;
-  background: var(--bp-bg);
-  color: var(--bp-color);
+  width: 100%;
+  min-height: 850px; /* Allows smooth proportional scaling on zoom */
+  padding: 120px 32px;
+  
+  /* Background Image Setup */
+  background-image: url('./assets/bg.png'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
 
-/* ambient radial glow behind the quote */
-.brand-promise-bg-glow {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 65% 50% at 50% 50%, var(--bp-glow), transparent 75%),
-    radial-gradient(ellipse 30% 30% at 15% 20%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 70%),
-    radial-gradient(ellipse 25% 25% at 85% 80%, color-mix(in srgb, var(--accent) 8%, transparent), transparent 70%);
-  pointer-events: none;
-  animation: bpGlowPulse 6s ease-in-out infinite;
-}
-
-.brand-promise-inner {
+/* The Frosted Glass Container */
+.brand-promise-glass-card {
   position: relative;
   z-index: 1;
-  max-width: 1000px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 36px;
+  width: 92%;          /* Uses optimal screen space */
+  max-width: 1260px;   /* Expanded width to give the text lines breathing room */
+  padding: 80px 40px;
+  box-sizing: border-box; /* Forces padding to stay INSIDE the width calculation */
+  
+  /* Dark translucent overlay + Blur */
+  background: rgba(10, 10, 10, 0.45); 
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px); /* Safari support */
+  border-radius: 16px;
+  
   text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Subtle edge highlight for glass */
+  
   animation: bpFadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: 0.15s;
 }
-
-.brand-promise-accent-line {
-  height: 3px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  border-radius: 2px;
-  flex-shrink: 0;
-  animation: bpAccentGrow 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: 0.4s;
-  width: 80px;
-}
-
-.brand-promise-curly {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(5rem, 12vw, 10rem);
-  line-height: 0.7;
-  background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 60%, var(--text)));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: bpCurlyPop 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
-  user-select: none;
-}
-.brand-promise-curly--open  { animation-delay: 1s;  align-self: flex-start; }
-.brand-promise-curly--close { animation-delay: 1s; align-self: flex-end; }
 
 .brand-promise-quote {
   margin: 0;
-  font-size: clamp(2rem, 5vw, 3.75rem);
-  font-weight: 700;
-  line-height: 1.35;
-  color: var(--bp-color);
-  letter-spacing: -0.02em;
-  animation: bpFadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: 0.3s;
+  font-family: inherit;
+  font-size: clamp(1.4rem, 2.6vw, 2.4rem); /* Perfectly balanced to fit inside the card width */
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  
+  /* Stack the two lines vertically */
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Spacing between line 1 and line 2 */
+}
+
+.brand-promise-line {
+  display: block;
+  color: #ffffff; /* Line 1: Clear White */
+  width: 100%;
 }
 
 .brand-promise-highlight {
-  background: linear-gradient(120deg, var(--accent), color-mix(in srgb, var(--accent) 70%, #fff));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #a3e635; /* Line 2: Perfect Lime Green */
 }
 
+/* Combined & Cleaned Mobile Responsiveness (No duplicates) */
 @media (max-width: 768px) {
   .brand-promise-section {
-    padding: 0 20px;
-    min-height: 100svh;
+    padding: 80px 20px;
+    min-height: auto; /* Drops fixed height on mobile for perfect scrolling flow */
   }
+  
+  .brand-promise-glass-card {
+    width: 100%;
+    padding: 50px 20px;
+  }
+  
   .brand-promise-quote {
-    font-size: clamp(1.6rem, 7vw, 2.4rem);
-  }
-  .brand-promise-curly {
-    font-size: clamp(4rem, 16vw, 7rem);
+    font-size: clamp(1.1rem, 4.8vw, 1.6rem); /* Safely scales down text on small layouts */
+    gap: 12px;
   }
 }
