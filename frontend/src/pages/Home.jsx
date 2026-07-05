@@ -185,6 +185,8 @@ useEffect(() => {
           <p className="hero-subtext hero-subtext--animate">
             We are a premium creative agency crafting modern identity systems, bespoke web experiences, and data-driven digital campaigns that drive commercial success.
           </p>
+          <p>Testing persnal account</p>
+          
           <div className="hero-ctas">
             <button className="btn btn-primary" onClick={() => { setCurrentPage('contact'); window.scrollTo(0,0); }}>
               Get a Quote
