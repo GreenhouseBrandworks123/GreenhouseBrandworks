@@ -929,7 +929,10 @@ nav {
   flex-shrink:0;
 }
 
-/* --- PORTFOLIO PREVIEW / WORK PAGE --- */
+/* ==========================================================================
+   PORTFOLIO PREVIEW / WORK PAGE
+   ========================================================================== */
+
 .portfolio-filters {
   display: flex;
   flex-wrap: wrap;
@@ -965,6 +968,7 @@ nav {
   gap: 32px;
 }
 
+/* This controls cards on your main "Work/Portfolio" page */
 .portfolio-card {
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -1032,6 +1036,113 @@ nav {
 
 .portfolio-card:hover .portfolio-overlay-btn {
   transform: translateY(0);
+}
+
+/* ==========================================================================
+   INFINITE PORTFOLIO MARQUEE (CONTAINED & OPTIMIZED)
+   ========================================================================== */
+
+/* --- Centering Rule for Header Content --- */
+.centered-marquee-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;    /* Centers items horizontally in flexbox layout */
+  text-align: center;     /* Centers multi-line text copy blocks */
+  margin: 0 auto 40px auto; /* Centers the header container block itself */
+  width: 100%;
+  max-width: 600px;       /* Keeps text line lengths readable and clean */
+}
+
+/* Ensure the parent block stretches correctly to evaluate center spacing */
+.portfolio-marquee-section .section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* ==========================================================================
+   INFINITE PORTFOLIO MARQUEE (CONTAINED & OPTIMIZED)
+   ========================================================================== */
+
+.portfolio-marquee-section {
+  width: 100%;
+}
+
+.marquee-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;        /* Keeps marquee perfectly locked within site wall grids */
+  overflow: hidden;   
+  border-radius: var(--radius-lg);
+}
+
+.marquee-row {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+}
+
+.marquee-card {
+  width: 160px;            
+  height: 240px;           
+  flex-shrink: 0;
+  border-radius: 12px;     
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.marquee-card:hover {
+  transform: scale(1.04);  
+}
+
+.marquee-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       
+  display: block;
+}
+
+/* --- CONTINUOUS TIMELINE ANIMATIONS --- */
+.track-left {
+  animation: scrollLeftTimeline 30s linear infinite;
+}
+
+.track-right {
+  animation: scrollRightTimeline 30s linear infinite;
+}
+
+.marquee-row:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes scrollLeftTimeline {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 8px)); }
+}
+
+@keyframes scrollRightTimeline {
+  0% { transform: translateX(calc(-50% - 8px)); }
+  100% { transform: translateX(0); }
+}
+
+@media (max-width: 640px) {
+  .marquee-card {
+    width: 120px;
+    height: 180px;
+  }
+  .marquee-container { gap: 12px; }
+  .marquee-track { gap: 12px; }
 }
 
 /* --- LIGHTBOX SYSTEM --- */
