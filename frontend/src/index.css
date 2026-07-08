@@ -703,17 +703,20 @@ nav {
 
 .differentiators-section {
   background-color: var(--bg);
+  font-family: var(--font-body); /* Implements clean global Poppins body font */
+  padding: 60px 0;
 }
 
 .differentiators-header {
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 64px;
 }
 
 .differentiators-title {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
   letter-spacing: -0.02em;
   line-height: 1.2;
+  font-family: var(--font-title);
 }
 
 .differentiators-title--plain {
@@ -727,14 +730,15 @@ nav {
 .differentiators-list {
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  gap: 80px; 
 }
 
 .differentiator-row {
   display: flex;
   align-items: center;
-  gap: 64px;
-  max-width: 960px;
+  justify-content: center; 
+  gap: 60px; 
+  max-width: 920px; 
   margin: 0 auto;
   width: 100%;
 }
@@ -751,7 +755,7 @@ nav {
 }
 
 .differentiator-img {
-  max-width: 300px;
+  max-width: 330px; 
   width: 100%;
   height: auto;
   object-fit: contain;
@@ -759,51 +763,71 @@ nav {
 }
 
 .differentiator-text-col {
-  flex: 1;
-  max-width: 420px;
-}
-
-.differentiator-item-title {
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
-  margin-bottom: 16px;
-  color: var(--text);
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 440px; /* Locks line constraints so layout shapes don't break */
 }
 
 .differentiator-item-desc {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  font-weight: 600;
-  color: var(--text);
+  font-size: 1.05rem; 
+  line-height: 1.65;  
+  font-weight: 400;
+  font-family: var(--font-body);
+  
+  /* NEW BRAND COLOR SPECIFIED BY YOU */
+  color: #EAEAEA; 
+  
+  /* UNIFIED CENTER ALIGNMENT: Applied exactly the same to 1st, 2nd, and 3rd cards */
+  text-align: center; 
 }
 
+/* Enforces color matching rules across dark mode selectors */
 .dark .differentiator-item-desc {
-  color: #ffffff;
+  color: #EAEAEA;
 }
 
+.differentiator-item-desc strong {
+  font-weight: 600;
+  color: #ffffff; /* Sets strong/bold words to clean bright white to jump out against #EAEAEA */
+}
+
+/* Responsive breakpoint handling */
 @media (max-width: 900px) {
   .differentiator-row,
   .differentiator-row--reverse {
     flex-direction: column;
     align-items: center;
-    text-align: center;
     gap: 32px;
   }
 
   .differentiator-text-col {
-    max-width: 100%;
+    max-width: 480px;
+  }
+
+  .differentiator-item-desc {
+    text-align: center;
   }
 }
 
 @media (max-width: 600px) {
   .differentiators-list {
-    gap: 56px;
+    gap: 3.5rem;
   }
 
   .differentiator-img {
-    max-width: 240px;
+    max-width: 250px;
   }
 }
 
+@media (max-width: 600px) {
+  .differentiators-list {
+    gap: 3.5rem;
+  }
+
+  .differentiator-img {
+    max-width: 250px;
+  }
+}
 /* --- STORYTELLING VALUE PROP --- */
 .value-image {
   border-radius: var(--radius-lg);
