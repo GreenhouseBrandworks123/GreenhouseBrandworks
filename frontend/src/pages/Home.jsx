@@ -416,60 +416,65 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* --- PORTFOLIO PREVIEW --- */}
-
-      <section className="section portfolio-marquee-section">
+{/* --- PORTFOLIO PREVIEW --- */}
+<section className="section portfolio-marquee-section">
   <div className="section-container">
     
-    {/* CENTERED HEADER CONTENT */}
-    <div className="section-header centered-marquee-header">
-      <span className="section-badge">Portfolio Preview</span>
-      <h2>Recent creations.</h2>
-      <p>A handpicked selection of brand assets and platforms we've designed for growth-oriented companies.</p>
-    </div>
+    {/* NEW GLASS PANEL ENCLOSING ALL SECTION CONTENT */}
+    <div className="glass-showcase-card">
 
-    {/* The Contained Marquee Area */}
-    <div className="marquee-container">
-      
-      {/* ROW 1: Scrolls Left */}
-      <div className="marquee-row">
-        <div className="marquee-track track-left">
-          {row1Images.map((imgSrc, index) => (
-            <div key={`r1-main-${index}`} className="marquee-card" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
-              <img src={imgSrc} alt={`Portfolio Asset ${index + 1}`} />
-            </div>
-          ))}
-          {row1Images.map((imgSrc, index) => (
-            <div key={`r1-dup-${index}`} className="marquee-card" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
-              <img src={imgSrc} alt={`Portfolio Asset ${index + 1} Duplicate`} loading="lazy" />
-            </div>
-          ))}
-        </div>
+      {/* CENTERED HEADER CONTENT */}
+      <div className="section-header centered-marquee-header">
+        <span className="section-badge">Portfolio Preview</span>
+        <h2>Our Gallery</h2>
+        <p>Take a look at some of our work that we’ve done for our clients through the years.</p>
       </div>
 
-      {/* ROW 2: Scrolls Right */}
-      <div className="marquee-row">
-        <div className="marquee-track track-right">
-          {row2Images.map((imgSrc, index) => (
-            <div key={`r2-main-${index}`} className="marquee-card" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
-              <img src={imgSrc} alt={`Portfolio Asset ${index + 13}`} />
-            </div>
-          ))}
-          {row2Images.map((imgSrc, index) => (
-            <div key={`r2-dup-${index}`} className="marquee-card" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
-              <img src={imgSrc} alt={`Portfolio Asset ${index + 13} Duplicate`} loading="lazy" />
-            </div>
-          ))}
+      {/* The Contained Marquee Area */}
+      <div className="marquee-container">
+        
+        {/* ROW 1: Scrolls Left */}
+        <div className="marquee-row">
+          <div className="marquee-track track-left">
+            {row1Images.map((imgSrc, index) => (
+              <div key={`r1-main-${index}`} className="marquee-card" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
+                <img src={imgSrc} alt={`Portfolio Asset ${index + 1}`} />
+              </div>
+            ))}
+            {row1Images.map((imgSrc, index) => (
+              <div key={`r1-dup-${index}`} className="marquee-card" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
+                <img src={imgSrc} alt={`Portfolio Asset ${index + 1} Duplicate`} loading="lazy" />
+              </div>
+            ))}
+          </div>
         </div>
+
+        {/* ROW 2: Scrolls Right */}
+        <div className="marquee-row">
+          <div className="marquee-track track-right">
+            {row2Images.map((imgSrc, index) => (
+              <div key={`r2-main-${index}`} className="marquee-card" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
+                <img src={imgSrc} alt={`Portfolio Asset ${index + 13}`} />
+              </div>
+            ))}
+            {row2Images.map((imgSrc, index) => (
+              <div key={`r2-dup-${index}`} className="marquee-card" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
+                <img src={imgSrc} alt={`Portfolio Asset ${index + 13} Duplicate`} loading="lazy" />
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
 
-    </div>
+      {/* FOOTER ENTER ACTION */}
+      <div className="marquee-action-row">
+        <button className="btn btn-secondary" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
+          Enter Gallery
+        </button>
+      </div>
 
-    <div style={{ textAlign: 'center', marginTop: '48px' }}>
-      <button className="btn btn-secondary" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
-        View Complete Work
-      </button>
-    </div>
+    </div> {/* END OF GLASS PANEL */}
 
   </div>
 </section>

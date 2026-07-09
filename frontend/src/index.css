@@ -968,7 +968,10 @@ nav {
   gap: 32px;
 }
 
-/* This controls cards on your main "Work/Portfolio" page */
+/* ==========================================================================
+   PORTFOLIO PREVIEW / WORK PAGE (MAIN TILES)
+   ========================================================================== */
+
 .portfolio-card {
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -1039,43 +1042,86 @@ nav {
 }
 
 /* ==========================================================================
-   INFINITE PORTFOLIO MARQUEE (CONTAINED & OPTIMIZED)
+   INFINITE PORTFOLIO MARQUEE (GLASSMORPHIC PREVIEW OVERLAY)
    ========================================================================== */
 
-/* --- Centering Rule for Header Content --- */
-.centered-marquee-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;    /* Centers items horizontally in flexbox layout */
-  text-align: center;     /* Centers multi-line text copy blocks */
-  margin: 0 auto 40px auto; /* Centers the header container block itself */
+/* Outer container section handling full screen background placement */
+.portfolio-marquee-section {
+  position: relative;
   width: 100%;
-  max-width: 600px;       /* Keeps text line lengths readable and clean */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  background-image: url('/bg-interior.jpg'); /* References your file in the public folder */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
-/* Ensure the parent block stretches correctly to evaluate center spacing */
+/* Parent container wrapper layout */
 .portfolio-marquee-section .section-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
+  max-width: 1200px;
 }
 
-/* ==========================================================================
-   INFINITE PORTFOLIO MARQUEE (CONTAINED & OPTIMIZED)
-   ========================================================================== */
-
-.portfolio-marquee-section {
+/* Glassmorphic Panel Component Layer */
+.glass-showcase-card {
   width: 100%;
+  max-width: 1100px;
+  background: rgba(255, 255, 255, 0.45); /* Lighter, highly transparent frosted glass */
+  backdrop-filter: blur(25px) saturate(140%);
+  -webkit-backdrop-filter: blur(25px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 28px;
+  padding: 50px 40px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
 }
 
+/* Header structural settings */
+.centered-marquee-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 650px;
+}
+
+/* Distinct high-contrast typography colors for readable rendering over glass */
+.centered-marquee-header h2 {
+  color: #111111;
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+.centered-marquee-header p {
+  color: #3d3d3d;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+/* Scrolling rail structures */
 .marquee-container {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 100%;        /* Keeps marquee perfectly locked within site wall grids */
-  overflow: hidden;   
-  border-radius: var(--radius-lg);
+  width: 100%;
+  overflow: hidden;
+  border-radius: 14px;
 }
 
 .marquee-row {
@@ -1090,41 +1136,66 @@ nav {
   width: max-content;
 }
 
+/* Scaled User Friendly Image Cards */
 .marquee-card {
-  width: 160px;            
-  height: 240px;           
+  width: 140px;
+  height: 210px; /* Optimized proportions fitting perfectly side-by-side */
   flex-shrink: 0;
-  border-radius: 12px;     
+  border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: var(--card-shadow);
-  border: 1px solid var(--border);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .marquee-card:hover {
-  transform: scale(1.04);  
+  transform: scale(1.05);
 }
 
 .marquee-card img {
   width: 100%;
   height: 100%;
-  object-fit: cover;       
+  object-fit: cover;
   display: block;
 }
 
-/* --- CONTINUOUS TIMELINE ANIMATIONS --- */
+/* Action button container settings */
+.marquee-action-row {
+  text-align: center;
+  width: 100%;
+}
+
+/* Button override to mirror the solid white rounded gallery navigation control style */
+.portfolio-marquee-section .btn-secondary {
+  background: #ffffff !important;
+  color: #111111 !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  padding: 12px 36px !important;
+  font-weight: 600 !important;
+  border-radius: 100px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+  cursor: pointer;
+  transition: all 0.25s ease !important;
+}
+
+.portfolio-marquee-section .btn-secondary:hover {
+  background: #111111 !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* --- TIMELINE ANIMATION DURATIONS --- */
 .track-left {
-  animation: scrollLeftTimeline 30s linear infinite;
+  animation: scrollLeftTimeline 15s linear infinite;
 }
 
 .track-right {
-  animation: scrollRightTimeline 30s linear infinite;
+  animation: scrollRightTimeline 15s linear infinite;
 }
 
-.marquee-row:hover .marquee-track {
-  animation-play-state: paused;
-}
+
 
 @keyframes scrollLeftTimeline {
   0% { transform: translateX(0); }
@@ -1136,13 +1207,19 @@ nav {
   100% { transform: translateX(0); }
 }
 
-@media (max-width: 640px) {
-  .marquee-card {
-    width: 120px;
-    height: 180px;
+/* Responsive Overrides */
+@media (max-width: 768px) {
+  .glass-showcase-card {
+    padding: 35px 20px;
+    gap: 28px;
   }
-  .marquee-container { gap: 12px; }
-  .marquee-track { gap: 12px; }
+  .centered-marquee-header h2 {
+    font-size: 1.9rem;
+  }
+  .marquee-card {
+    width: 110px;
+    height: 165px;
+  }
 }
 
 /* --- LIGHTBOX SYSTEM --- */
