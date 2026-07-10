@@ -818,16 +818,6 @@ nav {
     max-width: 250px;
   }
 }
-
-@media (max-width: 600px) {
-  .differentiators-list {
-    gap: 3.5rem;
-  }
-
-  .differentiator-img {
-    max-width: 250px;
-  }
-}
 /* --- STORYTELLING VALUE PROP --- */
 .value-image {
   border-radius: var(--radius-lg);

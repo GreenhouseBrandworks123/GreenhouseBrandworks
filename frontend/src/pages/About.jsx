@@ -1,16 +1,7 @@
-import { useState } from 'react';
 import { SVGIcon } from '../components/SVGIcon';
 import brandingImg from '../assets/branding.png';
 
 export const About = () => {
-  const [activeStep, setActiveStep] = useState(0);
-  // Helper function to return beautiful theme colors with explicit light-mode fallbacks
-  const getActiveColor = (step) => {
-    if (step === 0) return 'var(--color-practice, var(--accent, #65a30d))';
-    if (step === 1) return 'var(--color-internalize, #15803d)'; // Rich Emerald Green
-    return 'var(--color-extend, #4b5563)'; // Balanced Slate Gray
-  };
-
   return (
     <div className="page-container">
       {/* About Header */}

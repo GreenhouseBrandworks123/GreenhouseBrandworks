@@ -1,20 +1,7 @@
-import { useState } from 'react';
 import { SVGIcon } from './SVGIcon';
 import greenhouseLogo from '../assets/greenhouse-logo.png';
 
 export const Footer = ({ setCurrentPage }) => {
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (email.trim()) {
-      setSubscribed(true);
-      setEmail('');
-      setTimeout(() => setSubscribed(false), 5000);
-    }
-  };
-
   const navigateTo = (pageId) => {
     setCurrentPage(pageId);
     window.scrollTo(0, 0);

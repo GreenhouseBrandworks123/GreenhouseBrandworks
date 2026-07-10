@@ -1,4 +1,4 @@
-const { onRequest, onCall, HttpsError } = require("firebase-functions/v2/https");
+const { onCall, HttpsError } = require("firebase-functions/v2/https");
 const admin = require("firebase-admin");
 
 admin.initializeApp();
@@ -55,7 +55,7 @@ function validatePhone(phone) {
 // 1. Contact submission function
 exports.submitContact = onCall(async (request) => {
   const { data } = request;
-  const { name, email, phone, company, message, captchaToken } = data || {};
+  const { name, email, phone, company, message } = data || {};
 
   // Validate reCAPTCHA
   // reCAPTCHA temporarily disabled for testing
@@ -95,7 +95,7 @@ exports.submitContact = onCall(async (request) => {
 // 2. Careers submission function
 exports.submitJobApplication = onCall(async (request) => {
   const { data } = request;
-  const { jobId, jobTitle, name, email, phone, portfolio, message, resumeURL, captchaToken } = data || {};
+  const { jobId, jobTitle, name, email, phone, portfolio, message, resumeURL } = data || {};
 
   // Validate reCAPTCHA
   // reCAPTCHA temporarily disabled for testing
