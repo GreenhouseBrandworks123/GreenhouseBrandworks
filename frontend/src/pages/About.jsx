@@ -9,10 +9,15 @@ export const About = () => {
         <div className="section-container">
           <span className="section-badge">Our Story</span>
           <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '24px' }}>
-            Inside Greenhouse.
+            About Us
           </h1>
           <p style={{ fontSize: '1.2rem', maxWidth: '700px' }}>
-            We are a group of developers, graphic artists, and digital strategists working out of Bangalore, India. We construct identities that stick and systems that scale.
+           We are Greenhouse Brandworks. We are a small team of designers 
+           from very diverse backgrounds and with an extensive skillset. Being in the
+           industry for more than 20 years, we’ve worked with some giant names from 
+           the tech world. We make sure you get the highest quality creatives, whether
+           it’s a small infographic, a book or an event campaign. In an era of cheap 
+           imitation jewellery, we’re the classy Kohinoor.
           </p>
         </div>
       </section>

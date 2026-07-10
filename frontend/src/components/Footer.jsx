@@ -45,11 +45,11 @@ export const Footer = ({ setCurrentPage }) => {
           <div className="footer-col">
             <h4>Our Services</h4>
             <ul className="footer-links">
-              <li><a href="#services" onClick={(e) => { e.preventDefault(); navigateTo('services'); }}>Branding & Identity</a></li>
-              <li><a href="#services" onClick={(e) => { e.preventDefault(); navigateTo('services'); }}>Website Design</a></li>
+              <li><a href="#services" onClick={(e) => { e.preventDefault(); navigateTo('services'); }}>Electronic Media</a></li>
+              <li><a href="#services" onClick={(e) => { e.preventDefault(); navigateTo('services'); }}>Print Media</a></li>
               <li><a href="#services" onClick={(e) => { e.preventDefault(); navigateTo('services'); }}>Digital Marketing</a></li>
-              <li><a href="#services" onClick={(e) => { e.preventDefault(); navigateTo('services'); }}>Social Media Design</a></li>
-              <li><a href="#services" onClick={(e) => { e.preventDefault(); navigateTo('services'); }}>Product Video</a></li>
+              <li><a href="#services" onClick={(e) => { e.preventDefault(); navigateTo('services'); }}>Outdoor Advertising</a></li>
+              
             </ul>
           </div>
 

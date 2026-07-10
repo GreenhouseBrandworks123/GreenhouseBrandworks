@@ -83,7 +83,9 @@ export const Services = ({ setCurrentPage }) => {
             What we do best.
           </h1>
           <p style={{ fontSize: '1.2rem', maxWidth: '700px' }}>
-            We provide a complete suite of creative and technical services to shape modern brands. Explore our capabilities and discover how we can collaborate.
+            WE DELIVER SERVICES ACROSS MEDIA STREAMS SPANNING
+            CREATIVE CONCEPT, DESIGN, CONTENT COLLATION AND WRITING,
+            PRINT SUPERVISION, PRINTING AND DELIVERY
           </p>
         </div>
       </section>
