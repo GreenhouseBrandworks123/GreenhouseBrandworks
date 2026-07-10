@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -12,29 +12,6 @@ import Contact from './pages/Contact';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
-  
-  // Theme management with local storage cache
-  const [theme, setTheme] = useState(() => {
-    const cached = localStorage.getItem('theme');
-    if (cached) return cached;
-    // Check system preference
-    const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    return userPrefersDark ? 'dark' : 'light';
-  });
-
-  useEffect(() => {
-    const root = document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
-  };
 
   const renderActivePage = () => {
     switch (currentPage) {
@@ -60,8 +37,6 @@ function App() {
       <Header
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
-        theme={theme}
-        toggleTheme={toggleTheme}
       />
       
       {renderActivePage()}

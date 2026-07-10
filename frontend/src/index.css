@@ -4,61 +4,8 @@
   --font-body: 'Poppins', sans-serif;
   --font-title: 'Poppins', sans-serif;
 
-  /* Color Palette - Light Mode
-     Warm off-white surfaces with subtle sage-green tint — premium, brand-aligned */
-  --bg: #fcfcfb;
-  --bg-secondary: #f5f6f1;
-  --bg-tertiary: #ecede8;
-  --text: #0f1a08;
-  --text-muted: #5e6758;
-  --accent: #A8BC00;
-  --accent-hover: #95A800;
-  --accent-soft: rgba(168, 188, 0, 0.08);
-  --border: #dfe1d8;
-
-  /* Semantic surface tokens */
-  --surface-card: #ffffff;
-  --surface-elevated: #ffffff;
-
-  --card-shadow: 0 1px 3px rgba(15, 26, 8, 0.04), 0 8px 24px -4px rgba(15, 26, 8, 0.06);
-  --card-shadow-hover: 0 4px 12px rgba(15, 26, 8, 0.06), 0 20px 48px -8px rgba(15, 26, 8, 0.11);
-  --nav-bg: rgba(252, 252, 251, 0.88);
-  --vision-slider-image-shadow: 0 16px 48px rgba(15, 23, 42, 0.14), 0 0 32px rgba(168, 188, 0, 0.1);
-
-  /* ── Vision Slider (light mode) ── */
-  --vs-bg: linear-gradient(135deg, #f5f8ef 0%, #eef3df 100%);
-  --vs-color: var(--text);
-  --vs-muted: var(--text-muted);
-  --vs-badge-color: #4a6500;
-  --vs-badge-border: rgba(79, 109, 0, 0.28);
-  --vs-dot: rgba(15, 23, 42, 0.15);
-  --vs-dot-active: rgba(168, 188, 0, 0.25);
-  --vs-arrow-border: rgba(79, 109, 0, 0.28);
-  --vs-arrow-bg: rgba(168, 188, 0, 0.07);
-  --vs-arrow-color: #2d4a00;
-
-  /* ── Brand Promise (light mode) ── */
-  --bp-bg: var(--bg);
-  --bp-color: var(--text);
-  --bp-glow: color-mix(in srgb, var(--accent) 22%, transparent);
-
-  /* ── Dark Statement Sections — Stats + CTA (light mode)
-     Distinct sage-tinted surface, clearly different from bg-secondary ── */
-  --sd-bg: #e8ebe0;
-  --sd-color: var(--text);
-  --sd-muted: var(--text-muted);
-  --sd-heading: var(--text);
-
-  --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-fast: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --radius-lg: 24px;
-  --radius-md: 16px;
-  --radius-sm: 8px;
-}
-
-.dark {
   /* Color Palette - Dark Mode
-     Deep green-black surfaces, warm and layered — not pure black */
+    Deep green-black surfaces, warm and layered — not pure black */
   --bg: #0b0d09;
   --bg-secondary: #131710;
   --bg-tertiary: #1b2016;
@@ -100,6 +47,12 @@
   --sd-color: #e2eacb;
   --sd-muted: rgba(226, 234, 203, 0.65);
   --sd-heading: #eef2dc;
+
+  --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 8px;
 }
 
 /* Reset and Global Styles */
@@ -340,26 +293,6 @@ nav {
   display: flex;
   align-items: center;
   gap: 16px;
-}
-
-/* Theme Toggle Button */
-.theme-toggle {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border);
-  color: var(--text);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition-fast);
-}
-
-.theme-toggle:hover {
-  background-color: var(--bg-tertiary);
-  transform: rotate(15deg);
 }
 
 /* Mobile Menu Button */
@@ -1343,25 +1276,17 @@ nav {
 
 /* --- ABOUT: PHILOSOPHY STEPS --- */
 /* ==========================================================================
-   ABOUT PAGE: STATIC THEME-DRIVEN PIE CHART SECTION
+   ABOUT PAGE: STATIC PIE CHART SECTION
    ========================================================================== */
 
 :root {
-  /* PREMIUM LIGHT MODE BRAND CORE COLORS */
-  --pie-color-practice: var(--accent, #65a30d);    /* High-contrast brand lime green */
-  --pie-color-internalize: #16a34a;                 /* Rich vibrant Emerald Green */
-  --pie-color-extend: #4b5563;                      /* Sleek premium Slate Charcoal */
-}
-
-.dark {
-  /* PREMIUM DARK MODE BRAND CORE COLORS */
   --pie-color-practice: var(--accent, #a3e635);    /* Electric neon lime */
   --pie-color-internalize: #22c55e;                 /* Radiant active Emerald Green */
   --pie-color-extend: #9ca3af;                      /* Metallic silver slate gray */
 }
 
 .philosophy-section {
-  background-color: var(--bg, #0c0f0e); /* Defaults to deep dark theme if variable isn't present */
+  background-color: var(--bg, #0c0f0e); /* Defaults to a deep dark palette if the variable is missing */
   color: var(--text, #ffffff);
   padding: 80px 24px;
   transition: background-color 0.4s ease, color 0.4s ease;
@@ -1545,7 +1470,7 @@ nav {
 }
 /* --- RIGHT COLUMN: INFO PANEL STYLES --- */
 .info-card-wrapper {
-  background-color: var(--surface-card); /* Flips cleanly to crisp white on Light mode */
+  background-color: var(--surface-card); /* Uses the dark surface token */
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 40px;

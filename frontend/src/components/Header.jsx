@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { SVGIcon } from './SVGIcon';
 import greenhouseLogo from '../assets/greenhouse-logo.png';
 
-export const Header = ({ currentPage, setCurrentPage, theme, toggleTheme }) => {
+export const Header = ({ currentPage, setCurrentPage }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -67,14 +67,6 @@ export const Header = ({ currentPage, setCurrentPage, theme, toggleTheme }) => {
           </nav>
 
           <div className="nav-actions">
-            <button
-              className="theme-toggle"
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-            >
-              <SVGIcon name={theme === 'dark' ? 'sun' : 'moon'} size={20} />
-            </button>
-
             <button
               className="btn btn-primary"
               style={{ padding: '10px 20px', fontSize: '0.9rem', display: 'none' }}
