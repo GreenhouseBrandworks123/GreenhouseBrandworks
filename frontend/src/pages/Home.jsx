@@ -1,8 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { SVGIcon } from '../components/SVGIcon';
-import brandingImg from '../assets/branding.png';
-import webImg from '../assets/web.png';
-import printImg from '../assets/print.png';
 import abblogo from '../assets/client-logos/ABB.png';
 import AscendumLogo from '../assets/client-logos/Ascendum_Logo.png';
 import axaLogo from '../assets/client-logos/AXA_Logo.png';
@@ -392,29 +389,103 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* --- VALUE PROPOSITION SECTION --- */}
-      <section className="section section-bg section-mesh-right">
-        <div className="section-container">
-          <div className="grid-2">
-            <div className="value-image" style={{ height: '400px' }}>
-              <img src={webImg} alt="Minimal agency work environment" />
-            </div>
-            <div>
-              <span className="section-badge">Philosophy</span>
-              <h2>Design that speaks. Strategy that performs.</h2>
-              <p style={{ marginBottom: '24px', fontSize: '1.1rem' }}>
-                We believe premium design isn't a luxury—it is a functional requirement. Your visual identity is your primary customer touchpoint.
-              </p>
-              <p style={{ marginBottom: '32px' }}>
-                Our team takes a holistic look at your corporate ecosystem to streamline visual systems, decrease loading bottlenecks, and direct users seamlessly toward your commercial targets. We structure paths that turn anonymous visitors into long-term advocates.
-              </p>
-              <button className="btn btn-primary" onClick={() => { setCurrentPage('about'); window.scrollTo(0,0); }}>
-                Our Story
-              </button>
-            </div>
-          </div>
+      {/* Philosophy Step Section */}
+      <section className="philosophy-section">
+      <div className="philosophy-container">
+        
+        {/* Section Heading */}
+        <div className="philosophy-header">
+          <span className="section-badge-text">HOW WE THINK</span>
+          <h2>Our Creative Philosophy</h2>
+          <p className="philosophy-subtitle">
+            Get a taste of the PIE (Practice - Internalize - Extend)
+          </p>
         </div>
-      </section>
+
+        {/* Core Layout Split Grid */}
+        <div className="philosophy-grid">
+          
+          {/* LEFT COLUMN: Static SVG Pie Diagram */}
+          <div className="pie-visual-wrapper">
+            <svg viewBox="0 0 200 200" className="pie-svg">
+              <path
+                d="M 100 100 L 100 10 A 90 90 0 0 1 177.94 145 Z"
+                className="pie-slice-path slice-practice"
+              />
+              <path
+                d="M 100 100 L 177.94 145 A 90 90 0 0 1 22.06 145 Z"
+                className="pie-slice-path slice-internalize"
+              />
+              <path
+                d="M 100 100 L 22.06 145 A 90 90 0 0 1 100 10 Z"
+                className="pie-slice-path slice-extend"
+              />
+              <circle cx="100" cy="100" r="35" className="pie-center-circle" />
+              <text x="100" y="100" textAnchor="middle" className="pie-center-text">
+                PIE
+              </text>
+            </svg>
+          </div>
+
+          {/* RIGHT COLUMN: Vertically Aligned Lists using Vector Logos */}
+          <div className="philosophy-list-wrapper">
+            
+            {/* Item 01: Practice */}
+            <div className="static-info-item item-practice">
+              <div className="info-item-header">
+                <div className="icon-container-box">
+                  <img 
+                    src="/icon-practice.png" 
+                    alt="Practice Indicator" 
+                    className="info-stage-icon-img" 
+                  />
+                </div>
+                <h3 className="info-title">PRACTICE</h3>
+              </div>
+              <p className="info-desc">
+                Practice that incorporates extensive experience in creative advertising communication and deep knowledge of branding technologies.
+              </p>
+            </div>
+
+            {/* Item 02: Internalize */}
+            <div className="static-info-item item-internalize">
+              <div className="info-item-header">
+                <div className="icon-container-box">
+                  <img 
+                    src="/icon-internalize.png" 
+                    alt="Internalize Indicator" 
+                    className="info-stage-icon-img" 
+                  />
+                </div>
+                <h3 className="info-title">INTERNALIZE</h3>
+              </div>
+              <p className="info-desc">
+                The capability to quickly Internalize emerging brand building platform and set the narrative for optimized value.
+              </p>
+            </div>
+
+            {/* Item 03: Extend */}
+            <div className="static-info-item item-extend">
+              <div className="info-item-header">
+                <div className="icon-container-box">
+                  <img 
+                    src="/icon-extend.png" 
+                    alt="Extend Indicator" 
+                    className="info-stage-icon-img" 
+                  />
+                </div>
+                <h3 className="info-title">EXTEND</h3>
+              </div>
+              <p className="info-desc">
+                Extend an optimized combination of practice and technology to bring the best value to the brand.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
 
 {/* --- PORTFOLIO PREVIEW --- */}
 <section className="section portfolio-marquee-section">

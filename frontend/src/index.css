@@ -1353,51 +1353,26 @@ nav {
 
 /* --- ABOUT: PHILOSOPHY STEPS --- */
 /* ==========================================================================
-   ABOUT PAGE: THEME-DRIVEN INTERACTIVE PIE CHART SECTION
+   ABOUT PAGE: STATIC THEME-DRIVEN PIE CHART SECTION
    ========================================================================== */
 
-/* Theme-specific custom variables for the unique pie slices */
 :root {
-  /* Inactive background colors for slices */
-  --pie-slice-1-muted: #eef1e6;
-  --pie-slice-2-muted: #e2e6d7;
-  --pie-slice-3-muted: #d5dac7;
-  
-  /* PREMIUM LIGHT MODE ACTIVE COLORS */
-  --pie-active-1: var(--accent, #65a30d);    /* High-contrast brand lime green */
-  --pie-active-2: #16a34a;                   /* Rich vibrant Emerald Green */
-  --pie-active-3: #4b5563;                   /* Sleek premium Slate Charcoal */
-
-  /* Button styling overrides */
-  --pie-btn-active-text-1: #0f1a08;
-  --pie-btn-active-text-2: #ffffff;
-  --pie-btn-active-text-3: #ffffff;
-  --pie-btn-active-bg-2:   var(--pie-active-2);
-  --pie-btn-active-bg-3:   var(--pie-active-3);
+  /* PREMIUM LIGHT MODE BRAND CORE COLORS */
+  --pie-color-practice: var(--accent, #65a30d);    /* High-contrast brand lime green */
+  --pie-color-internalize: #16a34a;                 /* Rich vibrant Emerald Green */
+  --pie-color-extend: #4b5563;                      /* Sleek premium Slate Charcoal */
 }
 
 .dark {
-  /* Inactive background colors for dark mode slices */
-  --pie-slice-1-muted: #181d13;
-  --pie-slice-2-muted: #12180d;
-  --pie-slice-3-muted: #22281d;
-  
-  /* PREMIUM DARK MODE ACTIVE COLORS */
-  --pie-active-1: var(--accent, #a3e635);    /* Electric neon lime */
-  --pie-active-2: #22c55e;                   /* Radiant active Emerald Green */
-  --pie-active-3: #9ca3af;                   /* Metallic silver slate gray */
-
-  /* Button styling overrides for dark mode */
-  --pie-btn-active-text-1: #0b0d09;
-  --pie-btn-active-text-2: #ffffff;
-  --pie-btn-active-text-3: #111827;
-  --pie-btn-active-bg-2:   var(--pie-active-2);
-  --pie-btn-active-bg-3:   var(--pie-active-3);
+  /* PREMIUM DARK MODE BRAND CORE COLORS */
+  --pie-color-practice: var(--accent, #a3e635);    /* Electric neon lime */
+  --pie-color-internalize: #22c55e;                 /* Radiant active Emerald Green */
+  --pie-color-extend: #9ca3af;                      /* Metallic silver slate gray */
 }
 
 .philosophy-section {
-  background-color: var(--bg); /* Smoothly transitions using your global theme values */
-  color: var(--text);
+  background-color: var(--bg, #0c0f0e); /* Defaults to deep dark theme if variable isn't present */
+  color: var(--text, #ffffff);
   padding: 80px 24px;
   transition: background-color 0.4s ease, color 0.4s ease;
 }
@@ -1414,7 +1389,7 @@ nav {
 }
 
 .section-badge-text {
-  color: var(--accent); /* Hooks into your brand green */
+  color: var(--accent, #99be0f); 
   font-size: 0.75rem;
   text-transform: uppercase;
   font-weight: 600;
@@ -1428,11 +1403,11 @@ nav {
   font-weight: 700;
   margin: 0 0 16px 0;
   letter-spacing: -0.5px;
-  color: var(--text);
+  color: var(--text, #ffffff);
 }
 
 .philosophy-header p {
-  color: var(--text-muted);
+  color: var(--text-muted, #8a8d8c);
   font-size: 1rem;
   max-width: 600px;
   margin: 0 auto;
@@ -1447,14 +1422,15 @@ nav {
   align-items: center;
 }
 
-/* Side-by-Side layout for computers and laptops */
+/* Side-by-Side layout for computers and tablets */
 @media (min-width: 768px) {
   .philosophy-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 64px;
   }
 }
 
-/* --- LEFT COLUMN: PIE WHEEL STYLES --- */
+/* --- LEFT COLUMN: STATIC PIE WHEEL STYLES --- */
 .pie-visual-wrapper {
   display: flex;
   justify-content: center;
@@ -1465,86 +1441,118 @@ nav {
 .pie-svg {
   width: 280px;
   height: 280px;
-  filter: drop-shadow(0 12px 32px rgba(15, 26, 8, 0.04));
+  filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.06));
 }
 
 @media (min-width: 640px) {
   .pie-svg {
-    width: 360px;
-    height: 360px;
+    width: 340px;
+    height: 340px;
   }
 }
 
+/* Base style for paths */
 .pie-slice-path {
-  cursor: pointer;
-  transition: fill 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: 100px 100px;
-}
-
-.pie-slice-path:hover {
-  opacity: 0.95;
-}
-
-/* Fixes the donut hole background contrast issue from changing themes */
-.pie-center-circle {
-  fill: var(--bg);
   transition: fill 0.4s ease;
+}
+
+/* Center circle cutout settings */
+.pie-center-circle {
+  fill: #222725; 
 }
 
 .pie-center-text {
-  font-size: 11px;
+  fill: #ffffff;
+  font-size: 13px;
+  letter-spacing: 1px;
   font-weight: 700;
-  letter-spacing: 2px;
-  font-family: monospace;
-  dominant-baseline: central;
-  fill: var(--text);
-  transition: fill 0.4s ease;
+  text-anchor: middle;
 }
 
-/* Floating labels around the graphic circle */
-.pie-label-btn {
+/* --- RIGHT COLUMN: FIXED ALIGNMENT DISPLAY STYLES --- */
+.philosophy-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.static-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 20px; /* Adjusted padding to accommodate side vertical lines safely */
+  position: relative;
+}
+
+/* Custom border stripes tying list rows directly to graphic map blocks */
+.static-info-item::before {
+  content: '';
   position: absolute;
-  font-size: 0.75rem;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  border-radius: 2px;
+}
+
+.item-practice::before { background-color: #99be0f; }
+.item-internalize::before { background-color: #5b6165; }
+.item-extend::before { background-color: #8d9da7; }
+
+/* The parent header grid forcing direct straight vertical alignment */
+.info-item-header {
+  display: flex;
+  align-items: center;  /* Centers items cleanly on a vertical plane */
+  gap: 16px;            /* Exact spacing gap between image icons and labels */
+}
+
+/* Fixed container layout block keeping icons bounded to a fixed center grid */
+.icon-container-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;         /* Uniform width forces titles to consistently start from the exact same line */
+  height: 24px;
+  flex-shrink: 0;      /* Ensures layout engines cannot distort icon sizes */
+}
+
+.info-stage-icon-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.info-title {
+  font-size: 1.25rem;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 6px 14px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  cursor: pointer;
-  background: var(--bg-secondary);
-  color: var(--text-muted);
-  transition: var(--transition-fast);
+  margin: 0;
+  color: var(--text, #ffffff);
+  line-height: 1;      /* Keeps headings centered horizontally with the icon box */
 }
 
-.pie-label-btn:hover {
-  color: var(--text);
-  border-color: var(--text-muted);
+.info-desc {
+  color: var(--text-muted, #8a8d8c);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+  padding-left: 40px;  /* Matches icon container box (24px) + gap settings (16px) for alignment */
 }
 
-.btn-practice { top: 10px; right: 10px; }
-.btn-internalize { bottom: 10px; left: 50%; transform: translateX(-50%); }
-.btn-extend { top: 10px; left: 10px; }
-
-/* Active background states for buttons */
-.btn-practice.active-0 {
-  background-color: var(--pie-active-1);
-  color: var(--pie-btn-active-text-1);
-  border-color: var(--pie-active-1);
+/* Specific SVG Color Overrides matching your style goals */
+.slice-practice {
+  fill: #99be0f; /* Olive lime tone */
 }
 
-.btn-internalize.active-1 {
-  background-color: var(--pie-btn-active-bg-2);
-  color: var(--pie-btn-active-text-2);
-  border-color: var(--pie-btn-active-bg-2);
+.slice-internalize {
+  fill: #5b6165; /* Deep corporate grey-slate tint */
 }
 
-.btn-extend.active-2 {
-  background-color: var(--pie-btn-active-bg-3);
-  color: var(--pie-btn-active-text-3);
-  border-color: var(--pie-btn-active-bg-3);
+.slice-extend {
+  fill: #8d9da7; /* Subdued secondary grey accent layer */
 }
-
 /* --- RIGHT COLUMN: INFO PANEL STYLES --- */
 .info-card-wrapper {
   background-color: var(--surface-card); /* Flips cleanly to crisp white on Light mode */
