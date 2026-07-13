@@ -1,34 +1,51 @@
 import { useState } from 'react';
 
-// Import portfolio images
+// Import portfolio images (using your current 4 as placeholders)
 import brandingImg from '../assets/branding.png';
 import webImg from '../assets/web.png';
 import printImg from '../assets/print.png';
 import marketingImg from '../assets/marketing.png';
 
-// Simple gallery items — no titles, descriptions, or detail metadata.
-// Add more entries to any category by duplicating and changing the image import.
+// Expanded gallery items — 4 per category, recycling the images above
 const galleryItems = [
-  { id: 1, category: 'branding',  image: brandingImg  },
-  { id: 2, category: 'webdesign', image: webImg        },
-  { id: 3, category: 'print',     image: printImg      },
-  { id: 4, category: 'marketing', image: marketingImg  },
+  // Electronic Media
+  { id: 1, category: 'electronic', image: brandingImg },
+  { id: 2, category: 'electronic', image: webImg },
+  { id: 3, category: 'electronic', image: printImg },
+  { id: 4, category: 'electronic', image: marketingImg },
+
+  // Print Media
+  { id: 5, category: 'print', image: printImg },
+  { id: 6, category: 'print', image: brandingImg },
+  { id: 7, category: 'print', image: marketingImg },
+  { id: 8, category: 'print', image: webImg },
+
+  // Digital Marketing
+  { id: 9, category: 'digital', image: marketingImg },
+  { id: 10, category: 'digital', image: webImg },
+  { id: 11, category: 'digital', image: brandingImg },
+  { id: 12, category: 'digital', image: printImg },
+
+  // Outdoor Advertising
+  { id: 13, category: 'outdoor', image: webImg },
+  { id: 14, category: 'outdoor', image: marketingImg },
+  { id: 15, category: 'outdoor', image: printImg },
+  { id: 16, category: 'outdoor', image: brandingImg },
 ];
 
 const FILTERS = [
- 
-  { id: 'branding',  label: 'Electronic Media'},
-  { id: 'webdesign', label: 'Print Media'   },
-  { id: 'print',     label: 'Digital Marketing'        },
-  { id: 'marketing', label: 'Outdoor Advertising'    },
+  { id: 'electronic', label: 'Electronic Media'},
+  { id: 'print',      label: 'Print Media' },
+  { id: 'digital',    label: 'Digital Marketing' },
+  { id: 'outdoor',    label: 'Outdoor Advertising' },
 ];
 
 export const Portfolio = () => {
-  const [activeFilter, setActiveFilter] = useState('all');
+  // Set default active filter to 'electronic'
+  const [activeFilter, setActiveFilter] = useState('electronic');
 
-  const visibleItems = activeFilter === 'all'
-    ? galleryItems
-    : galleryItems.filter(item => item.category === activeFilter);
+  // Simplified filter logic since 'all' is no longer an option
+  const visibleItems = galleryItems.filter(item => item.category === activeFilter);
 
   return (
     <div className="page-container">
@@ -61,7 +78,7 @@ export const Portfolio = () => {
             ))}
           </div>
 
-          {/* Image grid — images are display-only, no click actions */}
+          {/* Image grid */}
           <div className="portfolio-grid">
             {visibleItems.map((item, index) => (
               <div
@@ -69,7 +86,7 @@ export const Portfolio = () => {
                 className="portfolio-card"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <img src={item.image} alt={item.category} />
+                <img src={item.image} alt={`${item.category} placeholder`} />
               </div>
             ))}
           </div>
