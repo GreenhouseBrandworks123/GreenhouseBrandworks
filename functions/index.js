@@ -24,6 +24,51 @@ function escapeHtml(str) {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
 }
+
+const RATE_LIMIT_WINDOW = 10 * 60 * 1000; // 10 minutes
+const MAX_REQUESTS = 5;
+
+async function checkRateLimit(identifier, type) {
+  const docId = `${type}_${identifier}`;
+
+  const ref = db.collection("rateLimits").doc(docId);
+
+  const snap = await ref.get();
+
+  const now = Date.now();
+
+  if (!snap.exists) {
+    await ref.set({
+      count: 1,
+      firstRequest: now,
+    });
+
+    return;
+  }
+
+  const data = snap.data();
+
+  if (now - data.firstRequest > RATE_LIMIT_WINDOW) {
+    await ref.set({
+      count: 1,
+      firstRequest: now,
+    });
+
+    return;
+  }
+
+  if (data.count >= MAX_REQUESTS) {
+    throw new HttpsError(
+      "resource-exhausted",
+      "Too many submissions. Please wait 10 minutes before trying again."
+    );
+  }
+
+  await ref.update({
+    count: admin.firestore.FieldValue.increment(1),
+  });
+}
+
 async function checkDuplicate(collectionName, filters) {
   let query = db.collection(collectionName);
 
@@ -59,7 +104,7 @@ const data = {
         validation.error.issues[0].message
       );
     }
-    // Check duplicate contact email
+   await checkRateLimit(data.email, "contact");
 
 
     // Verify reCAPTCHA
@@ -194,7 +239,7 @@ const data = {
           validation.error.issues[0].message
         );
       }
-      // Check duplicate job application
+      await checkRateLimit(data.email, "job");
 
 
       // Verify reCAPTCHA
