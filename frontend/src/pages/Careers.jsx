@@ -304,19 +304,7 @@ const [captchaValue, setCaptchaValue] = useState(null);
               {errors.phone && <span className="form-error">{errors.phone}</span>}
             </div>
 
-             <div className="form-group">
-              <label htmlFor="portfolio">Portfolio / Web Link</label>
-              <input
-                type="url"
-                id="portfolio"
-                name="portfolio"
-                className={`form-control ${errors.portfolio ? 'invalid' : ''}`}
-                value={formData.portfolio}
-                onChange={handleInputChange}
-                placeholder="https://yourportfolio.com"
-              />
-              {errors.portfolio && <span className="form-error">{errors.portfolio}</span>}
-            </div>
+      
 
             <div className="form-group">
               <label htmlFor="resume">Resume Google Drive Link *</label>
