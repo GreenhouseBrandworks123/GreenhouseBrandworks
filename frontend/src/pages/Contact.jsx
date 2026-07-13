@@ -86,14 +86,16 @@ export const Contact = () => {
 
   const code = error?.code?.replace('functions/', '');
 
-  const submitErrorMessage =
-    code === 'already-exists'
-      ? error.message
-      : code === 'invalid-argument'
-      ? error.message
-      : code === 'unavailable'
-      ? 'Service temporarily unavailable. Please try again in a moment.'
-      : 'Something went wrong. Please try again later.';
+ const submitErrorMessage =
+  code === 'already-exists'
+    ? error.message
+    : code === 'invalid-argument'
+    ? error.message
+    : code === 'resource-exhausted'
+    ? error.message
+    : code === 'unavailable'
+    ? 'Service temporarily unavailable. Please try again in a moment.'
+    : 'Something went wrong. Please try again later.';
 
   setErrors({ submit: submitErrorMessage });
 } finally {
