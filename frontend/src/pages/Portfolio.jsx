@@ -16,11 +16,11 @@ const galleryItems = [
 ];
 
 const FILTERS = [
-  { id: 'all',       label: 'All Projects' },
-  { id: 'branding',  label: 'Branding'     },
-  { id: 'webdesign', label: 'Web Design'   },
-  { id: 'print',     label: 'Print'        },
-  { id: 'marketing', label: 'Marketing'    },
+ 
+  { id: 'branding',  label: 'Electronic Media'},
+  { id: 'webdesign', label: 'Print Media'   },
+  { id: 'print',     label: 'Digital Marketing'        },
+  { id: 'marketing', label: 'Outdoor Advertising'    },
 ];
 
 export const Portfolio = () => {
