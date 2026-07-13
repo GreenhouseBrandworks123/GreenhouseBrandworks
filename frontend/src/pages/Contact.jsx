@@ -13,9 +13,9 @@ export const Contact = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    if (errors[name]) {
-      setErrors({ ...errors, [name]: '' });
-    }
+   if (errors[name] || errors.submit) {
+  setErrors({ ...errors, [name]: '', submit: '' });
+}
   };
 
   const handleSubmit = async (e) => {
@@ -39,10 +39,10 @@ export const Contact = () => {
     }
 
     // Validate phone number format
-    const phoneRegex = /^[+\d\s\-().]{7,20}$/;
+    const phoneRegex = /^(\+91[\s-]?)?[6-9]\d{9}$/;
     if (!formData.phone.trim()) {
       newErrors.phone = 'Phone number is required';
-    } else if (!phoneRegex.test(formData.phone)) {
+    } else if (!phoneRegex.test(formData.phone.trim())) {
       newErrors.phone = 'Please enter a valid phone number (7-20 digits/characters)';
     }
 
@@ -82,9 +82,21 @@ export const Contact = () => {
       setIsSubmitted(true);
       setCaptchaValue(null);
     } catch (error) {
-      console.error('Contact form error:', error);
-      setErrors({ submit: 'Something went wrong. Please try again later.' });
-    } finally {
+  console.error('Contact form error:', error);
+
+  const code = error?.code?.replace('functions/', '');
+
+  const submitErrorMessage =
+    code === 'already-exists'
+      ? error.message
+      : code === 'invalid-argument'
+      ? error.message
+      : code === 'unavailable'
+      ? 'Service temporarily unavailable. Please try again in a moment.'
+      : 'Something went wrong. Please try again later.';
+
+  setErrors({ submit: submitErrorMessage });
+} finally {
       setIsLoading(false);
     }
   };

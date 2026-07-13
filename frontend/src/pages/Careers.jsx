@@ -104,7 +104,7 @@ const [captchaValue, setCaptchaValue] = useState(null);
     }
 
     // Validate phone number format
-    const phoneRegex = /^[+\d\s\-().]{7,20}$/;
+    const phoneRegex = /^(\+91[\s-]?)?[6-9]\d{9}$/;
     if (!trimmedPhone) {
       newErrors.phone = 'Phone number is required';
     } else if (!phoneRegex.test(trimmedPhone)) {
@@ -181,14 +181,21 @@ const [captchaValue, setCaptchaValue] = useState(null);
       setIsSubmitted(true);
       setCaptchaValue(null);
     } catch (error) {
-      console.error('Error submitting application:', error);
-      const code = error?.code?.replace('functions/', '');
-      const submitErrorMessage =
-        code === 'invalid-argument' ? error.message :
-        code === 'unavailable' ? 'Service temporarily unavailable. Please try again in a moment.' :
-        'Something went wrong. Please try again later.';
-      setErrors({ submit: submitErrorMessage });
-    } finally {
+  console.error('Error submitting application:', error);
+
+  const code = error?.code?.replace('functions/', '');
+
+  const submitErrorMessage =
+    code === 'invalid-argument'
+      ? error.message
+      : code === 'already-exists'
+      ? error.message
+      : code === 'unavailable'
+      ? 'Service temporarily unavailable. Please try again in a moment.'
+      : 'Something went wrong. Please try again later.';
+
+  setErrors({ submit: submitErrorMessage });
+} finally {
       setIsLoading(false);
     }
   };
@@ -304,7 +311,7 @@ const [captchaValue, setCaptchaValue] = useState(null);
               {errors.phone && <span className="form-error">{errors.phone}</span>}
             </div>
 
-      
+     
 
             <div className="form-group">
               <label htmlFor="resume">Resume Google Drive Link *</label>
