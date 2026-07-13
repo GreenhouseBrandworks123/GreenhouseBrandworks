@@ -24,12 +24,28 @@ function escapeHtml(str) {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
 }
+async function checkDuplicate(collectionName, filters) {
+  let query = db.collection(collectionName);
+
+  Object.entries(filters).forEach(([field, value]) => {
+    query = query.where(field, "==", value);
+  });
+
+  const snapshot = await query.limit(1).get();
+
+  return !snapshot.empty;
+}
 
 exports.submitContact = onCall(
   { secrets: [gmailUser, gmailPass, recaptchaSecret] },
   async (request) => {
   try {
-    const data = request.data;
+const data = {
+  ...request.data,
+  email: request.data.email
+    ? request.data.email.toLowerCase().trim()
+    : ""
+};
     console.log("submitContact started", { email: data.email });
 
     // Validate input
@@ -43,6 +59,8 @@ exports.submitContact = onCall(
         validation.error.issues[0].message
       );
     }
+    // Check duplicate contact email
+
 
     // Verify reCAPTCHA
     let captchaResult;
@@ -62,6 +80,19 @@ exports.submitContact = onCall(
         console.error("reCAPTCHA failed:", captchaResult["error-codes"]);
         throw new HttpsError("invalid-argument", "reCAPTCHA verification failed. Please try again.");
       }
+      const duplicate = await checkDuplicate(
+  "contactSubmissions",
+  {
+    email: data.email,
+  }
+);
+
+if (duplicate) {
+  throw new HttpsError(
+    "already-exists",
+    "We already received an inquiry from this email."
+  );
+}
 
       // Save to Firestore
       const { captchaToken, ...contactData } = data;
@@ -141,8 +172,12 @@ exports.submitJobApplication = onCall(
   { secrets: [gmailUser, gmailPass, recaptchaSecret] },
   async (request) => {
     try {
-      const data = request.data;
-
+const data = {
+  ...request.data,
+  email: request.data.email
+    ? request.data.email.toLowerCase().trim()
+    : ""
+};
       console.log("submitJobApplication started", {
         jobTitle: data.jobTitle,
         email: data.email,
@@ -159,6 +194,8 @@ exports.submitJobApplication = onCall(
           validation.error.issues[0].message
         );
       }
+      // Check duplicate job application
+
 
       // Verify reCAPTCHA
       let captchaResult;
@@ -187,6 +224,19 @@ exports.submitJobApplication = onCall(
           "reCAPTCHA verification failed. Please try again."
         );
       }
+      const duplicate = await checkDuplicate(
+  "jobApplications",
+  {
+    email: data.email
+  }
+);
+
+if (duplicate) {
+  throw new HttpsError(
+    "already-exists",
+    "You have already submitted an application."
+  );
+}
 
       // Save to Firestore
       const { captchaToken, ...applicationData } = data;
