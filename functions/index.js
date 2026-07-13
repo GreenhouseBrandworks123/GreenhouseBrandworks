@@ -2,6 +2,10 @@ const { onCall, HttpsError } = require("firebase-functions/v2/https");
 const { defineSecret } = require("firebase-functions/params");
 const admin = require("firebase-admin");
 const nodemailer = require("nodemailer");
+const {
+  contactSchema,
+  jobApplicationSchema,
+} = require("./validation");
 
 admin.initializeApp();
 const db = admin.firestore();
@@ -24,12 +28,24 @@ function escapeHtml(str) {
 exports.submitContact = onCall(
   { secrets: [gmailUser, gmailPass, recaptchaSecret] },
   async (request) => {
-    try {
-      const data = request.data;
-      console.log("submitContact started", { email: data.email });
+  try {
+    const data = request.data;
+    console.log("submitContact started", { email: data.email });
 
-      // Verify reCAPTCHA
-      let captchaResult;
+    // Validate input
+    const validation = contactSchema.safeParse(data);
+
+    if (!validation.success) {
+      console.error("Validation failed:", validation.error.issues);
+
+      throw new HttpsError(
+        "invalid-argument",
+        validation.error.issues[0].message
+      );
+    }
+
+    // Verify reCAPTCHA
+    let captchaResult;
       try {
         const captchaRes = await fetch(
           `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecret.value()}&response=${data.captchaToken}`,
@@ -126,42 +142,74 @@ exports.submitJobApplication = onCall(
   async (request) => {
     try {
       const data = request.data;
-      console.log("submitJobApplication started", { jobTitle: data.jobTitle, email: data.email });
 
-      // Verify reCAPTCHA using Node 24 built-in fetch
+      console.log("submitJobApplication started", {
+        jobTitle: data.jobTitle,
+        email: data.email,
+      });
+
+      // Validate input
+      const validation = jobApplicationSchema.safeParse(data);
+
+      if (!validation.success) {
+        console.error("Validation failed:", validation.error.issues);
+
+        throw new HttpsError(
+          "invalid-argument",
+          validation.error.issues[0].message
+        );
+      }
+
+      // Verify reCAPTCHA
       let captchaResult;
+
       try {
         const captchaRes = await fetch(
           `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecret.value()}&response=${data.captchaToken}`,
           { method: "POST" }
         );
+
         captchaResult = await captchaRes.json();
         console.log("reCAPTCHA result:", captchaResult.success);
       } catch (err) {
         console.error("reCAPTCHA fetch failed:", err.message);
-        throw new HttpsError("internal", "Could not verify reCAPTCHA. Please try again.");
+        throw new HttpsError(
+          "internal",
+          "Could not verify reCAPTCHA. Please try again."
+        );
       }
 
       if (!captchaResult.success) {
         console.error("reCAPTCHA failed:", captchaResult["error-codes"]);
-        throw new HttpsError("invalid-argument", "reCAPTCHA verification failed. Please try again.");
+
+        throw new HttpsError(
+          "invalid-argument",
+          "reCAPTCHA verification failed. Please try again."
+        );
       }
 
-      // Save to Firestore (exclude captchaToken — verified above, no need to persist)
+      // Save to Firestore
       const { captchaToken, ...applicationData } = data;
+
       let docRef;
+
       try {
         docRef = await db.collection("jobApplications").add({
           ...applicationData,
           createdAt: admin.firestore.FieldValue.serverTimestamp(),
         });
+
         console.log("Saved to Firestore:", docRef.id);
       } catch (err) {
         console.error("Firestore write failed:", err.message);
-        throw new HttpsError("internal", "Failed to save your application. Please try again.");
+
+        throw new HttpsError(
+          "internal",
+          "Failed to save your application. Please try again."
+        );
       }
 
-      // Send emails — failure here does NOT block success
+      // Send Emails
       try {
         const transporter = nodemailer.createTransport({
           service: "gmail",
@@ -176,7 +224,9 @@ exports.submitJobApplication = onCall(
         const safePhone = escapeHtml(data.phone);
         const safeJobTitle = escapeHtml(data.jobTitle);
         const safeResumeURL = escapeHtml(data.resumeURL);
-        const safePortfolio = data.portfolio ? escapeHtml(data.portfolio) : "Not provided";
+        const safePortfolio = data.portfolio
+          ? escapeHtml(data.portfolio)
+          : "Not provided";
         const safeMessage = escapeHtml(data.message);
 
         await transporter.sendMail({
@@ -209,16 +259,34 @@ exports.submitJobApplication = onCall(
         });
 
         console.log("Emails sent successfully");
-        return { success: true, id: docRef.id, emailSent: true };
+
+        return {
+          success: true,
+          id: docRef.id,
+          emailSent: true,
+        };
       } catch (err) {
         console.error("Email failed:", err.message, err.code);
-        return { success: true, id: docRef.id, emailSent: false };
-      }
 
+        return {
+          success: true,
+          id: docRef.id,
+          emailSent: false,
+        };
+      }
     } catch (err) {
       if (err instanceof HttpsError) throw err;
-      console.error("Unhandled error in submitJobApplication:", err.message, err.stack);
-      throw new HttpsError("internal", "An unexpected error occurred. Please try again.");
+
+      console.error(
+        "Unhandled error in submitJobApplication:",
+        err.message,
+        err.stack
+      );
+
+      throw new HttpsError(
+        "internal",
+        "An unexpected error occurred. Please try again."
+      );
     }
   }
 );
