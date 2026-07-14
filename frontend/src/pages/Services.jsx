@@ -2,13 +2,12 @@ import { useState } from 'react';
 import { SVGIcon } from '../components/SVGIcon';
 import { Modal } from '../components/Modal';
 
-// Note the new setPortfolioFilter prop added here
 export const Services = ({ setCurrentPage, setPortfolioFilter }) => {
   const [selectedService, setSelectedService] = useState(null);
 
   const servicesData = [
   {
-    id: "electronic", // Updated to match Portfolio filter ID
+    id: "electronic",
     icon: "web",
     title: "Electronic Media",
     shortDesc: "Stunning, high-conversion interface frameworks optimized for lightning-fast speeds and responsive mobile grids.",
@@ -25,7 +24,7 @@ export const Services = ({ setCurrentPage, setPortfolioFilter }) => {
     ],
   },
   {
-    id: "print", // Updated to match Portfolio filter ID
+    id: "print",
     icon: "print",
     title: "Print Media",
     shortDesc: "Editorial magazines, catalogs, premium coffee-table booklets, and luxury packaging assets.",
@@ -44,7 +43,7 @@ export const Services = ({ setCurrentPage, setPortfolioFilter }) => {
     ],
   },
   {
-    id: "digital", // Updated to match Portfolio filter ID
+    id: "digital",
     icon: "marketing",
     title: "Digital Marketing",
     shortDesc: "PPC campaigns, organic keyword targeting, and focused funnels to capture and nurture business leads.",
@@ -57,7 +56,7 @@ export const Services = ({ setCurrentPage, setPortfolioFilter }) => {
     ],
   },
   {
-    id: "outdoor", // Updated to match Portfolio filter ID
+    id: "outdoor",
     icon: "outdoor",
     title: "Outdoor Advertising",
     shortDesc: "Large-format display layouts: banners, digital highway billboards, transit boards, and office banners.",
@@ -144,7 +143,6 @@ export const Services = ({ setCurrentPage, setPortfolioFilter }) => {
             {/* Modal Action Buttons */}
             <div style={{ display: 'flex', gap: '12px', borderTop: '1px solid var(--border)', paddingTop: '24px', flexWrap: 'wrap' }}>
               
-              {/* NEW View Portfolio Button */}
               <button 
                 className="btn btn-primary" 
                 style={{ flex: '1 1 auto' }}
@@ -159,7 +157,7 @@ export const Services = ({ setCurrentPage, setPortfolioFilter }) => {
               </button>
 
               <button 
-                className="btn btn-secondary" 
+                className="btn btn-primary" 
                 style={{ flex: '1 1 auto' }}
                 onClick={() => {
                   setSelectedService(null);
@@ -169,13 +167,7 @@ export const Services = ({ setCurrentPage, setPortfolioFilter }) => {
               >
                 Request Quote
               </button>
-
-              <button 
-                className="btn btn-secondary" 
-                onClick={() => setSelectedService(null)}
-              >
-                Close
-              </button>
+              
             </div>
           </div>
         )}

@@ -1,36 +1,56 @@
 import { useState, useEffect } from 'react';
 
-// Import portfolio images
-import brandingImg from '../assets/branding.png';
-import webImg from '../assets/web.png';
-import printImg from '../assets/print.png';
-import marketingImg from '../assets/marketing.png';
+// Import all 20 portfolio images from the portfolio-preview folder
+import p1 from '../assets/portfolio-preview/p1.webp';
+import p2 from '../assets/portfolio-preview/p2.webp';
+import p3 from '../assets/portfolio-preview/p3.webp';
+import p4 from '../assets/portfolio-preview/p4.webp';
+import p5 from '../assets/portfolio-preview/p5.webp';
+import p6 from '../assets/portfolio-preview/p6.webp';
+import p7 from '../assets/portfolio-preview/p7.webp';
+import p8 from '../assets/portfolio-preview/p8.webp';
+import p9 from '../assets/portfolio-preview/p9.webp';
+import p10 from '../assets/portfolio-preview/p10.webp';
+import p11 from '../assets/portfolio-preview/p11.webp';
+import p12 from '../assets/portfolio-preview/p12.webp';
+import p13 from '../assets/portfolio-preview/p13.webp';
+import p14 from '../assets/portfolio-preview/p14.webp';
+import p15 from '../assets/portfolio-preview/p15.webp';
+import p16 from '../assets/portfolio-preview/p16.webp';
+import p17 from '../assets/portfolio-preview/p17.webp';
+import p18 from '../assets/portfolio-preview/p18.webp';
+import p19 from '../assets/portfolio-preview/p19.webp';
+// import p20 from '../assets/portfolio-preview/p20.webp';
 
-// Expanded gallery items
+// Expanded gallery items — 5 images per category
 const galleryItems = [
-  // Electronic Media
-  { id: 1, category: 'electronic', image: brandingImg },
-  { id: 2, category: 'electronic', image: webImg },
-  { id: 3, category: 'electronic', image: printImg },
-  { id: 4, category: 'electronic', image: marketingImg },
+  // Electronic Media (Images 1-5)
+  { id: 1, category: 'electronic', image: p1 },
+  { id: 2, category: 'electronic', image: p2 },
+  { id: 3, category: 'electronic', image: p3 },
+  { id: 4, category: 'electronic', image: p4 },
+  { id: 5, category: 'electronic', image: p5 },
 
-  // Print Media
-  { id: 5, category: 'print', image: printImg },
-  { id: 6, category: 'print', image: brandingImg },
-  { id: 7, category: 'print', image: marketingImg },
-  { id: 8, category: 'print', image: webImg },
+  // Print Media (Images 6-10)
+  { id: 6, category: 'print', image: p6 },
+  { id: 7, category: 'print', image: p7 },
+  { id: 8, category: 'print', image: p8 },
+  { id: 9, category: 'print', image: p9 },
+  { id: 10, category: 'print', image: p10 },
 
-  // Digital Marketing
-  { id: 9, category: 'digital', image: marketingImg },
-  { id: 10, category: 'digital', image: webImg },
-  { id: 11, category: 'digital', image: brandingImg },
-  { id: 12, category: 'digital', image: printImg },
+  // Digital Marketing (Images 11-15)
+  { id: 11, category: 'digital', image: p11 },
+  { id: 12, category: 'digital', image: p12 },
+  { id: 13, category: 'digital', image: p13 },
+  { id: 14, category: 'digital', image: p14 },
+  { id: 15, category: 'digital', image: p15 },
 
-  // Outdoor Advertising
-  { id: 13, category: 'outdoor', image: webImg },
-  { id: 14, category: 'outdoor', image: marketingImg },
-  { id: 15, category: 'outdoor', image: printImg },
-  { id: 16, category: 'outdoor', image: brandingImg },
+  // Outdoor Advertising (Images 16-20)
+  { id: 16, category: 'outdoor', image: p16 },
+  { id: 17, category: 'outdoor', image: p17 },
+  { id: 18, category: 'outdoor', image: p18 },
+  { id: 19, category: 'outdoor', image: p19 },
+  // { id: 20, category: 'outdoor', image: p20 },
 ];
 
 const FILTERS = [
@@ -40,7 +60,6 @@ const FILTERS = [
   { id: 'outdoor',    label: 'Outdoor Advertising' },
 ];
 
-// Note the new initialFilter prop added here
 export const Portfolio = ({ initialFilter = 'electronic' }) => {
   const [activeFilter, setActiveFilter] = useState(initialFilter);
 

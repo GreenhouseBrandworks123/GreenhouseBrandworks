@@ -541,7 +541,7 @@ useEffect(() => {
       {/* FOOTER ENTER ACTION */}
       <div className="marquee-action-row">
         <button className="btn btn-secondary" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
-          Enter Gallery
+          Enter Portfolio
         </button>
       </div>
 
