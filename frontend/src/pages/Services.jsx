@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { SVGIcon } from '../components/SVGIcon';
 import { Modal } from '../components/Modal';
 
-export const Services = ({ setCurrentPage }) => {
+// Note the new setPortfolioFilter prop added here
+export const Services = ({ setCurrentPage, setPortfolioFilter }) => {
   const [selectedService, setSelectedService] = useState(null);
 
   const servicesData = [
   {
-    id: "website-design",
+    id: "electronic", // Updated to match Portfolio filter ID
     icon: "web",
     title: "Electronic Media",
     shortDesc: "Stunning, high-conversion interface frameworks optimized for lightning-fast speeds and responsive mobile grids.",
@@ -22,10 +23,9 @@ export const Services = ({ setCurrentPage }) => {
       "Device compatible designs (Mobile, Tablet, PC, etc)",
       "Infographics"
     ],
-    
   },
   {
-    id: "print-design",
+    id: "print", // Updated to match Portfolio filter ID
     icon: "print",
     title: "Print Media",
     shortDesc: "Editorial magazines, catalogs, premium coffee-table booklets, and luxury packaging assets.",
@@ -44,7 +44,7 @@ export const Services = ({ setCurrentPage }) => {
     ],
   },
   {
-    id: "digital-marketing",
+    id: "digital", // Updated to match Portfolio filter ID
     icon: "marketing",
     title: "Digital Marketing",
     shortDesc: "PPC campaigns, organic keyword targeting, and focused funnels to capture and nurture business leads.",
@@ -55,10 +55,9 @@ export const Services = ({ setCurrentPage }) => {
       "Landing Page Configurations",
       "Analytics Performance Dashboard"
     ],
-    
   },
   {
-    id: "outdoor-advertising",
+    id: "outdoor", // Updated to match Portfolio filter ID
     icon: "outdoor",
     title: "Outdoor Advertising",
     shortDesc: "Large-format display layouts: banners, digital highway billboards, transit boards, and office banners.",
@@ -69,7 +68,6 @@ export const Services = ({ setCurrentPage }) => {
       "Gantries",
       "Median Props"
     ],
-    
   }
 ];
 
@@ -143,15 +141,26 @@ export const Services = ({ setCurrentPage }) => {
               </ul>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', borderTop: '1px solid var(--border)', paddingTop: '20px', marginBottom: '32px' }}>
+            {/* Modal Action Buttons */}
+            <div style={{ display: 'flex', gap: '12px', borderTop: '1px solid var(--border)', paddingTop: '24px', flexWrap: 'wrap' }}>
               
-              
-            </div>
-
-            <div style={{ display: 'flex', gap: '16px' }}>
+              {/* NEW View Portfolio Button */}
               <button 
                 className="btn btn-primary" 
-                style={{ flex: 1 }}
+                style={{ flex: '1 1 auto' }}
+                onClick={() => {
+                  setPortfolioFilter(selectedService.id); // Set the target filter
+                  setSelectedService(null);               // Close modal
+                  setCurrentPage('portfolio');            // Navigate to page
+                  window.scrollTo(0,0);
+                }}
+              >
+                View Portfolio
+              </button>
+
+              <button 
+                className="btn btn-secondary" 
+                style={{ flex: '1 1 auto' }}
                 onClick={() => {
                   setSelectedService(null);
                   setCurrentPage('contact');
@@ -160,6 +169,7 @@ export const Services = ({ setCurrentPage }) => {
               >
                 Request Quote
               </button>
+
               <button 
                 className="btn btn-secondary" 
                 onClick={() => setSelectedService(null)}

@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-// Import portfolio images (using your current 4 as placeholders)
+// Import portfolio images
 import brandingImg from '../assets/branding.png';
 import webImg from '../assets/web.png';
 import printImg from '../assets/print.png';
 import marketingImg from '../assets/marketing.png';
 
-// Expanded gallery items — 4 per category, recycling the images above
+// Expanded gallery items
 const galleryItems = [
   // Electronic Media
   { id: 1, category: 'electronic', image: brandingImg },
@@ -40,11 +40,17 @@ const FILTERS = [
   { id: 'outdoor',    label: 'Outdoor Advertising' },
 ];
 
-export const Portfolio = () => {
-  // Set default active filter to 'electronic'
-  const [activeFilter, setActiveFilter] = useState('electronic');
+// Note the new initialFilter prop added here
+export const Portfolio = ({ initialFilter = 'electronic' }) => {
+  const [activeFilter, setActiveFilter] = useState(initialFilter);
 
-  // Simplified filter logic since 'all' is no longer an option
+  // Update the active filter if the user navigates here from another page
+  useEffect(() => {
+    if (initialFilter) {
+      setActiveFilter(initialFilter);
+    }
+  }, [initialFilter]);
+
   const visibleItems = galleryItems.filter(item => item.category === activeFilter);
 
   return (

@@ -12,15 +12,20 @@ import Contact from './pages/Contact';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
+  
+  // NEW: State to track which category was clicked from the Services page
+  const [portfolioFilter, setPortfolioFilter] = useState('electronic'); 
 
   const renderActivePage = () => {
     switch (currentPage) {
       case 'home':
         return <Home setCurrentPage={setCurrentPage} />;
       case 'services':
-        return <Services setCurrentPage={setCurrentPage} />;
+        // NEW: Pass setPortfolioFilter down so the button can update the state
+        return <Services setCurrentPage={setCurrentPage} setPortfolioFilter={setPortfolioFilter} />;
       case 'portfolio':
-        return <Portfolio />;
+        // NEW: Pass the active state down so Portfolio knows which category to open
+        return <Portfolio initialFilter={portfolioFilter} />;
       case 'about':
         return <About />;
       case 'careers':
