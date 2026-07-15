@@ -82,7 +82,9 @@ async function checkDuplicate(collectionName, filters) {
 }
 
 exports.submitContact = onCall(
-  { secrets: [gmailUser, gmailPass, recaptchaSecret] },
+  { secrets: [gmailUser, gmailPass, recaptchaSecret],
+    enforceAppCheck: true,
+   },
   async (request) => {
   try {
 const data = {
@@ -91,13 +93,13 @@ const data = {
     ? request.data.email.toLowerCase().trim()
     : ""
 };
-    console.log("submitContact started", { email: data.email });
+    console.log("submitContact started");
 
     // Validate input
     const validation = contactSchema.safeParse(data);
 
     if (!validation.success) {
-      console.error("Validation failed:", validation.error.issues);
+      console.error("Validation failed:");
 
       throw new HttpsError(
         "invalid-argument",
@@ -214,7 +216,9 @@ if (duplicate) {
 );
 
 exports.submitJobApplication = onCall(
-  { secrets: [gmailUser, gmailPass, recaptchaSecret] },
+  { secrets: [gmailUser, gmailPass, recaptchaSecret],
+    enforceAppCheck: true,
+   },
   async (request) => {
     try {
 const data = {
@@ -223,16 +227,13 @@ const data = {
     ? request.data.email.toLowerCase().trim()
     : ""
 };
-      console.log("submitJobApplication started", {
-        jobTitle: data.jobTitle,
-        email: data.email,
-      });
+      console.log("submitJobApplication started");
 
       // Validate input
       const validation = jobApplicationSchema.safeParse(data);
 
       if (!validation.success) {
-        console.error("Validation failed:", validation.error.issues);
+        console.error("Validation failed:");
 
         throw new HttpsError(
           "invalid-argument",
