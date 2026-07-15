@@ -885,10 +885,14 @@ nav {
   border-color: var(--accent);
 }
 
+/* 1. THE GRID - Dynamic row allocation */
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 32px;
+  /* Forces all 5 cards in a single row on desktop */
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  width: 100%;
+  margin-top: 40px;
 }
 
 /* ==========================================================================
@@ -896,10 +900,12 @@ nav {
    ========================================================================== */
 
 .portfolio-card {
-  border-radius: var(--radius-lg);
+  width: 100%;
+  border-radius: 0px; /* REMOVED: Straight sharp corners as requested */
   overflow: hidden;
   position: relative;
-  aspect-ratio: 4/3;
+  /* CHANGED: Switched to portrait ratio so tall poster flyers never compress */
+  aspect-ratio: 1 / 1.45; 
   cursor: pointer;
   box-shadow: var(--card-shadow);
   border: 1px solid var(--border);
@@ -908,19 +914,21 @@ nav {
 .portfolio-card img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* CHANGED: Preserves absolute natural layout dimensions without distortion */
+  background-color: transparent; 
+  display: block;
   transition: var(--transition-smooth);
 }
 
 .portfolio-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(9, 11, 13, 0.9) 0%, rgba(9, 11, 13, 0.4) 60%, rgba(9, 11, 13, 0) 100%);
+  background: linear-gradient(to top, rgba(9, 11, 13, 0.95) 0%, rgba(9, 11, 13, 0.4) 60%, rgba(9, 11, 13, 0) 100__);
   opacity: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 40px;
+  padding: 20px; /* Adjusted padding to cleanly fit narrower single-row cards */
   transition: var(--transition-fast);
 }
 
@@ -930,6 +938,68 @@ nav {
 
 .portfolio-card:hover .portfolio-overlay {
   opacity: 1;
+}
+
+.portfolio-overlay span {
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.portfolio-overlay h3 {
+  color: #ffffff;
+  font-size: 1.2rem; /* Scaled slightly down so titles look perfect side-by-side */
+  margin-bottom: 12px;
+}
+
+.portfolio-overlay-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(20px);
+  transition: var(--transition-smooth);
+}
+
+.portfolio-card:hover .portfolio-overlay-btn {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+
+/* Tablets / Small Screens (Less than 1024px wide) */
+@media (max-width: 1024px) {
+  .portfolio-grid {
+    /* Transitions to 3 columns so the tall cards don't shrink too narrow to read */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 16px;
+  }
+}
+
+/* Mobile Devices (Less than 768px wide) */
+@media (max-width: 768px) {
+  .portfolio-grid {
+    /* Turns into a horizontal scrolling container on mobile so user swipe views them seamlessly */
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding-bottom: 15px; /* Leaves space for mobile scrollbars */
+  }
+  
+  .portfolio-card {
+    flex: 0 0 75%; /* Cards take up 75% of mobile viewport screen width */
+    scroll-snap-align: start;
+  }
 }
 
 .portfolio-overlay span {

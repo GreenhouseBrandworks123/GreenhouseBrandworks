@@ -50,7 +50,7 @@ const galleryItems = [
   { id: 17, category: 'outdoor', image: p17 },
   { id: 18, category: 'outdoor', image: p18 },
   { id: 19, category: 'outdoor', image: p19 },
-  // { id: 20, category: 'outdoor', image: p20 },
+  { id: 1, category: 'outdoor', image: p1 },
 ];
 
 const FILTERS = [
