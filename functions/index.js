@@ -82,17 +82,25 @@ async function checkDuplicate(collectionName, filters) {
 }
 
 exports.submitContact = onCall(
-  { secrets: [gmailUser, gmailPass, recaptchaSecret],
+  {
+    secrets: [gmailUser, gmailPass, recaptchaSecret],
     enforceAppCheck: true,
-   },
+
+    region: "us-central1",
+    memory: "256MiB",
+    timeoutSeconds: 30,
+    maxInstances: 5,
+  },
   async (request) => {
-  try {
-const data = {
-  ...request.data,
-  email: request.data.email
-    ? request.data.email.toLowerCase().trim()
-    : ""
-};
+    try {
+      const data = {
+        ...request.data,
+        email: request.data.email
+          ? request.data.email.toLowerCase().trim()
+          : ""
+      };
+
+      // rest of your code...
     console.log("submitContact started");
 
     // Validate input
@@ -216,17 +224,25 @@ if (duplicate) {
 );
 
 exports.submitJobApplication = onCall(
-  { secrets: [gmailUser, gmailPass, recaptchaSecret],
+  {
+    secrets: [gmailUser, gmailPass, recaptchaSecret],
     enforceAppCheck: true,
-   },
+
+    region: "us-central1",
+    memory: "256MiB",
+    timeoutSeconds: 30,
+    maxInstances: 5,
+  },
   async (request) => {
     try {
-const data = {
-  ...request.data,
-  email: request.data.email
-    ? request.data.email.toLowerCase().trim()
-    : ""
-};
+      const data = {
+        ...request.data,
+        email: request.data.email
+          ? request.data.email.toLowerCase().trim()
+          : ""
+      };
+
+      // rest of your code...
       console.log("submitJobApplication started");
 
       // Validate input
