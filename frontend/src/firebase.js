@@ -1,4 +1,9 @@
 import { initializeApp } from 'firebase/app';
+import {
+  initializeAppCheck,
+  ReCaptchaEnterpriseProvider
+} from 'firebase/app-check';
+
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import { getFunctions } from 'firebase/functions';
@@ -15,6 +20,12 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+initializeAppCheck(app, {
+  provider: new ReCaptchaEnterpriseProvider(
+    import.meta.env.VITE_APP_CHECK_SITE_KEY
+  ),
+  isTokenAutoRefreshEnabled: true,
+});
 
 // Initialize Firebase services
 export const db = getFirestore(app);

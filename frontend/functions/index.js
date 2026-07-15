@@ -18,7 +18,6 @@ async function verifyRecaptcha(token) {
   if (!secretKey) {
     // Fallback/log warning: in development or if not set, we might need a warning, 
     // but in production it must be set. We'll check if config is present.
-    console.warn("RECAPTCHA_SECRET_KEY is not set. Skipping verification (dev only) or failing if enforced.");
     // For safety, let's assume if it's missing, it's a server config error.
     // However, if we want to allow testing without it setup, we can log. 
     // Let's enforce it.
