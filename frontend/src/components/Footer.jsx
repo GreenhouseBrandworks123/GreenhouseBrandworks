@@ -60,19 +60,23 @@ export const Footer = ({ setCurrentPage }) => {
     Have an idea? Let's create a strong brand and digital experience together.
   </p>
 
-  <a
-    href="/contact"
-    className="btn btn-primary"
-    style={{
-      display: 'inline-flex',
-      alignItems: 'center',
-      gap: '8px',
-      fontSize: '0.9rem'
-    }}
-  >
-    Get in Touch
-    <SVGIcon name="arrowRight" size={16} />
-  </a>
+ <a
+  href="#contact"
+  onClick={(e) => {
+    e.preventDefault();
+    navigateTo('contact');
+  }}
+  className="btn btn-primary"
+  style={{
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '8px',
+    fontSize: '0.9rem'
+  }}
+>
+  Get in Touch
+  <SVGIcon name="arrowRight" size={16} />
+</a>
 
   <div
     style={{

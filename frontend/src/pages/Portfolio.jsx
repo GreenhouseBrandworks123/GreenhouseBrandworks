@@ -6,11 +6,11 @@ import p2 from '../assets/portfolio-preview/p2.webp';
 import p3 from '../assets/portfolio-preview/p3.webp';
 import p4 from '../assets/portfolio-preview/p4.webp';
 import p5 from '../assets/portfolio-preview/p5.webp';
-import p6 from '../assets/portfolio-preview/p6.webp';
-import p7 from '../assets/portfolio-preview/p7.webp';
-import p8 from '../assets/portfolio-preview/p8.webp';
-import p9 from '../assets/portfolio-preview/p9.webp';
-import p10 from '../assets/portfolio-preview/p10.webp';
+import p6 from '../assets/print-media/ps1.jpg'
+import p7 from '../assets/print-media/ps2.jpg'
+import p8 from '../assets/print-media/ps3.jpg'
+import p9 from '../assets/print-media/ps4.jpg'
+import p10 from '../assets/print-media/ps5.jpg';
 import p11 from '../assets/portfolio-preview/p11.webp';
 import p12 from '../assets/portfolio-preview/p12.webp';
 import p13 from '../assets/portfolio-preview/p13.webp';
