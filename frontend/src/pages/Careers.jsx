@@ -20,8 +20,8 @@ const [captchaValue, setCaptchaValue] = useState(null);
       title: "Graphic Designer",
       department: "Creative Design",
       type: "Full-Time",
-      location: "Bangalore, India (Hybrid)",
-      description: "We are searching for a senior visual artist to design branding kits, print catalogs, social grids, and vector layouts. You must possess a high-end Figma / Adobe suite portfolio.",
+      location: "Bangalore, India (On-Site)",
+      description: "If you love making creative visual assets, if you eat, live and breathe design, if you visualize all of your conversations as a comic strip; then this role is for you! Join us as a Graphic Designer and flaunt your in-built creativity.",
       requirements: [
         "3+ years agency branding experience",
         "Expert knowledge of typography hierarchy and color balance",
@@ -31,11 +31,11 @@ const [captchaValue, setCaptchaValue] = useState(null);
     },
     {
       id: "website-designer",
-      title: "Website Designer / UI Developer",
+      title: "Website Designer",
       department: "Digital Engineering",
       type: "Full-Time",
-      location: "Bangalore, India (Hybrid)",
-      description: "Seeking a designer with front-end React understanding to mock up premium layout wireframes and build responsive HTML/CSS structures with micro-interactions.",
+      location: "Bangalore, India (On-Site)",
+      description: "If you understand what responsive design is, if you know what a11y means, if think about user experience in everything you interact with; then come aboard! Join us as a Website Designer and build interactive experiences.",
       requirements: [
         "Portfolio featuring minimal, glassmorphic layout mockups",
         "Solid mastery of HTML5, CSS3, Flexbox/Grid, and responsive scaling",
@@ -49,7 +49,7 @@ const [captchaValue, setCaptchaValue] = useState(null);
       department: "Client Services",
       type: "Full-Time",
       location: "Bangalore, India (On-Site)",
-      description: "Seeking an outgoing sales strategist to coordinate client meetings, draft pricing contracts, present project quotes, and acquire high-value branding corporate projects.",
+      description: "If you prefer mails over WhatsApp chats, if you excel at MS-Excel, if you believe you’re excellent at conversations; then you should apply for this position ASAP! Join us as a BD Executive and be the bridge between our clients and designers",
       requirements: [
         "2+ years experience pitching design/technical agency contracts",
         "Clear, written and verbal communication styles",
@@ -209,10 +209,12 @@ const submitErrorMessage =
         <div className="section-container">
           <span className="section-badge">Join Our Team</span>
           <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '24px' }}>
-            Build the future of design.
+            GHBW Careers
           </h1>
           <p style={{ fontSize: '1.2rem', maxWidth: '700px' }}>
-            We look for creatives and builders who take absolute ownership of their work and push aesthetic and technical boundaries.
+            We don’t just help our clients grow. We grow with them.
+            From freshers to highly experienced professionals, we
+            welcome everyone!But, you must have a yearning to learn and grow and give your absolute best to every job, big or small.
           </p>
         </div>
       </section>
