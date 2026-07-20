@@ -44,7 +44,7 @@ export const Header = ({ currentPage, setCurrentPage }) => {
               alt="Greenhouse Brandworks logo"
               className={`logo-img${isScrolled ? ' logo-img--scrolled' : ''}`}
             />
-            Greenhouse Brandworks
+            {/* Greenhouse Brandworks */}
           </a>
 
           <nav>
