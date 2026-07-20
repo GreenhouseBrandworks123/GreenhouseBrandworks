@@ -14,7 +14,7 @@ export const Footer = ({ setCurrentPage }) => {
           <div className="footer-brand">
             <h3 className="logo">
               <img src={greenhouseLogo} alt="Greenhouse Brandworks logo" className="logo-img footer-logo-img" />
-              Greenhouse Brandworks
+              
             </h3>
             <p>
               An award-winning creative branding and digital design agency crafting premium identities and conversion-focused experiences.
