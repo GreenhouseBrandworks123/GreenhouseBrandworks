@@ -1,7 +1,11 @@
 import { SVGIcon } from '../components/SVGIcon';
 import brandingImg from '../assets/branding.png';
+import aboutusTimeline from '../assets/aboutus/aboutus.avif';  // Timeline image (01 - 02 - 03)
+import rampUpIcon from '../assets/aboutus/aboutus1.avif';       // Up-arrow icon
+import reachIcon from '../assets/aboutus/aboutus2.avif';        // Expand icon
+import raceIcon from '../assets/aboutus/aboutus3.avif';         // Right-arrow icon
 
-export const About = () => {
+export const About = ({ setCurrentPage }) => {
   return (
     <div className="page-container">
       {/* About Header */}
@@ -22,64 +26,91 @@ export const About = () => {
         </div>
       </section>
 
-      {/* Story & Visual Section */}
-      <section className="section section-bg" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
-        <div className="section-container">
-          <div className="grid-2">
-            <div>
-              <h2 style={{ marginBottom: '24px' }}>Bridging design and commerce since 2006.</h2>
-              <p style={{ marginBottom: '20px', fontSize: '1.05rem' }}>
-                Greenhouse Brandworks was established to eliminate generic, templated designs. We realized that corporate leaders were tired of choosing between agencies that only made pretty graphics and tech groups that only wrote functional but visual-less systems.
-              </p>
-              <p style={{ marginBottom: '24px' }}>
-                We unified these practices. Over the past 20 years, we have scaled visual frameworks for over 50 global companies, delivering designs that increase customer trust and conversion-focused systems that capture verified sales leads.
-              </p>
+      {/* --- WHY CHOOSE US / GTM SECTION --- */}
+<section className="why-choose-us-section">
+  <div className="section-container">
+    
+    {/* Section Header */}
+    <div className="why-choose-us-header">
+      <h2>
+        Why <span className="highlight-text">choose us?</span>
+      </h2>
+      <p className="subtitle">We follow the 3Rs of GTM (Go-to-Market)</p>
+    </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', borderTop: '1px solid var(--border)', paddingTop: '32px' }}>
-                <div>
-                  <h3 style={{ fontSize: '2.5rem', color: 'var(--accent)', marginBottom: '4px' }}>20+</h3>
-                  <p style={{ fontWeight: '600', color: 'var(--text)' }}>Years of Refinement</p>
-                </div>
-                <div>
-                  <h3 style={{ fontSize: '2.5rem', color: 'var(--accent)', marginBottom: '4px' }}>98%</h3>
-                  <p style={{ fontWeight: '600', color: 'var(--text)' }}>Client Satisfaction</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="value-image" style={{ height: '480px' }}>
-              <img src={brandingImg} alt="Greenhouse design system desk layout" />
-            </div>
-          </div>
+    {/* 3 Columns: RAMP UP, REACH, RACE */}
+    <div className="three-rs-grid">
+      
+      {/* 01. RAMP UP */}
+      <div className="rs-card">
+        <div className="rs-title-wrapper">
+          <img src={rampUpIcon} alt="Ramp Up" className="rs-icon" />
+          <h3>RAMP UP</h3>
         </div>
-      </section>
+        <p>
+          The GHBW Starter Kit speedily builds your image in a scenario
+          where technology continues to multiply opportunities for people
+          to experience your brand.
+        </p>
+      </div>
 
-      {/* Mission & Vision Panels */}
-      <section className="section">
-        <div className="section-container">
-          <div className="grid-2" style={{ alignItems: 'stretch' }}>
-            <div style={{ backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border)', padding: '48px', borderRadius: 'var(--radius-lg)', display: 'flex', flexDirection: 'column' }}>
-              <div style={{ color: 'var(--accent)', marginBottom: '24px' }}>
-                <SVGIcon name="branding" size={40} />
-              </div>
-              <h3 style={{ fontSize: '1.8rem', marginBottom: '16px' }}>Our Mission</h3>
-              <p style={{ fontSize: '1.05rem', flexGrow: 1 }}>
-                To empower companies with high-end, clean brand assets and ultra-responsive digital products that communicate values instantly, shorten sales cycles, and build customer loyalty.
-              </p>
-            </div>
-
-            <div style={{ backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border)', padding: '48px', borderRadius: 'var(--radius-lg)', display: 'flex', flexDirection: 'column' }}>
-              <div style={{ color: 'var(--accent)', marginBottom: '24px' }}>
-                <SVGIcon name="web" size={40} />
-              </div>
-              <h3 style={{ fontSize: '1.8rem', marginBottom: '16px' }}>Our Vision</h3>
-              <p style={{ fontSize: '1.05rem', flexGrow: 1 }}>
-                To set the global standard for high-performance creative agency systems, demonstrating that design brilliance and code efficiency are joint drivers of modern corporate expansion.
-              </p>
-            </div>
-          </div>
+      {/* 02. REACH */}
+      <div className="rs-card">
+        <div className="rs-title-wrapper">
+          <img src={reachIcon} alt="Reach" className="rs-icon" />
+          <h3>REACH</h3>
         </div>
-      </section>
+        <p>
+          The GHBW Starter Kit offers a solution for every format - digital,
+          social, print. It put together a consistent brand image across
+          hundreds of touch points.
+        </p>
+      </div>
+
+      {/* 03. RACE */}
+      <div className="rs-card">
+        <div className="rs-title-wrapper">
+          <img src={raceIcon} alt="Race" className="rs-icon" />
+          <h3>RACE</h3>
+        </div>
+        <p>
+          The GHBW Starter Kit helps you saddle up so fast, that you are set
+          to convert the best opportunities to business gains quickly and beat
+          your competition ASAP.
+        </p>
+      </div>
+
+    </div>
+
+    {/* Process Timeline Image */}
+    <div className="timeline-container">
+      <img src={aboutusTimeline} alt="GTM Process Timeline" className="timeline-img" />
+    </div>
+
+    {/* Footer & CTA Button */}
+    <div className="why-choose-us-footer">
+      <p className="essence-text">All in all, time is of the essence!</p>
+      <button className="btn-gtm-primary" onClick={() => { setCurrentPage('contact'); window.scrollTo(0,0); }} >Lets get started</button>
+    </div>
+
+  </div>
+</section>
+
+      {/* --- CUSP VALUE PROPOSITION SECTION --- */}
+<section className="section">
+  <div className="section-container">
+    <div className="cusp-banner-card">
+      <h2 className="cusp-title">
+        The green <span className="cusp-highlight">CUSP</span> for the best value
+      </h2>
+      <p className="cusp-subtitle">
+        <span className="cusp-highlight">C</span>ost Optimization &ndash; Gain Quick{' '}
+        <span className="cusp-highlight">U</span>nderstanding &ndash;{' '}
+        <span className="cusp-highlight">S</span>peedy GTM
+      </p>
+    </div>
+  </div>
+</section>
 
       
     </div>

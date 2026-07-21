@@ -589,13 +589,13 @@ useEffect(() => {
         <div className="section-container" style={{ maxWidth: '800px' }}>
           <span className="section-badge">Start Today</span>
           <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '24px' }}>
-            Let's build your brand together.
+            Ready to Elevate Your Brand?
           </h2>
           <p style={{ fontSize: '1.2rem', marginBottom: '40px', maxWidth: '600px', margin: '0 auto 40px' }}>
-            Ready to redesign your business identity or launch a high-performance web experience? Let's discuss your project targets.
+           Ready to Elevate Your Brand?Contact us today to discover how Greenhouse Brandworks can help your business stand out.
           </p>
           <button className="btn btn-primary" onClick={() => { setCurrentPage('contact'); window.scrollTo(0,0); }}>
-            Book a Discovery Call
+            Drop Your Info
           </button>
         </div>
       </section>
