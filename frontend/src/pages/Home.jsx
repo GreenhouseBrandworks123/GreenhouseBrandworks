@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+
 import { SVGIcon } from '../components/SVGIcon';
 import abblogo from '../assets/client-logos/ABB.png';
 import AscendumLogo from '../assets/client-logos/Ascendum_Logo.png';
@@ -27,12 +28,9 @@ import slide1 from '../assets/slider-images/slide1.jpeg';
 import slide2 from '../assets/slider-images/slide2.jpeg';
 import slide3 from '../assets/slider-images/slide3.jpeg';
 
-
-
 import differentiator1 from '../assets/differentiators/differentiator1.png';
 import differentiator2 from '../assets/differentiators/differentiator2.png';
 import differentiator3 from '../assets/differentiators/differentiator3.png';
-
 
 import p1 from '../assets/portfolio-preview/p1.webp';
 import p2 from '../assets/portfolio-preview/p2.webp';
@@ -46,7 +44,6 @@ import p9 from '../assets/portfolio-preview/p9.webp';
 import p10 from '../assets/portfolio-preview/p10.webp';
 import p11 from '../assets/portfolio-preview/p11.webp';
 import p12 from '../assets/portfolio-preview/p12.webp';
-
 import p13 from '../assets/portfolio-preview/p13.webp';
 import p14 from '../assets/portfolio-preview/p14.webp';
 import p15 from '../assets/portfolio-preview/p15.webp';
@@ -54,7 +51,6 @@ import p16 from '../assets/portfolio-preview/p16.webp';
 import p17 from '../assets/portfolio-preview/p17.webp';
 import p18 from '../assets/portfolio-preview/p18.webp';
 import p19 from '../assets/portfolio-preview/p19.webp';
-
 
 // Subcomponent for counting stats when they enter the viewport
 const AnimatedCounter = ({ endValue, duration = 2000 }) => {
@@ -100,9 +96,43 @@ const AnimatedCounter = ({ endValue, duration = 2000 }) => {
 };
 
 const row1Images = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10];
-const row2Images = [p11,p12,p13, p14, p15, p16, p17, p18, p19];
+const row2Images = [p11, p12, p13, p14, p15, p16, p17, p18, p19];
 
 export const Home = ({ setCurrentPage }) => {
+  // Brand Vision Slider State & Logic
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
+
+  const visionSlides = [
+    {
+      subtitle: "Our powerful pitches",
+      title: "Win Boardroom Decisions",
+      highlight: "in favor of our clients",
+      image: slide1
+    },
+    {
+      subtitle: "We help Top-Notch Companies",
+      title: "Tell Their Story",
+      highlight: "Convincingly",
+      image: slide2
+    },
+    {
+      subtitle: "We help clients",
+      title: "Draw-in",
+      highlight: "the Best Talent",
+      image: slide3
+    }
+  ];
+
+  // Auto-slide every 2.5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % visionSlides.length);
+    }, 4500); // 4500ms = 4.5 seconds
+
+    return () => clearInterval(interval);
+  }, [visionSlides.length]);
+
   const differentiators = [
     {
       description: "We leverage a unique blend of insights gleaned from traditional advertising, and knowledge of emerging branding platforms, to deliver highly relevant and unified campaigns for today's customers",
@@ -117,8 +147,6 @@ export const Home = ({ setCurrentPage }) => {
       image: differentiator3
     }
   ];
-
-
 
   const clientLogos = [
     { name: 'ABB', logo: abblogo },
@@ -145,128 +173,35 @@ export const Home = ({ setCurrentPage }) => {
     { name: 'Zaggle', logo: zaggleLogo }
   ];
 
-  const visionSlides = [
-  {
-    image: slide1,
-    quote: "Our powerful pitches Win Boardroom Decisions in favor of our clients",
-  
-  },
-  {
-    image: slide2,
-    quote: "We Help Top-Notch Companies Tell Their Story Convincingly",
-    
-  },
-  {
-    image: slide3,
-    quote: "We Help Clients Draw-in the Best Talent",
-   
-  }
-];
-
-const [currentSlide, setCurrentSlide] = useState(0);
-const [visionPaused, setVisionPaused] = useState(false);
-
-useEffect(() => {
-  if (visionPaused) return;
-  const interval = setInterval(() => {
-    setCurrentSlide((prev) => (prev + 1) % visionSlides.length);
-  }, 5000);
-  return () => clearInterval(interval);
-}, [visionPaused, currentSlide]);
-
   return (
-    <div className="page-container">
-      {/* --- HERO SECTION --- */}
-      <section className="hero">
-        <div className="hero-mesh"></div>
-        <div className="hero-container">
-          <div className="hero-badge">Greenhouse Brandworks</div>
-          <h1 className="hero-headline">
-            <span className="hero-word" style={{ '--i': 0 }}>We</span>{' '}
-            <span className="hero-word" style={{ '--i': 1 }}>help</span>{' '}
-            <span className="hero-word" style={{ '--i': 2 }}>your</span>{' '}
-            <span className="hero-word hero-word--accent" style={{ '--i': 3 }}>brand</span>{' '}
-            <span className="hero-word hero-word--accent" style={{ '--i': 4 }}>grow</span>
-            
-          </h1>
-          <p className="hero-subtext hero-subtext--animate">
-            We are a premium creative agency crafting modern identity systems, bespoke web experiences, and data-driven digital campaigns that drive commercial success.
-          </p>
-          
-          
-          <div className="hero-ctas">
-            <button className="btn btn-primary" onClick={() => { setCurrentPage('contact'); window.scrollTo(0,0); }}>
-              Get a Quote
-            </button>
-            <button className="btn btn-secondary" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
-              View Work
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* --- BRAND VISION SLIDER --- */}
-      <section
-        className="vision-slider"
-        onMouseEnter={() => setVisionPaused(true)}
-        onMouseLeave={() => setVisionPaused(false)}
-      >
+    <div className="home-page">
+      {/* --- BRAND VISION SLIDER (AUTO) --- */}
+      {/* Removed onMouseEnter and onMouseLeave */}
+      <section className="vision-slider">
         <div className="vision-slider-overlay">
-
+          
+          {/* Left Side: Auto-changing Text */}
           <div className="vision-slider-content">
-            <span className="vision-badge">OUR VISION</span>
-
-            <h2 key={currentSlide} className="vision-quote-animate">
-              {visionSlides[currentSlide].quote}
-            </h2>
-
-            <div className="vision-nav">
-              <button
-                className="vision-arrow"
-                onClick={() => setCurrentSlide((p) => (p - 1 + visionSlides.length) % visionSlides.length)}
-                aria-label="Previous slide"
-              >
-                &#8592;
-              </button>
-
-              <div className="vision-dots">
-                {visionSlides.map((_, i) => (
-                  <button
-                    key={i}
-                    className={`vision-dot${i === currentSlide ? ' active' : ''}`}
-                    onClick={() => setCurrentSlide(i)}
-                    aria-label={`Go to slide ${i + 1}`}
-                  >
-                    {i === currentSlide && (
-                      <span key={currentSlide} className={`vision-dot-fill${visionPaused ? ' paused' : ''}`} />
-                    )}
-                  </button>
-                ))}
-              </div>
-
-              <button
-                className="vision-arrow"
-                onClick={() => setCurrentSlide((p) => (p + 1) % visionSlides.length)}
-                aria-label="Next slide"
-              >
-                &#8594;
-              </button>
+            <div key={currentSlide} className="vision-text-animate">
+              {visionSlides[currentSlide].subtitle && (
+                <span className="vision-subtitle">{visionSlides[currentSlide].subtitle}</span>
+              )}
+              <h2 className="vision-title">
+                {visionSlides[currentSlide].title}{" "}
+                {visionSlides[currentSlide].highlight && (
+                  <span className="vision-highlight">{visionSlides[currentSlide].highlight}</span>
+                )}
+              </h2>
             </div>
-
-            <button
-              className="btn btn-primary vision-btn"
-              onClick={() => { setCurrentPage('about'); window.scrollTo(0, 0); }}
-            >
-              Learn More
-            </button>
           </div>
 
+          {/* Right Side: Full Image Display (No Cropping) */}
           <div className="vision-slider-image-wrapper">
             <img
               key={currentSlide}
               src={visionSlides[currentSlide].image}
-              alt={visionSlides[currentSlide].quote}
-              className="vision-slider-image vision-image-animate"
+              alt={visionSlides[currentSlide].title}
+              className="vision-image-animate"
             />
           </div>
 
@@ -277,7 +212,6 @@ useEffect(() => {
       <section className="section section-dot">
         <div className="section-container">
           <div className="section-header">
-            {/* <span className="section-badge">Our Focus</span> */}
             <h2>What We Offer</h2>
             <p>We help you connect with your prospects with a strong first impression, that sets your company apart from your competition. Check our services.</p>
           </div>
@@ -337,25 +271,20 @@ useEffect(() => {
       </section>
 
       {/* --- BRAND PROMISE QUOTE --- */}
-      {/* --- BRAND PROMISE QUOTE --- */}
-<section className="brand-promise-section">
-      {/* 1. This wrapper completely isolates the fade-up animation */}
-      <div className="brand-promise-anim-wrap">
-        
-        {/* 2. The glass card stays static inside, preserving the blur perfectly */}
-        <div className="brand-promise-glass-card">
-          <p className="brand-promise-quote">
-            <span className="brand-promise-line">
-              If you have an established brand, we'll follow your guidelines.
-            </span>
-            <span className="brand-promise-line brand-promise-highlight">
-              If you don't, we'll create the brand for you!
-            </span>
-          </p>
+      <section className="brand-promise-section">
+        <div className="brand-promise-anim-wrap">
+          <div className="brand-promise-glass-card">
+            <p className="brand-promise-quote">
+              <span className="brand-promise-line">
+                If you have an established brand, we'll follow your guidelines.
+              </span>
+              <span className="brand-promise-line brand-promise-highlight">
+                If you don't, we'll create the brand for you!
+              </span>
+            </p>
+          </div>
         </div>
-
-      </div>
-    </section>
+      </section>
 
       {/* --- OUR DIFFERENTIATORS --- */}
       <section className="section differentiators-section">
@@ -389,166 +318,142 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* Philosophy Step Section */}
+      {/* --- PHILOSOPHY SECTION --- */}
       <section className="philosophy-section">
-      <div className="philosophy-container">
-        
-        {/* Section Heading */}
-        <div className="philosophy-header">
-          <span className="section-badge-text">HOW WE THINK</span>
-          <h2>Our Creative Philosophy</h2>
-          <p className="philosophy-subtitle">
-            Get a taste of the PIE (Practice - Internalize - Extend)
-          </p>
-        </div>
-
-        {/* Core Layout Split Grid */}
-        <div className="philosophy-grid">
-          
-          {/* LEFT COLUMN: Static SVG Pie Diagram */}
-          <div className="pie-visual-wrapper">
-            <svg viewBox="0 0 200 200" className="pie-svg">
-              <path
-                d="M 100 100 L 100 10 A 90 90 0 0 1 177.94 145 Z"
-                className="pie-slice-path slice-practice"
-              />
-              <path
-                d="M 100 100 L 177.94 145 A 90 90 0 0 1 22.06 145 Z"
-                className="pie-slice-path slice-internalize"
-              />
-              <path
-                d="M 100 100 L 22.06 145 A 90 90 0 0 1 100 10 Z"
-                className="pie-slice-path slice-extend"
-              />
-              <circle cx="100" cy="100" r="35" className="pie-center-circle" />
-              <text x="100" y="100" textAnchor="middle" className="pie-center-text">
-                PIE
-              </text>
-            </svg>
+        <div className="philosophy-container">
+          <div className="philosophy-header">
+            <span className="section-badge-text">HOW WE THINK</span>
+            <h2>Our Creative Philosophy</h2>
+            <p className="philosophy-subtitle">
+              Get a taste of the PIE (Practice - Internalize - Extend)
+            </p>
           </div>
 
-          {/* RIGHT COLUMN: Vertically Aligned Lists using Vector Logos */}
-          <div className="philosophy-list-wrapper">
-            
-            {/* Item 01: Practice */}
-            <div className="static-info-item item-practice">
-              <div className="info-item-header">
-                <div className="icon-container-box">
-                  <img 
-                    src="/icon-practice.png" 
-                    alt="Practice Indicator" 
-                    className="info-stage-icon-img" 
-                  />
-                </div>
-                <h3 className="info-title">PRACTICE</h3>
-              </div>
-              <p className="info-desc">
-                Practice that incorporates extensive experience in creative advertising communication and deep knowledge of branding technologies.
-              </p>
+          <div className="philosophy-grid">
+            <div className="pie-visual-wrapper">
+              <svg viewBox="0 0 200 200" className="pie-svg">
+                <path
+                  d="M 100 100 L 100 10 A 90 90 0 0 1 177.94 145 Z"
+                  className="pie-slice-path slice-practice"
+                />
+                <path
+                  d="M 100 100 L 177.94 145 A 90 90 0 0 1 22.06 145 Z"
+                  className="pie-slice-path slice-internalize"
+                />
+                <path
+                  d="M 100 100 L 22.06 145 A 90 90 0 0 1 100 10 Z"
+                  className="pie-slice-path slice-extend"
+                />
+                <circle cx="100" cy="100" r="35" className="pie-center-circle" />
+                <text x="100" y="100" textAnchor="middle" className="pie-center-text">
+                  PIE
+                </text>
+              </svg>
             </div>
 
-            {/* Item 02: Internalize */}
-            <div className="static-info-item item-internalize">
-              <div className="info-item-header">
-                <div className="icon-container-box">
-                  <img 
-                    src="/icon-internalize.png" 
-                    alt="Internalize Indicator" 
-                    className="info-stage-icon-img" 
-                  />
+            <div className="philosophy-list-wrapper">
+              <div className="static-info-item item-practice">
+                <div className="info-item-header">
+                  <div className="icon-container-box">
+                    <img 
+                      src="/icon-practice.png" 
+                      alt="Practice Indicator" 
+                      className="info-stage-icon-img" 
+                    />
+                  </div>
+                  <h3 className="info-title">PRACTICE</h3>
                 </div>
-                <h3 className="info-title">INTERNALIZE</h3>
+                <p className="info-desc">
+                  Practice that incorporates extensive experience in creative advertising communication and deep knowledge of branding technologies.
+                </p>
               </div>
-              <p className="info-desc">
-                The capability to quickly Internalize emerging brand building platform and set the narrative for optimized value.
-              </p>
+
+              <div className="static-info-item item-internalize">
+                <div className="info-item-header">
+                  <div className="icon-container-box">
+                    <img 
+                      src="/icon-internalize.png" 
+                      alt="Internalize Indicator" 
+                      className="info-stage-icon-img" 
+                    />
+                  </div>
+                  <h3 className="info-title">INTERNALIZE</h3>
+                </div>
+                <p className="info-desc">
+                  The capability to quickly Internalize emerging brand building platform and set the narrative for optimized value.
+                </p>
+              </div>
+
+              <div className="static-info-item item-extend">
+                <div className="info-item-header">
+                  <div className="icon-container-box">
+                    <img 
+                      src="/icon-extend.png" 
+                      alt="Extend Indicator" 
+                      className="info-stage-icon-img" 
+                    />
+                  </div>
+                  <h3 className="info-title">EXTEND</h3>
+                </div>
+                <p className="info-desc">
+                  Extend an optimized combination of practice and technology to bring the best value to the brand.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- PORTFOLIO PREVIEW --- */}
+      <section className="section portfolio-marquee-section">
+        <div className="section-container">
+          <div className="glass-showcase-card">
+            <div className="section-header centered-marquee-header">
+              <span className="section-badge">Portfolio Preview</span>
+              <h2>Our Gallery</h2>
+              <p>Take a look at some of our work that we’ve done for our clients through the years.</p>
             </div>
 
-            {/* Item 03: Extend */}
-            <div className="static-info-item item-extend">
-              <div className="info-item-header">
-                <div className="icon-container-box">
-                  <img 
-                    src="/icon-extend.png" 
-                    alt="Extend Indicator" 
-                    className="info-stage-icon-img" 
-                  />
+            <div className="marquee-container">
+              <div className="marquee-row">
+                <div className="marquee-track track-left">
+                  {row1Images.map((imgSrc, index) => (
+                    <div key={`r1-main-${index}`} className="marquee-card" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
+                      <img src={imgSrc} alt={`Portfolio Asset ${index + 1}`} />
+                    </div>
+                  ))}
+                  {row1Images.map((imgSrc, index) => (
+                    <div key={`r1-dup-${index}`} className="marquee-card" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
+                      <img src={imgSrc} alt={`Portfolio Asset ${index + 1} Duplicate`} loading="lazy" />
+                    </div>
+                  ))}
                 </div>
-                <h3 className="info-title">EXTEND</h3>
               </div>
-              <p className="info-desc">
-                Extend an optimized combination of practice and technology to bring the best value to the brand.
-              </p>
+
+              <div className="marquee-row">
+                <div className="marquee-track track-right">
+                  {row2Images.map((imgSrc, index) => (
+                    <div key={`r2-main-${index}`} className="marquee-card" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
+                      <img src={imgSrc} alt={`Portfolio Asset ${index + 13}`} />
+                    </div>
+                  ))}
+                  {row2Images.map((imgSrc, index) => (
+                    <div key={`r2-dup-${index}`} className="marquee-card" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
+                      <img src={imgSrc} alt={`Portfolio Asset ${index + 13} Duplicate`} loading="lazy" />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-{/* --- PORTFOLIO PREVIEW --- */}
-<section className="section portfolio-marquee-section">
-  <div className="section-container">
-    
-    {/* NEW GLASS PANEL ENCLOSING ALL SECTION CONTENT */}
-    <div className="glass-showcase-card">
-
-      {/* CENTERED HEADER CONTENT */}
-      <div className="section-header centered-marquee-header">
-        <span className="section-badge">Portfolio Preview</span>
-        <h2>Our Gallery</h2>
-        <p>Take a look at some of our work that we’ve done for our clients through the years.</p>
-      </div>
-
-      {/* The Contained Marquee Area */}
-      <div className="marquee-container">
-        
-        {/* ROW 1: Scrolls Left */}
-        <div className="marquee-row">
-          <div className="marquee-track track-left">
-            {row1Images.map((imgSrc, index) => (
-              <div key={`r1-main-${index}`} className="marquee-card" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
-                <img src={imgSrc} alt={`Portfolio Asset ${index + 1}`} />
-              </div>
-            ))}
-            {row1Images.map((imgSrc, index) => (
-              <div key={`r1-dup-${index}`} className="marquee-card" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
-                <img src={imgSrc} alt={`Portfolio Asset ${index + 1} Duplicate`} loading="lazy" />
-              </div>
-            ))}
+            <div className="marquee-action-row">
+              <button className="btn btn-secondary" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
+                Enter Portfolio
+              </button>
+            </div>
           </div>
         </div>
-
-        {/* ROW 2: Scrolls Right */}
-        <div className="marquee-row">
-          <div className="marquee-track track-right">
-            {row2Images.map((imgSrc, index) => (
-              <div key={`r2-main-${index}`} className="marquee-card" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
-                <img src={imgSrc} alt={`Portfolio Asset ${index + 13}`} />
-              </div>
-            ))}
-            {row2Images.map((imgSrc, index) => (
-              <div key={`r2-dup-${index}`} className="marquee-card" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
-                <img src={imgSrc} alt={`Portfolio Asset ${index + 13} Duplicate`} loading="lazy" />
-              </div>
-            ))}
-          </div>
-        </div>
-
-      </div>
-
-      {/* FOOTER ENTER ACTION */}
-      <div className="marquee-action-row">
-        <button className="btn btn-secondary" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
-          Enter Portfolio
-        </button>
-      </div>
-
-    </div> {/* END OF GLASS PANEL */}
-
-  </div>
-</section>
+      </section>
 
       {/* --- STATISTICS SECTION --- */}
       <section className="section section-dark">
@@ -570,10 +475,9 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* --- CLIENT LOGO SHOWCASE TICKER --- */}
+      {/* --- CLIENT LOGO TICKER --- */}
       <section className="logo-ticker">
         <div className="logo-ticker-track">
-          {/* Double list for smooth infinite wrapping */}
           {clientLogos.concat(clientLogos).map((client, index) => (
             <div key={index} className="logo-ticker-item">
               <img src={client.logo} alt={client.name} className="client-logo-img"/>
@@ -592,7 +496,7 @@ useEffect(() => {
             Ready to Elevate Your Brand?
           </h2>
           <p style={{ fontSize: '1.2rem', marginBottom: '40px', maxWidth: '600px', margin: '0 auto 40px' }}>
-           Ready to Elevate Your Brand?Contact us today to discover how Greenhouse Brandworks can help your business stand out.
+            Ready to Elevate Your Brand? Contact us today to discover how Greenhouse Brandworks can help your business stand out.
           </p>
           <button className="btn btn-primary" onClick={() => { setCurrentPage('contact'); window.scrollTo(0,0); }}>
             Drop Your Info
@@ -602,4 +506,5 @@ useEffect(() => {
     </div>
   );
 };
+
 export default Home;
