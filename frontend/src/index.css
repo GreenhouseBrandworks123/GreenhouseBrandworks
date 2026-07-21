@@ -1684,24 +1684,46 @@ nav {
   }
 }
 
-.modal-close {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  font-size: 1.8rem;
-  cursor: pointer;
-  color: var(--text-muted);
+.modal-content {
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border);
+  width: 100%;
+  max-width: 600px;
+  border-radius: var(--radius-lg);
+  padding: 48px;
+  position: relative; /* Keep this as the anchor point */
+  box-shadow: var(--card-shadow);
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Safe Modal Close Hover Interactions */
+.safe-modal-close {
   transition: var(--transition-fast);
 }
 
-.modal-close:hover {
-  color: var(--text);
+.safe-modal-close:hover {
+  color: var(--text) !important;
   transform: rotate(90deg);
+}
+.modal-content button.btn-icon.modal-close {
+  position: absolute !important;
+  top: 24px !important;
+  right: 24px !important;
+  left: auto !important;
+  bottom: auto !important;
+  transform: none !important; /* Prevents unwanted centering transforms */
+  z-index: 9999 !important;
+  margin: 0 !important;
+  display: inline-flex !important;
 }
 
 .modal-content h2 {
   font-size: 2rem;
   margin-bottom: 8px;
+  padding-right: 40px !important;
+  box-sizing: border-box !important;
 }
 
 .modal-sub {
@@ -2841,4 +2863,104 @@ button {
   }
 }
 
+/* mobile responsiveness of footer links */
+/* =========================================
+   MOBILE FIXES (Add to bottom of index.css)
+   ========================================= */
 
+/* Fix: Form Inputs Overflowing */
+.form-control {
+  width: 100% !important;
+  max-width: 100%;
+  box-sizing: border-box !important; /* Prevents padding from adding to the width */
+}
+
+/* Fix: Contact Form Container Padding on Mobile */
+.contact-form-card {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+  padding: 48px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Fix: Careers Button Container */
+.form-action-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+/* Mobile Media Queries */
+@media screen and (max-width: 768px) {
+  
+  /* 1. Stack Careers buttons vertically */
+  .form-action-buttons {
+    flex-direction: column;
+  }
+  
+  .form-action-buttons .btn {
+    width: 100%;
+  }
+
+  /* 2. Reduce Contact form padding so it fits the screen */
+  .contact-form-card {
+    padding: 24px 16px; 
+  }
+
+  /* 3. Center the Footer text and align items */
+  .footer-col {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer-col p {
+    text-align: center;
+  }
+
+  .footer-links {
+    align-items: center;
+    padding-left: 0; /* Removes any default list indent */
+  }
+
+  /* Centers the Start a Project button */
+  .footer-col .btn-primary {
+    justify-content: center;
+  }
+}
+/* =========================================
+   BULLETPROOF MODAL CLOSE FIX 
+   ========================================= */
+
+/* 1. Force the container to be the absolute anchor point */
+body .modal-overlay .modal-content {
+  position: relative !important;
+}
+
+/* 2. Rip the X button out of the text flow and pin it to the top right */
+body .modal-overlay .modal-content button.modal-close {
+  position: absolute !important;
+  top: 16px !important;
+  right: 16px !important;
+  z-index: 9999 !important;
+  margin: 0 !important;
+  padding: 8px !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* 3. Force the title to leave a gap on the right so it never touches the X */
+body .modal-overlay .modal-content h2 {
+  padding-right: 52px !important;
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}

@@ -362,7 +362,7 @@ const submitErrorMessage =
               )}
             </div>
 
-            <div style={{ display: 'flex', gap: '16px', marginTop: '32px' }}>
+            <div className="form-action-buttons">
               <button 
                 type="submit" 
                 className="btn btn-primary" 

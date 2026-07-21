@@ -13,9 +13,9 @@ export const Contact = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-   if (errors[name] || errors.submit) {
-  setErrors({ ...errors, [name]: '', submit: '' });
-}
+    if (errors[name] || errors.submit) {
+      setErrors({ ...errors, [name]: '', submit: '' });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -82,23 +82,23 @@ export const Contact = () => {
       setIsSubmitted(true);
       setCaptchaValue(null);
     } catch (error) {
-  console.error('Contact form error:', error);
+      console.error('Contact form error:', error);
 
-  const code = error?.code?.replace('functions/', '');
+      const code = error?.code?.replace('functions/', '');
 
- const submitErrorMessage =
-  code === 'already-exists'
-    ? error.message
-    : code === 'invalid-argument'
-    ? error.message
-    : code === 'resource-exhausted'
-    ? error.message
-    : code === 'unavailable'
-    ? 'Service temporarily unavailable. Please try again in a moment.'
-    : 'Something went wrong. Please try again later.';
+      const submitErrorMessage =
+        code === 'already-exists'
+          ? error.message
+          : code === 'invalid-argument'
+            ? error.message
+            : code === 'resource-exhausted'
+              ? error.message
+              : code === 'unavailable'
+                ? 'Service temporarily unavailable. Please try again in a moment.'
+                : 'Something went wrong. Please try again later.';
 
-  setErrors({ submit: submitErrorMessage });
-} finally {
+      setErrors({ submit: submitErrorMessage });
+    } finally {
       setIsLoading(false);
     }
   };
@@ -147,7 +147,7 @@ export const Contact = () => {
                 </div>
                 <div className="contact-info-text">
                   <h4>Email Address</h4>
-                 <p>info@greenhousebrandworks.com</p> 
+                  <p>info@greenhousebrandworks.com</p>
                 </div>
               </div>
 
@@ -163,7 +163,7 @@ export const Contact = () => {
 
               {/* Map Mockup */}
               <div className="map-card">
-               
+
                 <h4 style={{ color: 'var(--text)', marginBottom: '4px', fontFamily: 'var(--font-title)' }}>
                   Greenhouse Brandworks Office
                 </h4>
@@ -190,7 +190,7 @@ export const Contact = () => {
             </div>
 
             {/* Right Column - Form */}
-            <div style={{ backgroundColor: 'var(--bg)', border: '1px solid var(--border)', padding: '48px', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--card-shadow)' }}>
+            <div className="contact-form-card">
               {isSubmitted ? (
                 <div className="form-success-container" style={{ padding: '24px 0' }}>
                   <div className="success-icon">
@@ -290,9 +290,9 @@ export const Contact = () => {
                     )}
                   </div>
 
-                  <button 
-                    type="submit" 
-                    className="btn btn-primary" 
+                  <button
+                    type="submit"
+                    className="btn btn-primary"
                     style={{ width: '100%', marginTop: '24px' }}
                     disabled={isLoading}
                   >
