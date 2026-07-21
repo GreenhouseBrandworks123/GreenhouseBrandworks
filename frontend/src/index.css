@@ -2614,5 +2614,410 @@ footer {
 }
 
 
+/* Paste this at the very bottom of the file */
+
+/* Responsive-only fixes for 320px / 375px / 390px / 414px / 768px / tablets */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  min-width: 320px;
+  -webkit-text-size-adjust: 100%;
+}
+
+img,
+video,
+svg,
+canvas,
+iframe,
+embed,
+object {
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  max-width: 100%;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+a,
+span,
+button {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1024px) {
+  .header-container,
+  .hero-container,
+  .section-container,
+  .brand-promise-anim-wrap {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .hero-ctas {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid-4,
+  .stats-container,
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .portfolio-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .vision-slider-overlay {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 32px;
+  }
+
+  .vision-slider-content {
+    max-width: 100%;
+    align-items: center;
+  }
+
+  .vision-image-animate,
+  .vision-slider-image {
+    max-width: 100%;
+    height: 360px;
+  }
+
+  .lightbox-content {
+    flex-direction: column;
+    max-height: 80vh;
+    gap: 24px;
+  }
+
+  .lightbox-details {
+    width: 100%;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container,
+  .hero-container,
+  .section-container,
+  .brand-promise-anim-wrap {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hero {
+    padding: 80px 0 100px;
+  }
+
+  .section {
+    padding: 80px 0;
+  }
+
+  .hero h1,
+  .hero-headline {
+    font-size: clamp(2.2rem, 8vw, 3.2rem);
+  }
+
+  .hero-subtext {
+    font-size: 1rem;
+    margin-bottom: 32px;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-ctas .btn {
+    width: min(100%, 280px);
+  }
+
+  .grid-3,
+  .grid-4,
+  .stats-container,
+  .footer-grid,
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    overflow: visible;
+    gap: 16px;
+  }
+
+  .portfolio-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .differentiator-row,
+  .differentiator-row--reverse {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .differentiator-text-col {
+    max-width: 100%;
+  }
+
+  .job-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px;
+  }
+
+  .job-card .btn {
+    width: 100%;
+  }
+
+  .modal-content {
+    padding: 24px;
+  }
+
+  .lightbox {
+    padding: 20px;
+  }
+
+  .lightbox-content {
+    gap: 16px;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  .newsletter-form .btn,
+  .newsletter-form .form-control {
+    width: 100%;
+  }
+
+  .vision-slider {
+    min-height: auto;
+    padding: 60px 20px;
+  }
+
+  .vision-slider-overlay {
+    gap: 28px;
+  }
+
+  .vision-quote-animate {
+    font-size: 2.25rem;
+    max-width: 100%;
+  }
+
+  .vision-image-animate,
+  .vision-slider-image {
+    height: 300px;
+  }
+
+  .brand-promise-section {
+    padding: 80px 20px;
+    min-height: auto;
+  }
+
+  .brand-promise-glass-card {
+    padding: 40px 20px;
+  }
+
+  .brand-promise-quote {
+    font-size: clamp(1.1rem, 4.8vw, 1.6rem);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 414px) {
+  body {
+    font-size: 15px;
+  }
+
+  .header-container,
+  .hero-container,
+  .section-container,
+  .brand-promise-anim-wrap {
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
+  }
+
+  .hero h1,
+  .hero-headline {
+    font-size: clamp(1.9rem, 7vw, 2.6rem);
+  }
+
+  .section h2 {
+    font-size: clamp(1.6rem, 5.4vw, 2.1rem);
+  }
+
+  .section-header {
+    margin-bottom: 48px;
+  }
+
+  .btn,
+  button,
+  input,
+  textarea,
+  select {
+    width: 100%;
+  }
+
+  .nav-links {
+    gap: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .portfolio-overlay h3 {
+    font-size: 1.05rem;
+  }
+
+  .lightbox-close {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 390px) {
+  body {
+    font-size: 14px;
+  }
+
+  .header-container,
+  .hero-container,
+  .section-container,
+  .brand-promise-anim-wrap {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .hero h1,
+  .hero-headline {
+    font-size: clamp(1.75rem, 6.8vw, 2.4rem);
+  }
+
+  .section h2 {
+    font-size: clamp(1.45rem, 5vw, 1.95rem);
+  }
+
+  .service-card,
+  .job-card,
+  .modal-content {
+    padding: 20px;
+  }
+
+  .portfolio-overlay h3 {
+    font-size: 0.95rem;
+  }
+
+  .brand-promise-quote {
+    font-size: clamp(1rem, 4.3vw, 1.45rem);
+  }
+}
+
+@media (max-width: 375px) {
+  body {
+    font-size: 13px;
+  }
+
+  .header-container,
+  .hero-container,
+  .section-container,
+  .brand-promise-anim-wrap {
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+  }
+
+  .hero h1,
+  .hero-headline {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
+
+  .section h2 {
+    font-size: clamp(1.3rem, 4.8vw, 1.7rem);
+  }
+
+  .hero-subtext {
+    font-size: 0.95rem;
+  }
+
+  .lightbox-nav {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 320px) {
+  body {
+    font-size: 12px;
+  }
+
+  .header-container,
+  .hero-container,
+  .section-container,
+  .brand-promise-anim-wrap {
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+  }
+
+  .hero h1,
+  .hero-headline {
+    font-size: clamp(1.45rem, 5.6vw, 1.95rem);
+  }
+
+  .section h2 {
+    font-size: clamp(1.2rem, 4.4vw, 1.55rem);
+  }
+
+  .btn {
+    padding: 12px 20px;
+  }
+
+  .service-card,
+  .job-card,
+  .modal-content {
+    padding: 16px;
+  }
+}
 
 
