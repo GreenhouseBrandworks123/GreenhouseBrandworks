@@ -30,42 +30,41 @@ const MAX_REQUESTS = 5;
 
 async function checkRateLimit(identifier, type) {
   const docId = `${type}_${identifier}`;
-
   const ref = db.collection("rateLimits").doc(docId);
-
-  const snap = await ref.get();
 
   const now = Date.now();
 
-  if (!snap.exists) {
-    await ref.set({
-      count: 1,
-      firstRequest: now,
+  await db.runTransaction(async (transaction) => {
+    const snap = await transaction.get(ref);
+
+    if (!snap.exists) {
+      transaction.set(ref, {
+        count: 1,
+        firstRequest: now,
+      });
+      return;
+    }
+
+    const data = snap.data();
+
+    if (now - data.firstRequest > RATE_LIMIT_WINDOW) {
+      transaction.set(ref, {
+        count: 1,
+        firstRequest: now,
+      });
+      return;
+    }
+
+    if (data.count >= MAX_REQUESTS) {
+      throw new HttpsError(
+        "resource-exhausted",
+        "Too many submissions. Please wait 10 minutes before trying again."
+      );
+    }
+
+    transaction.update(ref, {
+      count: admin.firestore.FieldValue.increment(1),
     });
-
-    return;
-  }
-
-  const data = snap.data();
-
-  if (now - data.firstRequest > RATE_LIMIT_WINDOW) {
-    await ref.set({
-      count: 1,
-      firstRequest: now,
-    });
-
-    return;
-  }
-
-  if (data.count >= MAX_REQUESTS) {
-    throw new HttpsError(
-      "resource-exhausted",
-      "Too many submissions. Please wait 10 minutes before trying again."
-    );
-  }
-
-  await ref.update({
-    count: admin.firestore.FieldValue.increment(1),
   });
 }
 
@@ -107,7 +106,7 @@ exports.submitContact = onCall(
     const validation = contactSchema.safeParse(data);
 
     if (!validation.success) {
-      console.error("Validation failed:");
+      console.error(validation.error.flatten());
 
       throw new HttpsError(
         "invalid-argument",
@@ -116,14 +115,28 @@ exports.submitContact = onCall(
     }
    await checkRateLimit(data.email, "contact");
 
-
+   if (!data.captchaToken) {
+  throw new HttpsError(
+    "invalid-argument",
+    "Missing reCAPTCHA token."
+   );
+   }
     // Verify reCAPTCHA
     let captchaResult;
       try {
         const captchaRes = await fetch(
-          `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecret.value()}&response=${data.captchaToken}`,
-          { method: "POST" }
-        );
+  "https://www.google.com/recaptcha/api/siteverify",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: new URLSearchParams({
+      secret: recaptchaSecret.value(),
+      response: data.captchaToken,
+    }),
+  }
+);
         captchaResult = await captchaRes.json();
         console.log("reCAPTCHA result:", captchaResult.success);
       } catch (err) {
@@ -249,7 +262,7 @@ exports.submitJobApplication = onCall(
       const validation = jobApplicationSchema.safeParse(data);
 
       if (!validation.success) {
-        console.error("Validation failed:");
+        console.error(validation.error.flatten());
 
         throw new HttpsError(
           "invalid-argument",
@@ -258,15 +271,29 @@ exports.submitJobApplication = onCall(
       }
       await checkRateLimit(data.email, "job");
 
-
+if (!data.captchaToken) {
+  throw new HttpsError(
+    "invalid-argument",
+    "Missing reCAPTCHA token."
+  );
+}
       // Verify reCAPTCHA
       let captchaResult;
 
       try {
-        const captchaRes = await fetch(
-          `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecret.value()}&response=${data.captchaToken}`,
-          { method: "POST" }
-        );
+       const captchaRes = await fetch(
+  "https://www.google.com/recaptcha/api/siteverify",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: new URLSearchParams({
+      secret: recaptchaSecret.value(),
+      response: data.captchaToken,
+    }),
+  }
+);
 
         captchaResult = await captchaRes.json();
         console.log("reCAPTCHA result:", captchaResult.success);
