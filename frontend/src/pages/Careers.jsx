@@ -310,7 +310,7 @@ const submitErrorMessage =
                 className={`form-control ${errors.phone ? 'invalid' : ''}`}
                 value={formData.phone}
                 onChange={handleInputChange}
-                placeholder="+91 XXXXX XXXXX"
+                placeholder="Do not Enter Country Code"
               />
               {errors.phone && <span className="form-error">{errors.phone}</span>}
             </div>
