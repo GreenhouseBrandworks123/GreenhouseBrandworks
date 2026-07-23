@@ -1,5 +1,5 @@
 import { SVGIcon } from '../components/SVGIcon';
-import brandingImg from '../assets/branding.png';
+
 import aboutusTimeline from '../assets/aboutus/aboutus.avif';  // Timeline image (01 - 02 - 03)
 import rampUpIcon from '../assets/aboutus/aboutus1.avif';       // Up-arrow icon
 import reachIcon from '../assets/aboutus/aboutus2.avif';        // Expand icon
