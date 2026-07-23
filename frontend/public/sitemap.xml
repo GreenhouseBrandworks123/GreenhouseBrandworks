@@ -4,24 +4,4 @@
     <loc>https://www.greenhousebrandworks.com/</loc>
     <priority>1.0</priority>
   </url>
-  <url>
-    <loc>https://www.greenhousebrandworks.com/services</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.greenhousebrandworks.com/portfolio</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.greenhousebrandworks.com/about-us</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.greenhousebrandworks.com/careers</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.greenhousebrandworks.com/contact</loc>
-    <priority>0.8</priority>
-  </url>
 </urlset>
