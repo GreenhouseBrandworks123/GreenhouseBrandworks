@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
 // Pages
-import Home from './pages/Home';
-import Services from './pages/Services';
-import Portfolio from './pages/Portfolio';
-import About from './pages/About';
-import Careers from './pages/Careers';
-import Contact from './pages/Contact';
+const Home = lazy(() => import('./pages/Home'));
+const Services = lazy(() => import('./pages/Services'));
+const Portfolio = lazy(() => import('./pages/Portfolio'));
+const About = lazy(() => import('./pages/About'));
+const Careers = lazy(() => import('./pages/Careers'));
+const Contact = lazy(() => import('./pages/Contact'));
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -43,7 +43,23 @@ function App() {
         setCurrentPage={setCurrentPage}
       />
       
-      {renderActivePage()}
+      <Suspense
+  fallback={
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "70vh",
+        fontSize: "18px"
+      }}
+    >
+      Loading...
+    </div>
+  }
+>
+  {renderActivePage()}
+</Suspense>
       
       <Footer setCurrentPage={setCurrentPage} />
     </div>
