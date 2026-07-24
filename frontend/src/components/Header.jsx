@@ -8,14 +8,12 @@ export const Header = ({ currentPage, setCurrentPage }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
+  const scrolled = window.scrollY > 50;
 
-    window.addEventListener('scroll', handleScroll);
+  setIsScrolled(prev => (prev !== scrolled ? scrolled : prev));
+};
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

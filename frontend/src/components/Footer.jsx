@@ -1,11 +1,17 @@
+import { useCallback } from 'react';
 import { SVGIcon } from './SVGIcon';
 import greenhouseLogo from '../assets/greenhouse-logo.png';
 
 export const Footer = ({ setCurrentPage }) => {
-  const navigateTo = (pageId) => {
-    setCurrentPage(pageId);
-    window.scrollTo(0, 0);
-  };
+  const navigateTo = useCallback((pageId) => {
+  setCurrentPage(pageId);
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+
+}, [setCurrentPage]);
 
   return (
     <footer>
