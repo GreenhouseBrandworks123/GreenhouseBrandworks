@@ -4,7 +4,7 @@ import {
   ReCaptchaEnterpriseProvider
 } from 'firebase/app-check';
 
-import { getFirestore } from 'firebase/firestore';
+
 import { getStorage } from 'firebase/storage';
 import { getFunctions } from 'firebase/functions';
 
@@ -27,8 +27,7 @@ initializeAppCheck(app, {
   isTokenAutoRefreshEnabled: true,
 });
 
-// Initialize Firebase services
-export const db = getFirestore(app);
+
 export const storage = getStorage(app);
 export const functions = getFunctions(app, "us-central1"); // Specify region for Cloud Functions
 
