@@ -1,4 +1,9 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --font-body: 'Poppins', sans-serif;
@@ -688,66 +693,7 @@ nav {
   font-weight: 500;
 }
 
-/* --- CLIENT LOGO INFINITE SCROLL --- */
-.logo-ticker {
-  overflow: hidden;
-  padding: 48px 0;
-  background-color: var(--bg-secondary);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  /* edge-fade mask so logos dissolve into nothing at left/right */
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-}
 
-.logo-ticker-track {
-  display: flex;
-  width: max-content;
-  animation: scroll 30s linear infinite;
-}
-
-.logo-ticker-track:hover {
-  animation-play-state: paused;
-}
-
-.logo-ticker-item {
-  min-width: 280px;
-  padding:0 20px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-
-  white-space: nowrap;
-
-  font-family: var(--font-title);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  opacity: 0.5;
-  transition: var(--transition-fast);
-}
-
-.logo-ticker-item:hover {
-  opacity: 1;
-  color: var(--accent);
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-50%));
-  }
-}
-.client-logo-img{
-  width:50px;
-  height:50px;
-  object-fit:contain;
-  flex-shrink:0;
-}
 
 /* ==========================================================================
    PORTFOLIO PREVIEW / WORK PAGE

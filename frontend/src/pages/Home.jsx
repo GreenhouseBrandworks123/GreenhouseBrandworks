@@ -1,28 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 
 import { SVGIcon } from '../components/SVGIcon';
-import abblogo from '../assets/client-logos/ABB.png';
-import AscendumLogo from '../assets/client-logos/Ascendum_Logo.png';
-import axaLogo from '../assets/client-logos/AXA_Logo.png';
-import bcicLogo from '../assets/client-logos/bcic.png';
-import bhorukaLogo from '../assets/client-logos/bhoruka.png';
-import blackNGreenLogo from '../assets/client-logos/blackngreen_logo.png';
-import comvivaLogo from '../assets/client-logos/comviva.png';
-import fssLogo from '../assets/client-logos/FSS.png';
-import goldenPalmsLogo from '../assets/client-logos/golden-palms.png';
-import investBavariaLogo from '../assets/client-logos/invest-in-bavaria.png';
-import kushagramatiLogo from '../assets/client-logos/kushagramati.png';
-import mobifinLogo from '../assets/client-logos/mobifin.png';
-import mphasisLogo from '../assets/client-logos/mphasis.png';
-import npstLogo from '../assets/client-logos/NPST.png';
-import panamaxLogo from '../assets/client-logos/Panamax.png';
-import panchheeLogo from '../assets/client-logos/pancheetantra.png';
-import tecnotreeLogo from '../assets/client-logos/Tecnotree-logo.png';
-import tessolveLogo from '../assets/client-logos/tessolve.png';
-import timepayLogo from '../assets/client-logos/TimePay.png';
-import toyotaLogo from '../assets/client-logos/toyota-logo.png';
-import utthungaLogo from '../assets/client-logos/utthunga.png';
-import zaggleLogo from '../assets/client-logos/Zaggle-logo.png';
+import  clientsWall from '../assets/client-logos/clients-wall.webp';
+
 
 import slide1 from '../assets/slider-images/slide1.jpeg';
 import slide2 from '../assets/slider-images/slide2.jpeg';
@@ -148,30 +128,6 @@ export const Home = ({ setCurrentPage }) => {
     }
   ];
 
-  const clientLogos = [
-    { name: 'ABB', logo: abblogo },
-    { name: 'Ascendum', logo: AscendumLogo },
-    { name: 'AXA', logo: axaLogo },
-    { name: 'BCIC', logo: bcicLogo },
-    { name: 'Bhoruka', logo: bhorukaLogo },
-    { name: 'Black N Green', logo: blackNGreenLogo },
-    { name: 'Comviva', logo: comvivaLogo },
-    { name: 'FSS', logo: fssLogo },
-    { name: 'Golden Palms', logo: goldenPalmsLogo },
-    { name: 'Invest Bavaria', logo: investBavariaLogo },
-    { name: 'Kushagramati', logo: kushagramatiLogo },
-    { name: 'Mobifin', logo: mobifinLogo },
-    { name: 'Mphasis', logo: mphasisLogo },
-    { name: 'NPST', logo: npstLogo },
-    { name: 'Panamax', logo: panamaxLogo },
-    { name: 'PANCHEE TANTRA', logo: panchheeLogo },
-    { name: 'Tecnotree', logo: tecnotreeLogo },
-    { name: 'Tessolve', logo: tessolveLogo },
-    { name: 'TimePay', logo: timepayLogo },
-    { name: 'Toyota', logo: toyotaLogo },
-    { name: 'Utthunga', logo: utthungaLogo },
-    { name: 'Zaggle', logo: zaggleLogo }
-  ];
 
   return (
     <div className="home-page">
@@ -476,16 +432,38 @@ export const Home = ({ setCurrentPage }) => {
       </section>
 
       {/* --- CLIENT LOGO TICKER --- */}
-      <section className="logo-ticker">
-        <div className="logo-ticker-track">
-          {clientLogos.concat(clientLogos).map((client, index) => (
-            <div key={index} className="logo-ticker-item">
-              <img src={client.logo} alt={client.name} className="client-logo-img"/>
-              <span>{client.name}</span>
-            </div>
-          ))}
+       <section className="bg-[#151515] py-24">
+      <div className="max-w-7xl mx-auto px-6">
+
+        
+        <div className="mb-12">
+          <h2 className="text-6xl font-bold text-white leading-tight">
+            <span className="text-[#a4d007]">Honors</span> on our wall!
+          </h2>
+
+          <p className="text-gray-300 text-2xl mt-4">
+            Some of the brands we're proud to call our clients!
+          </p>
+
+          <p className="text-gray-400 text-lg mt-6 max-w-3xl leading-relaxed">
+            Over the years, we've partnered with industry leaders across
+            technology, fintech, manufacturing and hospitality to create
+            meaningful brand experiences and deliver measurable business
+            growth.
+          </p>
         </div>
-      </section>
+
+       
+        <div className="overflow-hidden rounded-3xl shadow-2xl border border-[#2c2c2c]">
+          <img
+            src={clientsWall}
+            alt="Our Clients"
+            className="w-full object-cover transition duration-500 hover:scale-[1.02]"
+          />
+        </div>
+
+      </div>
+    </section>
 
       {/* --- FINAL CTA SECTION --- */}
       <section className="section section-dark section-cta" style={{ textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
