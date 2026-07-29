@@ -363,40 +363,6 @@ nav {
 }
 .section-mesh-right > * { position: relative; z-index: 1; }
 
-/* dark statement sections — stats + CTA */
-.section-dark {
-  background: var(--sd-bg);
-  color: var(--sd-color);
-  position: relative;
-  overflow: hidden;
-}
-.section-dark::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 50% at 20% 50%, color-mix(in srgb, var(--accent) 8%, transparent), transparent),
-    radial-gradient(ellipse 50% 60% at 80% 50%, color-mix(in srgb, var(--accent) 5%, transparent), transparent);
-  pointer-events: none;
-}
-.section-dark > * { position: relative; z-index: 1; }
-.section-dark h2,
-.section-dark h3 {
-  color: var(--sd-heading);
-}
-.section-dark p {
-  color: var(--sd-muted);
-}
-.section-dark .section-badge {
-  color: var(--accent);
-}
-.section-dark .stat-item h3 {
-  color: var(--accent);
-}
-.section-dark .stat-item p {
-  color: var(--sd-muted);
-  font-weight: 500;
-}
 
 /* CTA-specific — dual radial mesh for the closing section */
 .section-cta::before {
@@ -419,21 +385,8 @@ nav {
   max-width: 600px;
 }
 
-.section-badge {
-  display: inline-block;
-  color: var(--accent);
-  font-family: var(--font-title);
-  font-weight: 700;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 12px;
-}
 
-.section h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
-  margin-bottom: 16px;
-}
+
 
 /* Grid Layouts */
 .grid-3 {
@@ -2082,6 +2035,60 @@ footer {
 
   .vision-image-animate {
     max-height: 100%;
+  }
+}
+/* =========================
+   LARGE DESKTOP / 1920x1080 OPTIMIZATION
+========================= */
+
+@media (min-width: 1600px) {
+  /* --- Navbar Tweaks: Pushing to edges --- */
+  header, .navbar, .nav-container { 
+    /* Decrease space on the left and right drastically */
+    padding-left: 2% !important; 
+    padding-right: 2% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Make navbar links larger and spread them out to fill the blue line area */
+  .nav-links, .nav-menu {
+    gap: 40px !important; /* Increases space between each link */
+  }
+
+  .nav-links a, .nav-menu a, .nav-item {
+    font-size: 18px !important; /* Makes the text bigger */
+    font-weight: 500;
+  }
+
+  /* --- Vision Slider 1920x1080 Adjustments --- */
+  .vision-slider-content {
+    flex: 0 0 45%;
+    width: 45%;
+    padding-left: 8%; /* Adjusts text position to balance the screen */
+  }
+
+  .vision-title {
+    font-size: clamp(3rem, 4.2vw, 4.8rem);
+  }
+
+  .vision-subtitle {
+    font-size: clamp(1.6rem, 2.2vw, 2.4rem);
+  }
+
+  /* --- Right Side: Image Flush to Corner --- */
+  .vision-slider-image-wrapper {
+    flex: 0 0 55%;
+    width: 55%;
+    justify-content: flex-end !important; /* Forces image to the right */
+    padding-right: 0 !important; /* REMOVES the gap entirely */
+  }
+
+  .vision-image-animate {
+    max-height: 85vh;
+    object-position: right center !important; /* Locks image to the right edge of its box */
+    margin-right: 0 !important;
+    /* Optional: uncomment the line below to make the right edge flat against the screen */
+    /* border-radius: 8px 0 0 8px; */ 
   }
 }
 /* ─── BRAND PROMISE QUOTE ─── */
