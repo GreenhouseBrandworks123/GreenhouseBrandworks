@@ -464,23 +464,6 @@ export const Home = ({ setCurrentPage }) => {
 
       </div>
     </section>
-
-      {/* --- FINAL CTA SECTION --- */}
-      <section className="section section-dark section-cta" style={{ textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-        <div className="hero-mesh" style={{ top: 'auto', bottom: '-20%', left: '20%', right: '20%' }}></div>
-        <div className="section-container" style={{ maxWidth: '800px' }}>
-          <span className="section-badge">Start Today</span>
-          <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '24px' }}>
-            Ready to Elevate Your Brand?
-          </h2>
-          <p style={{ fontSize: '1.2rem', marginBottom: '40px', maxWidth: '600px', margin: '0 auto 40px' }}>
-            Ready to Elevate Your Brand? Contact us today to discover how Greenhouse Brandworks can help your business stand out.
-          </p>
-          <button className="btn btn-primary" onClick={() => { setCurrentPage('contact'); window.scrollTo(0,0); }}>
-            Drop Your Info
-          </button>
-        </div>
-      </section>
     </div>
   );
 };
