@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { trackPageView } from './analytics';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -12,7 +13,9 @@ import Contact from './pages/Contact';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
-  
+  useEffect(() => {
+  trackPageView(`/${currentPage}`);
+}, [currentPage]);
   // State to track which category was clicked from the Services page
   const [portfolioFilter, setPortfolioFilter] = useState('electronic'); 
 

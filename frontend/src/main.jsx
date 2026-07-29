@@ -3,7 +3,11 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
-document.documentElement.classList.add('dark')
+import { initGA } from './analytics';
+
+document.documentElement.classList.add('dark');
+
+initGA();
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
