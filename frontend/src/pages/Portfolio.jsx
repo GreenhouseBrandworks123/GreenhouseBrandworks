@@ -78,7 +78,6 @@ export const Portfolio = ({ initialFilter = 'electronic' }) => {
       {/* Portfolio Header */}
       <section className="section" style={{ paddingBottom: '40px' }}>
         <div className="section-container">
-          <span className="section-badge">Selected Work</span>
           <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '24px' }}>
             Cases that inspire.
           </h1>

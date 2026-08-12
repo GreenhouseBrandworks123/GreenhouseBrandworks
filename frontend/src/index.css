@@ -2359,14 +2359,179 @@ footer {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
+  .brand-promise-section {
+    padding: 80px 20px;
+    min-height: auto;
+  }
+  .brand-promise-anim-wrap {
+    width: 100% !important;
+  }
+  .brand-promise-glass-card {
+    padding: 50px 20px;
+  }
+  .brand-promise-quote {
+    font-size: clamp(1.1rem, 4.8vw, 1.6rem);
+    gap: 12px;
+  }
+}
+
+/* ─── WHY CHOOSE US (GTM SECTION) ─── */
+.why-choose-us-section {
+  background-color: #394125;
+  color: #e5e7eb;
+  padding: 80px 24px;
+  width: 100%;
+}
+.why-choose-us-header {
+  margin-bottom: 48px;
+}
+.why-choose-us-header h2 {
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  font-weight: 700;
+  color: #e2e8f0;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+.why-choose-us-header .highlight-text {
+  color: #a3e635;
+}
+.why-choose-us-header .subtitle {
+  font-size: 1.1rem;
+  color: #a1a1aa;
+}
+
+/* 3 Columns Grid */
+.three-rs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  margin-bottom: 48px;
+}
+.rs-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.rs-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.rs-icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+.rs-title-wrapper h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin: 0;
+}
+.rs-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #d1d5db;
+  margin: 0;
+}
+
+/* Timeline Image Section */
+.timeline-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 48px 0;
+}
+.timeline-img {
+  width: 100%;
+  max-width: 980px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Footer Section */
+.why-choose-us-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+.essence-text {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #e5e7eb;
+  margin: 0;
+}
+.btn-gtm-primary {
+  background-color: #a3e635;
+  color: #1a200c;
+  font-weight: 700;
+  padding: 14px 32px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.btn-gtm-primary:hover {
+  background-color: #84cc16;
+  transform: translateY(-2px);
+}
+
+/* Responsive Mobile Layout */
+@media (max-width: 900px) {
+  .three-rs-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .why-choose-us-section {
+    padding: 60px 20px;
+  }
+}
+
+/* ─── CUSP BANNER STYLING ─── */
+.cusp-banner-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 60px 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+}
+.cusp-title {
+  font-size: clamp(1.8rem, 3.2vw, 2.7rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.cusp-subtitle {
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  font-weight: 500;
+  color: #d1d5db;
+  margin: 0;
+  line-height: 1.5;
+}
+.cusp-highlight {
+  color: var(--accent, #a3e635);
+  font-weight: 800;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
   .cusp-banner-card {
     padding: 40px 20px;
     gap: 12px;
   }
 }
-
-
-/* Paste this at the very bottom of the file */
 
 /* Responsive-only fixes for 320px / 375px / 390px / 414px / 768px / tablets */
 *,
@@ -2374,7 +2539,6 @@ footer {
 *::after {
   box-sizing: border-box;
 }
-
 html,
 body,
 #root {
@@ -2382,12 +2546,10 @@ body,
   max-width: 100%;
   overflow-x: hidden;
 }
-
 body {
   min-width: 320px;
   -webkit-text-size-adjust: 100%;
 }
-
 img,
 video,
 svg,
@@ -2398,7 +2560,6 @@ object {
   max-width: 100%;
   height: auto;
 }
-
 button,
 input,
 select,
@@ -2406,7 +2567,6 @@ textarea {
   font: inherit;
   max-width: 100%;
 }
-
 p,
 h1,
 h2,
@@ -2431,60 +2591,49 @@ button {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
-
   .hero-ctas {
     flex-wrap: wrap;
     gap: 12px;
   }
-
   .grid-2 {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-
   .grid-3 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
   .grid-4,
   .stats-container,
   .footer-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
   .portfolio-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
   }
-
   .vision-slider-overlay {
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 32px;
   }
-
   .vision-slider-content {
     max-width: 100%;
     align-items: center;
   }
-
   .vision-image-animate,
   .vision-slider-image {
     max-width: 100%;
     height: 360px;
   }
-
   .lightbox-content {
     flex-direction: column;
     max-height: 80vh;
     gap: 24px;
   }
-
   .lightbox-details {
     width: 100%;
   }
-
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
@@ -2499,34 +2648,27 @@ button {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-
   .hero {
     padding: 80px 0 100px;
   }
-
   .section {
     padding: 80px 0;
   }
-
   .hero h1,
   .hero-headline {
     font-size: clamp(2.2rem, 8vw, 3.2rem);
   }
-
   .hero-subtext {
     font-size: 1rem;
     margin-bottom: 32px;
   }
-
   .hero-ctas {
     flex-direction: column;
     align-items: center;
   }
-
   .hero-ctas .btn {
     width: min(100%, 280px);
   }
-
   .grid-3,
   .grid-4,
   .stats-container,
@@ -2534,88 +2676,70 @@ button {
   .portfolio-grid {
     grid-template-columns: 1fr;
   }
-
   .portfolio-grid {
     display: grid;
     overflow: visible;
     gap: 16px;
   }
-
   .portfolio-card {
     width: 100%;
     max-width: 100%;
   }
-
   .differentiator-row,
   .differentiator-row--reverse {
     flex-direction: column;
     gap: 32px;
   }
-
   .differentiator-text-col {
     max-width: 100%;
   }
-
   .job-card {
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
     padding: 24px;
   }
-
   .job-card .btn {
     width: 100%;
   }
-
   .modal-content {
     padding: 24px;
   }
-
   .lightbox {
     padding: 20px;
   }
-
   .lightbox-content {
     gap: 16px;
   }
-
   .newsletter-form {
     flex-direction: column;
   }
-
   .newsletter-form .btn,
   .newsletter-form .form-control {
     width: 100%;
   }
-
   .vision-slider {
     min-height: auto;
     padding: 60px 20px;
   }
-
   .vision-slider-overlay {
     gap: 28px;
   }
-
   .vision-quote-animate {
     font-size: 2.25rem;
     max-width: 100%;
   }
-
   .vision-image-animate,
   .vision-slider-image {
     height: 300px;
   }
-
   .brand-promise-section {
     padding: 80px 20px;
     min-height: auto;
   }
-
   .brand-promise-glass-card {
     padding: 40px 20px;
   }
-
   .brand-promise-quote {
     font-size: clamp(1.1rem, 4.8vw, 1.6rem);
     gap: 12px;
@@ -2626,7 +2750,6 @@ button {
   body {
     font-size: 15px;
   }
-
   .header-container,
   .hero-container,
   .section-container,
@@ -2634,20 +2757,16 @@ button {
     padding-left: 0.875rem;
     padding-right: 0.875rem;
   }
-
   .hero h1,
   .hero-headline {
     font-size: clamp(1.9rem, 7vw, 2.6rem);
   }
-
   .section h2 {
     font-size: clamp(1.6rem, 5.4vw, 2.1rem);
   }
-
   .section-header {
     margin-bottom: 48px;
   }
-
   .btn,
   button,
   input,
@@ -2655,16 +2774,13 @@ button {
   select {
     width: 100%;
   }
-
   .nav-links {
     gap: 0.5rem;
     font-size: 0.95rem;
   }
-
   .portfolio-overlay h3 {
     font-size: 1.05rem;
   }
-
   .lightbox-close {
     font-size: 2rem;
   }
@@ -2674,7 +2790,6 @@ button {
   body {
     font-size: 14px;
   }
-
   .header-container,
   .hero-container,
   .section-container,
@@ -2682,26 +2797,21 @@ button {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
   }
-
   .hero h1,
   .hero-headline {
     font-size: clamp(1.75rem, 6.8vw, 2.4rem);
   }
-
   .section h2 {
     font-size: clamp(1.45rem, 5vw, 1.95rem);
   }
-
   .service-card,
   .job-card,
   .modal-content {
     padding: 20px;
   }
-
   .portfolio-overlay h3 {
     font-size: 0.95rem;
   }
-
   .brand-promise-quote {
     font-size: clamp(1rem, 4.3vw, 1.45rem);
   }
@@ -2711,7 +2821,6 @@ button {
   body {
     font-size: 13px;
   }
-
   .header-container,
   .hero-container,
   .section-container,
@@ -2719,20 +2828,16 @@ button {
     padding-left: 0.7rem;
     padding-right: 0.7rem;
   }
-
   .hero h1,
   .hero-headline {
     font-size: clamp(1.6rem, 6vw, 2.2rem);
   }
-
   .section h2 {
     font-size: clamp(1.3rem, 4.8vw, 1.7rem);
   }
-
   .hero-subtext {
     font-size: 0.95rem;
   }
-
   .lightbox-nav {
     width: 44px;
     height: 44px;
@@ -2743,7 +2848,6 @@ button {
   body {
     font-size: 12px;
   }
-
   .header-container,
   .hero-container,
   .section-container,
@@ -2751,20 +2855,16 @@ button {
     padding-left: 0.6rem;
     padding-right: 0.6rem;
   }
-
   .hero h1,
   .hero-headline {
     font-size: clamp(1.45rem, 5.6vw, 1.95rem);
   }
-
   .section h2 {
     font-size: clamp(1.2rem, 4.4vw, 1.55rem);
   }
-
   .btn {
     padding: 12px 20px;
   }
-
   .service-card,
   .job-card,
   .modal-content {
@@ -2772,19 +2872,12 @@ button {
   }
 }
 
-/* mobile responsiveness of footer links */
-/* =========================================
-   MOBILE FIXES (Add to bottom of index.css)
-   ========================================= */
-
-/* Fix: Form Inputs Overflowing */
+/* MOBILE FIXES */
 .form-control {
   width: 100% !important;
   max-width: 100%;
-  box-sizing: border-box !important; /* Prevents padding from adding to the width */
+  box-sizing: border-box !important;
 }
-
-/* Fix: Contact Form Container Padding on Mobile */
 .contact-form-card {
   background-color: var(--bg);
   border: 1px solid var(--border);
@@ -2794,63 +2887,44 @@ button {
   box-sizing: border-box;
   width: 100%;
 }
-
-/* Fix: Careers Button Container */
 .form-action-buttons {
   display: flex;
   gap: 16px;
   margin-top: 32px;
 }
 
-/* Mobile Media Queries */
 @media screen and (max-width: 768px) {
-  
-  /* 1. Stack Careers buttons vertically */
   .form-action-buttons {
     flex-direction: column;
   }
-  
   .form-action-buttons .btn {
     width: 100%;
   }
-
-  /* 2. Reduce Contact form padding so it fits the screen */
   .contact-form-card {
-    padding: 24px 16px; 
+    padding: 24px 16px;
   }
-
-  /* 3. Center the Footer text and align items */
   .footer-col {
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  
   .footer-col p {
     text-align: center;
   }
-
   .footer-links {
     align-items: center;
-    padding-left: 0; /* Removes any default list indent */
+    padding-left: 0;
   }
-
-  /* Centers the Start a Project button */
   .footer-col .btn-primary {
     justify-content: center;
   }
 }
-/* =========================================
-   BULLETPROOF MODAL CLOSE FIX 
-   ========================================= */
 
-/* 1. Force the container to be the absolute anchor point */
+/* BULLETPROOF MODAL CLOSE FIX */
 body .modal-overlay .modal-content {
   position: relative !important;
 }
-
-/* 2. Rip the X button out of the text flow and pin it to the top right */
 body .modal-overlay .modal-content button.modal-close {
   position: absolute !important;
   top: 16px !important;
@@ -2865,11 +2939,53 @@ body .modal-overlay .modal-content button.modal-close {
   align-items: center !important;
   justify-content: center !important;
 }
-
-/* 3. Force the title to leave a gap on the right so it never touches the X */
 body .modal-overlay .modal-content h2 {
   padding-right: 52px !important;
   display: block !important;
   width: 100% !important;
   box-sizing: border-box !important;
+}
+/* ======================================================
+   MOBILE NAVBAR OVERLAP & IMAGE SPACING FIX (screen <= 768px)
+   ====================================================== */
+@media (max-width: 768px) {
+  /* 1. Clear 100px fixed header completely so top text is fully visible */
+  .vision-slider,
+  .hero {
+    padding-top: 120px !important; /* Pushes text below header */
+    padding-bottom: 0px !important;  /* Removes dead space at bottom of section */
+    min-height: auto !important;
+    height: auto !important;
+  }
+
+  /* 2. Tight space between title text and hero image */
+  .vision-slider-overlay {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 16px !important;          /* Controls space strictly between text and image */
+    min-height: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .vision-slider-content,
+  .vision-text-animate {
+    margin: 0 !important;
+  }
+
+  /* 3. Remove outer vertical margins from the image wrapper */
+  .vision-slider-image-wrapper,
+  .vision-image-animate,
+  .vision-slider-image {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* 4. Pull "What We Offer" section directly under the image */
+  .section,
+  .section-header {
+    margin-top: 0 !important;
+    padding-top: 24px !important;
+  }
 }

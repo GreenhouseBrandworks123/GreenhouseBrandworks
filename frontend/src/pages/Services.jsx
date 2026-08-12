@@ -75,7 +75,7 @@ export const Services = ({ setCurrentPage, setPortfolioFilter }) => {
       {/* Services Header */}
       <section className="section" style={{ paddingBottom: '40px' }}>
         <div className="section-container">
-          <span className="section-badge">Capabilities</span>
+        
           <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '24px' }}>
             What we do best.
           </h1>

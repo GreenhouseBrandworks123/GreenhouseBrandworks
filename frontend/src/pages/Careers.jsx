@@ -207,7 +207,7 @@ const submitErrorMessage =
       {/* Careers Header */}
       <section className="section" style={{ paddingBottom: '40px' }}>
         <div className="section-container">
-          <span className="section-badge">Join Our Team</span>
+          
           <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '24px' }}>
             GHBW Careers
           </h1>
@@ -216,7 +216,7 @@ const submitErrorMessage =
             From freshers to highly experienced professionals, we
             welcome everyone!But, you must have a yearning to learn and grow and give your absolute best to every job, big or small.
           </p>
-        </div>
+        </div>    
       </section>
 
       {/* JobList Section */}

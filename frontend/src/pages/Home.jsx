@@ -86,7 +86,7 @@ export const Home = ({ setCurrentPage }) => {
   const visionSlides = [
     {
       subtitle: "Our powerful pitches",
-      title: "Win Boardroom Decisions",
+      title: "Win boardroom decisions",
       highlight: "in favor of our clients",
       image: slide1
     },
@@ -99,7 +99,7 @@ export const Home = ({ setCurrentPage }) => {
     {
       subtitle: "We help clients",
       title: "Draw-in",
-      highlight: "the Best Talent",
+      highlight: "the best Talent",
       image: slide3
     }
   ];
