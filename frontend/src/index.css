@@ -2122,29 +2122,66 @@ footer {
 /* =========================
    MOBILE RESPONSIVENESS
 ========================= */
-
-@media (max-width: 992px) {
+/* ─── ULTIMATE MOBILE SIDE-BY-SIDE OVERRIDE (GRID METHOD) ─── */
+@media (max-width: 1024px) {
+  .vision-slider, .hero {
+    padding-top: 100px !important; 
+    padding-bottom: 40px !important;
+    min-height: auto !important;
+    height: auto !important;
+  }
+  
   .vision-slider-overlay {
-    flex-direction: column-reverse;
-    height: auto;
-    min-height: 100vh;
+    display: grid !important;
+    /* CHANGED: Gave the text 48% and the image 52% to let wide images grow! */
+    grid-template-columns: 48% 52% !important; 
+    align-items: center !important;
+    width: 100% !important;
+    padding: 0 10px !important; 
+    margin: 0 !important;
+    gap: 0 !important;
   }
-
+  
   .vision-slider-content {
-    flex: none;
-    width: 100%;
-    padding: 40px 24px 60px 24px;
+    width: 100% !important;
+    padding: 0 5px 0 0 !important; 
+    margin: 0 !important;
+    text-align: left !important;
   }
-
+  
+  /* CHANGED: Shrunk fonts slightly so "Win boardroom decisions" isn't overpowering */
+  .vision-title {
+    font-size: clamp(1.1rem, 4vw, 1.5rem) !important; 
+    line-height: 1.15 !important;
+    word-break: break-word !important; 
+  }
+  .vision-subtitle {
+    font-size: clamp(0.8rem, 3vw, 1rem) !important;
+    margin-bottom: 6px !important;
+  }
+  .vision-highlight {
+    font-size: clamp(1.1rem, 4vw, 1.5rem) !important; 
+    display: block !important;
+    margin-top: 4px !important;
+  }
+  
   .vision-slider-image-wrapper {
-    flex: none;
-    width: 100%;
-    height: 50vh;
-    padding: 20px;
+    width: 100% !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    justify-content: flex-end !important; 
   }
-
-  .vision-image-animate {
-    max-height: 100%;
+  
+  .vision-image-animate, .vision-slider-image {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    /* Let the image grow slightly taller if it has the space */
+    max-height: 40vh !important; 
+    object-fit: contain !important;
+    margin: 0 !important;
   }
 }
 /* =========================
