@@ -31,7 +31,7 @@ export const Footer = ({ setCurrentPage }) => {
           </div>
 
           <div className="footer-col">
-            <h4>Quick Links</h4>
+            <h4>Quick links</h4>
             <ul className="footer-links">
               <li><a href="#home" onClick={(e) => { e.preventDefault(); navigateTo('home'); }}>Home</a></li>
               <li><a href="#services" onClick={(e) => { e.preventDefault(); navigateTo('services'); }}>Services</a></li>
@@ -43,7 +43,7 @@ export const Footer = ({ setCurrentPage }) => {
           </div>
 
           <div className="footer-col">
-            <h4>Our Services</h4>
+            <h4>Our services</h4>
             <ul className="footer-links">
               <li><a href="#services" onClick={(e) => { e.preventDefault(); navigateTo('services'); }}>Electronic Media</a></li>
               <li><a href="#services" onClick={(e) => { e.preventDefault(); navigateTo('services'); }}>Print Media</a></li>
@@ -54,7 +54,7 @@ export const Footer = ({ setCurrentPage }) => {
           </div>
 
          <div className="footer-col">
-  <h4>Start a Project</h4>
+  <h4>Start a project</h4>
 
   <p style={{ marginBottom: '16px', fontSize: '0.95rem' }}>
     Have an idea? Let's create a strong brand and digital experience together.

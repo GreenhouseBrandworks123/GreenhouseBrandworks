@@ -86,20 +86,20 @@ export const Home = ({ setCurrentPage }) => {
   const visionSlides = [
     {
       subtitle: "Our powerful pitches",
-      title: "Win boardroom decisions",
+      title: "win boardroom decisions",
       highlight: "in favor of our clients",
       image: slide1
     },
     {
-      subtitle: "We help Top-Notch Companies",
-      title: "Tell Their Story",
-      highlight: "Convincingly",
+      subtitle: "We help top-notch companies",
+      title: "tell their story",
+      highlight: "convincingly",
       image: slide2
     },
     {
       subtitle: "We help clients",
-      title: "Draw-in",
-      highlight: "the best Talent",
+      title: "draw in",
+      highlight: "the best talent",
       image: slide3
     }
   ];
@@ -168,7 +168,7 @@ export const Home = ({ setCurrentPage }) => {
       <section className="section section-dot">
         <div className="section-container">
           <div className="section-header">
-            <h2>What We Offer</h2>
+            <h2>What we offer</h2>
             <p>We help you connect with your prospects with a strong first impression, that sets your company apart from your competition. Check our services.</p>
           </div>
 
@@ -177,7 +177,7 @@ export const Home = ({ setCurrentPage }) => {
               <div className="service-icon">
                 <SVGIcon name="marketing" size={28} />
               </div>
-              <h3>Digital Marketing</h3>
+              <h3>Digital marketing</h3>
               <p>Driving growth with focused lead-generation channels, SEO alignment, and multi-platform advertising schedules.</p>
               <a href="#services" className="service-link" onClick={(e) => { e.preventDefault(); setCurrentPage('services'); window.scrollTo(0,0); }}>
                 Read More <SVGIcon name="arrowRight" size={16} />
@@ -247,8 +247,8 @@ export const Home = ({ setCurrentPage }) => {
         <div className="section-container">
           <div className="differentiators-header">
             <h2 className="differentiators-title">
-              <span className="differentiators-title--plain">OUR </span>
-              <span className="differentiators-title--accent">Differentiators</span>
+              <span className="differentiators-title--plain">Our </span>
+              <span className="differentiators-title--accent">differentiators</span>
             </h2>
           </div>
           <div className="differentiators-list">
@@ -279,7 +279,7 @@ export const Home = ({ setCurrentPage }) => {
         <div className="philosophy-container">
           <div className="philosophy-header">
             <span className="section-badge-text">HOW WE THINK</span>
-            <h2>Our Creative Philosophy</h2>
+            <h2>Our creative philosophy</h2>
             <p className="philosophy-subtitle">
               Get a taste of the PIE (Practice - Internalize - Extend)
             </p>
@@ -365,8 +365,8 @@ export const Home = ({ setCurrentPage }) => {
         <div className="section-container">
           <div className="glass-showcase-card">
             <div className="section-header centered-marquee-header">
-              <span className="section-badge">Portfolio Preview</span>
-              <h2>Our Gallery</h2>
+              <span className="section-badge">Portfolio preview</span>
+              <h2>Our gallery</h2>
               <p>Take a look at some of our work that we’ve done for our clients through the years.</p>
             </div>
 
@@ -404,7 +404,7 @@ export const Home = ({ setCurrentPage }) => {
 
             <div className="marquee-action-row">
               <button className="btn btn-secondary" onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>
-                Enter Portfolio
+                Enter portfolio
               </button>
             </div>
           </div>
