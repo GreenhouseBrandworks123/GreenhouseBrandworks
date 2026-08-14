@@ -177,7 +177,7 @@ export const Home = ({ setCurrentPage }) => {
               <div className="service-icon">
                 <SVGIcon name="marketing" size={28} />
               </div>
-              <h3>Digital marketing</h3>
+              <h3>Digital Marketing</h3>
               <p>Driving growth with focused lead-generation channels, SEO alignment, and multi-platform advertising schedules.</p>
               <a href="#services" className="service-link" onClick={(e) => { e.preventDefault(); setCurrentPage('services'); window.scrollTo(0,0); }}>
                 Read More <SVGIcon name="arrowRight" size={16} />
