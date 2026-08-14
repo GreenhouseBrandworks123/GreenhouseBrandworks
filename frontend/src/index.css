@@ -532,13 +532,58 @@ nav {
 }
 
 /* --- SERVICES SECTION & CARD --- */
+/* ==========================================
+   SECTION & HEADER STYLING
+   ========================================== */
+
+.section-container {
+  max-width: 1400px; /* Expands nicely on 1920px screens */
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-header {
+  margin-bottom: 3.5rem;
+  max-width: 850px; /* Prevents paragraph lines from stretching too far */
+}
+
+/* "What we offer" Heading */
+.section-header h2 {
+  /* Dynamic font size: 36px on mobile up to ~56px on 1920px screens */
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+/* Paragraph text under "What we offer" */
+.section-header p {
+  /* Dynamic font size: 17px on mobile up to 21.5px on 1920px screens */
+  font-size: clamp(1.05rem, 1.4vw, 1.35rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ==========================================
+   GRID & SERVICE CARDS STYLING
+   ========================================== */
+
+/* 4-Column Grid Layout */
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
 .service-card {
-  background-color: var(--surface-card);
-  border: 1px solid var(--border);
-  padding: 32px;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--card-shadow);
-  transition: var(--transition-smooth);
+  background-color: var(--surface-card, #121212);
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.1));
+  padding: 32px 28px;
+  border-radius: var(--radius-lg, 16px);
+  box-shadow: var(--card-shadow, 0 4px 20px rgba(0, 0, 0, 0.2));
+  transition: var(--transition-smooth, all 0.3s ease);
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -546,53 +591,129 @@ nav {
 
 .service-card:hover {
   transform: translateY(-8px);
-  border-color: var(--accent);
-  box-shadow: var(--card-shadow-hover), 0 20px 48px -12px rgba(168, 188, 0, 0.12);
+  border-color: var(--accent, #a8bc00);
+  box-shadow: var(--card-shadow-hover, 0 12px 30px rgba(0, 0, 0, 0.4)), 
+              0 20px 48px -12px rgba(168, 188, 0, 0.15);
 }
 
 .service-icon {
   width: 56px;
   height: 56px;
-  background-color: var(--accent-soft);
-  color: var(--accent);
-  border-radius: var(--radius-md);
+  background-color: var(--accent-soft, rgba(168, 188, 0, 0.12));
+  color: var(--accent, #a8bc00);
+  border-radius: var(--radius-md, 12px);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
-  transition: var(--transition-fast);
+  margin-bottom: 24px;
+  transition: var(--transition-fast, all 0.2s ease);
 }
 
 .service-card:hover .service-icon {
-  background-color: var(--accent);
+  background-color: var(--accent, #a8bc00);
   color: #ffffff;
   transform: scale(1.05);
 }
 
 .service-card h3 {
-  font-size: 1.25rem;
-  margin-bottom: 10px;
+  font-size: clamp(1.25rem, 1.4vw, 1.5rem);
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #ffffff;
 }
 
 .service-card p {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   flex-grow: 1;
-  font-size: 0.9rem;
+  font-size: clamp(0.95rem, 1vw, 1.05rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .service-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--accent);
-  font-family: var(--font-title);
+  color: var(--accent, #a8bc00);
+  font-family: var(--font-title, inherit);
   font-weight: 700;
-  transition: var(--transition-fast);
+  font-size: 1rem;
+  text-decoration: none;
+  transition: var(--transition-fast, all 0.2s ease);
 }
 
 .service-link:hover {
-  color: var(--accent-hover);
+  color: var(--accent-hover, #c2d900);
   gap: 12px;
+}
+
+/* ==========================================
+   BREAKPOINTS FOR MOBILE, LAPTOP & 1920x1080
+   ========================================== */
+
+/* 1. Mobile Devices (Up to 768px) */
+@media (max-width: 768px) {
+  .section-container {
+    padding: 0 16px;
+  }
+
+  .section-header {
+    margin-bottom: 2rem;
+  }
+
+  .section-header h2 {
+    font-size: 2.15rem; /* Noticeably bold & clear on mobile */
+  }
+
+  .section-header p {
+    font-size: 1.05rem; /* Clean readable font size for mobile screens */
+    line-height: 1.55;
+  }
+
+  .grid-4 {
+    grid-template-columns: 1fr; /* Stack cards 1-column on mobile */
+    gap: 16px;
+  }
+
+  .service-card {
+    padding: 24px 20px;
+  }
+}
+
+/* 2. Tablets & Small Laptops (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr); /* 2x2 grid for tablet */
+    gap: 20px;
+  }
+}
+
+/* 3. Full HD Displays (1920px width x 1080px height) */
+@media (min-width: 1920px) {
+  .section-container {
+    max-width: 1600px;
+  }
+
+  .section-header {
+    max-width: 950px;
+    margin-bottom: 4rem;
+  }
+
+  .section-header h2 {
+    font-size: 3.75rem; /* Large, striking header on 1080p full screens */
+  }
+
+  .section-header p {
+    font-size: 1.4rem; /* Prominent two-line text */
+  }
+
+  .grid-4 {
+    gap: 32px;
+  }
+
+  .service-card {
+    padding: 36px 32px;
+  }
 }
 
 /* ===========================
