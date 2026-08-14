@@ -365,7 +365,7 @@ export const Home = ({ setCurrentPage }) => {
         <div className="section-container">
           <div className="glass-showcase-card">
             <div className="section-header centered-marquee-header">
-              <span className="section-badge">Portfolio preview</span>
+              
               <h2>Our gallery</h2>
               <p>Take a look at some of our work that we’ve done for our clients through the years.</p>
             </div>
