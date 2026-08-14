@@ -42,9 +42,8 @@ export const Header = ({ currentPage, setCurrentPage }) => {
             <img
               src={greenhouseLogo}
               alt="Greenhouse Brandworks logo"
-              className={`logo-img${isScrolled ? ' logo-img--scrolled' : ''}`}
+              className="logo-img" 
             />
-            {/* Greenhouse Brandworks */}
           </a>
 
           <nav>
@@ -86,36 +85,32 @@ export const Header = ({ currentPage, setCurrentPage }) => {
         </div>
       </header>
 
-      {/* Mobile Full Screen Navigation Overlay */}
       {mobileMenuOpen && (
-        <div className="mobile-nav-overlay">
-          <button
-            className="btn-icon"
-            style={{ position: 'absolute', top: '30px', right: '30px', color: 'var(--text)' }}
-            onClick={() => setMobileMenuOpen(false)}
-            aria-label="Close menu"
-          >
-            <SVGIcon name="close" size={32} />
-          </button>
-          <ul className="mobile-nav-links">
-            {navItems.map((item) => (
-              <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  className={currentPage === item.id ? 'active' : ''}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigateTo(item.id);
-                  }}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <>
+          <div className="mobile-sidebar-backdrop" onClick={() => setMobileMenuOpen(false)}></div>
+          
+          <div className="mobile-sidebar-drawer">
+            <ul className="mobile-sidebar-links">
+              {navItems.map((item) => (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    className={currentPage === item.id ? 'active' : ''}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigateTo(item.id);
+                    }}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </>
       )}
     </>
   );
 };
+
 export default Header;

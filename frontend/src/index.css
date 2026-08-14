@@ -206,22 +206,22 @@ header {
 }
 
 header.scrolled {
-  padding: 12px 0;
+  padding: 0; 
 }
 
 .header-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Pushes logo left, menu right */
   align-items: center;
   width: 90%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 10px 0; /* Reduced to HALF of previous padding */
   transition: var(--transition-fast);
 }
 
 header.scrolled .header-container {
-  padding: 10px 0;
+  padding: 8px 0;
 }
 
 .logo {
@@ -238,11 +238,10 @@ header.scrolled .header-container {
 }
 
 .logo-img {
-  height: 60px;
-  width: auto;
+  height: 30px !important; 
+  width: auto !important;
   object-fit: contain;
   display: block;
-  transition: height var(--transition-fast);
 }
 
 .logo-img--scrolled {
@@ -264,7 +263,6 @@ nav {
   gap: 32px;
   list-style: none;
 }
-
 .nav-links a {
   font-family: var(--font-title);
   font-weight: 500;
@@ -272,12 +270,10 @@ nav {
   transition: var(--transition-fast);
   position: relative;
 }
-
 .nav-links a:hover,
 .nav-links a.active {
   color: var(--accent);
 }
-
 .nav-links a::after {
   content: '';
   position: absolute;
@@ -298,6 +294,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 16px;
+  margin-left: auto; /* Forces the actions to hug the right side */
 }
 
 /* Mobile Menu Button */
@@ -305,6 +302,74 @@ nav {
   display: none;
   font-size: 1.8rem;
   cursor: pointer;
+}
+/* ─── SLEEK & TIGHT MOBILE SIDEBAR ─── */
+.mobile-sidebar-backdrop {
+  position: fixed;
+  inset: 0; 
+  background: rgba(0, 0, 0, 0.65); 
+  z-index: 9998;
+  backdrop-filter: blur(4px);
+}
+
+.mobile-sidebar-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: max-content; 
+  min-width: 130px; 
+  height: 100vh;
+  background-color: #111111; 
+  z-index: 9999;
+  
+  /* MAGIC FIX: Changed the first number from 60px down to 24px */
+  padding: 24px 24px 30px 24px; 
+  
+  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  animation: slideInRight 0.3s ease-out forwards;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.mobile-sidebar-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+  
+  /* 1. Aligns the invisible box to the left */
+  align-items: flex-start; 
+}
+
+
+.mobile-sidebar-links li {
+  width: 100%; /* Ensures the invisible row stretches fully */
+}
+
+.mobile-sidebar-links a {
+  font-family: var(--font-title);
+  color: #e5e7eb;
+  text-decoration: none;
+  font-size: 1.25rem; 
+  font-weight: 500;
+  transition: color 0.2s ease;
+  display: block;
+  
+  /* 2. THE MAGIC FIX: Forces text into a perfectly straight line */
+  text-align: left; 
+}
+
+.mobile-sidebar-links a:hover,
+.mobile-sidebar-links a.active {
+  color: var(--accent);
 }
 
 /* Page Transition animation container */
