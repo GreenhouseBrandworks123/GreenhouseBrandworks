@@ -48,7 +48,10 @@ export const Header = ({ currentPage, setCurrentPage }) => {
 
           <nav>
             <ul className="nav-links">
-              {navItems.map((item) => (
+              {/* MAGIC TRICK: Hides 'contact' from the middle text links on PC */}
+              {navItems
+                .filter((item) => item.id !== 'contact') 
+                .map((item) => (
                 <li key={item.id}>
                   <a
                     href={`#${item.id}`}
@@ -66,12 +69,12 @@ export const Header = ({ currentPage, setCurrentPage }) => {
           </nav>
 
           <div className="nav-actions">
+            {/* NEW: The Green Contact Button */}
             <button
-              className="btn btn-primary"
-              style={{ padding: '10px 20px', fontSize: '0.9rem', display: 'none' }}
+              className="btn contact-btn"
               onClick={() => navigateTo('contact')}
             >
-              Get a Quote
+              Contact
             </button>
 
             <button
@@ -91,6 +94,7 @@ export const Header = ({ currentPage, setCurrentPage }) => {
           
           <div className="mobile-sidebar-drawer">
             <ul className="mobile-sidebar-links">
+              {/* Mobile menu keeps ALL links, including Contact */}
               {navItems.map((item) => (
                 <li key={item.id}>
                   <a

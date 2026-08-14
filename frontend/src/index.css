@@ -210,14 +210,59 @@ header.scrolled {
 }
 
 .header-container {
+  position: relative; 
   display: flex;
-  justify-content: space-between; /* Pushes logo left, menu right */
+  justify-content: space-between; 
   align-items: center;
   width: 90%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 10px 0; /* Reduced to HALF of previous padding */
+  
+  /* UPDATED: Increased padding from 10px to 18px to make the header taller! */
+  padding: 18px 0; 
+  
   transition: var(--transition-fast);
+}
+
+
+/* ─── NEW GREEN CONTACT BUTTON ─── */
+.contact-btn {
+  background-color: var(--accent, #a3e635); /* Your signature green */
+  color: #f2ecec; /* Kept your text color */
+  
+  /* MAGIC FIX: 6px on top/bottom makes it thin, 24px on left/right keeps it wide */
+  padding: 6px 24px; 
+  
+  border-radius: 10px;
+  font-family: var(--font-title);
+  font-weight: 600;
+  font-size: 0.95rem; /* Dropped slightly to match the thinner look */
+  
+  /* Fixed the invalid border rule */
+  border: none; 
+  
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: none; 
+}
+.contact-btn:hover {
+  background-color: var(--accent, #a3e635); /* Slightly darker green when hovered */
+  transform: translateY(-2px); /* Gives it a nice "lift" effect */
+}
+
+/* ─── PC/DESKTOP FIX ONLY (Mobile is completely protected) ─── */
+@media (min-width: 769px) {
+  .contact-btn {
+    display: block; /* Shows the green button on PC */
+  }
+  
+  nav {
+    margin-left: 0; 
+    padding-left: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 header.scrolled .header-container {
@@ -262,6 +307,7 @@ nav {
   display: flex;
   gap: 32px;
   list-style: none;
+  margin-left: 40px;
 }
 .nav-links a {
   font-family: var(--font-title);
@@ -294,7 +340,6 @@ nav {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-left: auto; /* Forces the actions to hug the right side */
 }
 
 /* Mobile Menu Button */
