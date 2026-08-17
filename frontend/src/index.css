@@ -906,43 +906,49 @@ nav {
   /* --- 1. Main Heading --- */
   .differentiators-title {
     font-size: 4.5rem !important; 
-    margin-bottom: 80px !important;
+    margin-bottom: 40px !important;
   }
 
-  /* --- 2. The Row Constraint --- */
+  /* --- 2. REMOVE VERTICAL SPACES BETWEEN ROWS (Fixes Red Circles) --- */
+  .differentiators-list {
+    gap: 20px !important; /* Drastically reduces vertical gap between Row 1, 2, and 3 */
+  }
+
   .differentiator-row {
-    max-width: 1450px !important; /* Keeps the whole block wide on screen */
-    gap: 100px !important; /* Defines the EXACT space between image and text */
-    justify-content: center !important; /* Centers the whole block together */
+    max-width: 1600px !important; 
+    gap: 80px !important; 
+    justify-content: center !important; 
+    align-items: center !important;
   }
 
-  /* --- 3. Remove the 50/50 split so they stay together --- */
-  .differentiator-image-col, 
-  .differentiator-text-col {
-    flex: 0 0 auto !important;
-    width: auto !important;
+  /* --- 3. Image Lock (480px) --- */
+  .differentiator-image-col {
+    flex: 0 0 auto !important; 
+    width: 100% !important;
+    max-width: 480px !important; 
+    display: flex;
+    justify-content: center;
   }
 
-  /* --- 4. Bigger Image to eat up the empty space --- */
   .differentiator-img {
-    max-width: 650px !important; /* Increased size */
+    max-width: 480px !important; 
     width: 100% !important;
   }
 
-  /* --- 5. Wider Text Block --- */
+  /* --- 4. MUCH LARGER TEXT FONT SIZE --- */
   .differentiator-text-col {
-    max-width: 700px !important; /* Gives the text room to breathe without breaking lines awkwardly */
+    flex: 1 !important; 
+    max-width: 950px !important; /* Expanded width so larger text flows smoothly */
   }
 
-  /* --- 6. Larger Fonts --- */
   .differentiator-item-title {
-    font-size: 2.8rem !important; 
-    margin-bottom: 30px !important;
+    font-size: 3.2rem !important; 
+    margin-bottom: 20px !important;
   }
 
   .differentiator-item-desc {
-    font-size: 1.6rem !important; /* Bumped up the font size slightly more */
-    line-height: 1.8 !important;
+    font-size: 2.1rem !important; /* Increased from 1.6rem to 2.1rem for instant readability */
+    line-height: 1.5 !important;
   }
 }
 
@@ -2197,63 +2203,6 @@ footer {
     gap: 32px;
   }
 }
-/* ─── MOBILE FOOTER OVERRIDE (HORIZONTAL LAYOUT) ─── */
-@media (max-width: 768px) {
-  footer {
-    padding: 50px 20px 30px !important; 
-  }
-  
-  .footer-grid {
-    display: grid !important;
-    /* MAGIC FIX: Creates a 2-column horizontal layout */
-    grid-template-columns: 1fr 1fr !important; 
-    gap: 40px 15px !important; /* 40px vertical gap, 15px horizontal gap */
-  }
-  
-  /* Forces the Logo/Brand section to span all the way across the top */
-  .footer-brand {
-    grid-column: 1 / -1 !important;
-    text-align: left !important;
-  }
-  
-  /* Forces the "Start a project" section to span across the bottom */
-  .footer-col:last-child {
-    grid-column: 1 / -1 !important;
-  }
-  
-  /* Keeps all text aligned cleanly to the left */
-  .footer-col {
-    text-align: left !important;
-    align-items: flex-start !important;
-  }
-  
-  .footer-links {
-    align-items: flex-start !important;
-  }
-  
-  .contact-socials {
-    justify-content: flex-start !important;
-  }
-
-  .footer-brand p {
-    max-width: 100%; 
-  }
-
-  /* Cleans up the very bottom row (Copyright & terms) */
-  .footer-bottom {
-    flex-direction: column;
-    align-items: flex-start !important;
-    text-align: left;
-    gap: 16px;
-    padding-top: 30px;
-  }
-  
-  .footer-bottom-links {
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 16px;
-  }
-}
 /* =========================
    BRAND VISION SLIDER (AUTO)
 ========================= */
@@ -3351,108 +3300,44 @@ body .modal-overlay .modal-content h2 {
 /* ======================================================
    MOBILE NAVBAR OVERLAP & IMAGE SPACING FIX (screen <= 768px)
    ====================================================== */
-/* ─── MOBILE FOOTER OVERRIDE (TRUE HORIZONTAL 2x2 GRID) ─── */
-/* ─── DESKTOP DEFAULTS (Hides dropdown features on PC) ─── */
-.dropdown-arrow {
-  display: none; /* Hides arrows on PC */
-}
-.accordion-content {
-  display: flex !important; /* Keeps links always visible on PC */
-}
-.accordion-header {
-  cursor: default;
-}
-
-/* ─── MOBILE ACCORDION FOOTER (Like the inspiration image) ─── */
 @media (max-width: 768px) {
-  footer {
-    padding: 50px 20px 30px !important; 
+  /* 1. Clear 100px fixed header completely so top text is fully visible */
+  .vision-slider,
+  .hero {
+    padding-top: 120px !important; /* Pushes text below header */
+    padding-bottom: 0px !important;  /* Removes dead space at bottom of section */
+    min-height: auto !important;
+    height: auto !important;
   }
-  
-  .footer-grid {
-    display: flex !important;
+
+  /* 2. Tight space between title text and hero image */
+  .vision-slider-overlay {
     flex-direction: column !important;
-    gap: 16px !important; 
-  }
-
-  /* Make logo and socials look perfect */
-  .footer-brand {
-    margin-bottom: 24px;
-  }
-  .footer-brand p {
-    font-size: 0.95rem !important;
-    margin-bottom: 20px !important;
-    line-height: 1.5 !important;
-  }
-  .contact-socials {
-    margin-bottom: 8px;
-  }
-
-  /* --- ACCORDION MAGIC --- */
-  .footer-col {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
-    padding-bottom: 16px;
-    margin-bottom: 8px;
-    width: 100% !important; /* MAGIC FIX 1: Forces the column to span the whole screen */
-  }
-  
-  /* Remove line from the last block so it looks clean */
-  .footer-col:last-child {
-    border-bottom: none;
-    padding-top: 16px;
-  }
-
-  .accordion-header {
-    width: 100% !important; /* MAGIC FIX 2: Forces the header to stretch so the arrow goes to the edge */
-    display: flex !important;
-    justify-content: space-between !important; /* Pushes text left, arrow right */
     align-items: center !important;
-    cursor: pointer !important;
+    gap: 16px !important;          /* Controls space strictly between text and image */
+    min-height: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .vision-slider-content,
+  .vision-text-animate {
+    margin: 0 !important;
+  }
+
+  /* 3. Remove outer vertical margins from the image wrapper */
+  .vision-slider-image-wrapper,
+  .vision-image-animate,
+  .vision-slider-image {
+    margin-top: 0 !important;
     margin-bottom: 0 !important;
-    font-size: 1.1rem !important;
-    padding: 8px 0;
   }
 
-  .dropdown-arrow {
-    display: block !important;
-    color: var(--accent); /* Makes the arrow your signature green */
-    transition: transform 0.3s ease;
-  }
-  .dropdown-arrow svg {
-    width: 24px !important;
-    height: 24px !important;
-    stroke-width: 1.5 !important; /* Slightly thinner stroke makes large arrows look elegant */
-  }
-
-  /* Flips the arrow upside down when open */
-  .accordion-header.active .dropdown-arrow {
-    transform: rotate(180deg); 
-  }
-
-  /* Hides the links by default on mobile */
-  .accordion-content {
-    display: none !important; 
-    padding-top: 16px;
-    padding-bottom: 8px;
-  }
-
-  /* Shows the links when clicked */
-  .accordion-content.open {
-    display: flex !important;
-    animation: fadeIn 0.3s ease;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    align-items: center !important;
-    text-align: center;
-    gap: 16px;
-    padding-top: 30px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-5px); }
-    to { opacity: 1; transform: translateY(0); }
+  /* 4. Pull "What We Offer" section directly under the image */
+  .section,
+  .section-header {
+    margin-top: 0 !important;
+    padding-top: 24px !important;
   }
 }
