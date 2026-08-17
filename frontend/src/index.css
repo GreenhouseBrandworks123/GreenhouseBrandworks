@@ -2334,19 +2334,17 @@ footer {
 @media (min-width: 1600px) {
   /* --- Navbar Tweaks: Pushing to edges --- */
   header, .navbar, .nav-container { 
-    /* Decrease space on the left and right drastically */
     padding-left: 2% !important; 
     padding-right: 2% !important;
     max-width: 100% !important;
   }
   
-  /* Make navbar links larger and spread them out to fill the blue line area */
   .nav-links, .nav-menu {
-    gap: 40px !important; /* Increases space between each link */
+    gap: 40px !important; 
   }
 
   .nav-links a, .nav-menu a, .nav-item {
-    font-size: 18px !important; /* Makes the text bigger */
+    font-size: 18px !important; 
     font-weight: 500;
   }
 
@@ -2354,7 +2352,7 @@ footer {
   .vision-slider-content {
     flex: 0 0 45%;
     width: 45%;
-    padding-left: 8%; /* Adjusts text position to balance the screen */
+    padding-left: 8%; 
   }
 
   .vision-title {
@@ -2365,20 +2363,26 @@ footer {
     font-size: clamp(1.6rem, 2.2vw, 2.4rem);
   }
 
-  /* --- Right Side: Image Flush to Corner --- */
+  /* --- Right Side: Image Flush Right, Stretching to Left --- */
   .vision-slider-image-wrapper {
     flex: 0 0 55%;
     width: 55%;
-    justify-content: flex-end !important; /* Forces image to the right */
-    padding-right: 0 !important; /* REMOVES the gap entirely */
+    /* Forces the container to push content to the far right */
+    justify-content: flex-end !important; 
+    /* Completely removes the right gap shown in edited-image_3.png */
+    padding-right: 0 !important; 
+    padding-left: 0 !important; 
   }
 
   .vision-image-animate {
-    max-height: 85vh;
-    object-position: right center !important; /* Locks image to the right edge of its box */
+    /* Forces the image to take up the full 55% wrapper width */
+    width: 100%; 
+    max-height: 85vh; 
+    /* Ensures the image doesn't get cut off while expanding */
+    object-fit: contain; 
+    /* Glues the image explicitly to the right edge */
+    object-position: right center !important; 
     margin-right: 0 !important;
-    /* Optional: uncomment the line below to make the right edge flat against the screen */
-    /* border-radius: 8px 0 0 8px; */ 
   }
 }
 /* ─── BRAND PROMISE QUOTE ─── */
