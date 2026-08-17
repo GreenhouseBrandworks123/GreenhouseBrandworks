@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { SVGIcon } from './SVGIcon';
+import './Modal.css';
 
 export const Modal = ({ isOpen, onClose, title, subtitle, children }) => {
   useEffect(() => {

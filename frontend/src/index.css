@@ -1521,91 +1521,6 @@ a {
   border-radius: 100px;
 }
 
-/* Modal Form Styles */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(9, 11, 13, 0.7);
-  backdrop-filter: blur(8px);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.modal-content {
-  background-color: var(--surface-elevated);
-  border: 1px solid var(--border);
-  width: 100%;
-  max-width: 600px;
-  border-radius: var(--radius-lg);
-  padding: 48px;
-  position: relative;
-  box-shadow: var(--card-shadow);
-  max-height: 90vh;
-  overflow-y: auto;
-  animation: modalIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes modalIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95) translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-.modal-content {
-  background-color: var(--surface-elevated);
-  border: 1px solid var(--border);
-  width: 100%;
-  max-width: 600px;
-  border-radius: var(--radius-lg);
-  padding: 48px;
-  position: relative; /* Keep this as the anchor point */
-  box-shadow: var(--card-shadow);
-  max-height: 90vh;
-  overflow-y: auto;
-  animation: modalIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Safe Modal Close Hover Interactions */
-.safe-modal-close {
-  transition: var(--transition-fast);
-}
-
-.safe-modal-close:hover {
-  color: var(--text) !important;
-  transform: rotate(90deg);
-}
-.modal-content button.btn-icon.modal-close {
-  position: absolute !important;
-  top: 24px !important;
-  right: 24px !important;
-  left: auto !important;
-  bottom: auto !important;
-  transform: none !important; /* Prevents unwanted centering transforms */
-  z-index: 9999 !important;
-  margin: 0 !important;
-  display: inline-flex !important;
-}
-
-.modal-content h2 {
-  font-size: 2rem;
-  margin-bottom: 8px;
-  padding-right: 40px !important;
-  box-sizing: border-box !important;
-}
-
-.modal-sub {
-  color: var(--text-muted);
-  margin-bottom: 32px;
-}
-
 /* Forms general */
 .form-group {
   margin-bottom: 24px;
@@ -2656,9 +2571,6 @@ button {
   .job-card .btn {
     width: 100%;
   }
-  .modal-content {
-    padding: 24px;
-  }
   .lightbox {
     padding: 20px;
   }
@@ -2753,8 +2665,7 @@ button {
     font-size: clamp(1.45rem, 5vw, 1.95rem);
   }
   .service-card,
-  .job-card,
-  .modal-content {
+  .job-card {
     padding: 20px;
   }
   .portfolio-overlay h3 {
@@ -2812,8 +2723,7 @@ button {
     padding: 12px 20px;
   }
   .service-card,
-  .job-card,
-  .modal-content {
+  .job-card {
     padding: 16px;
   }
 }
@@ -2851,30 +2761,6 @@ button {
   }
 }
 
-/* BULLETPROOF MODAL CLOSE FIX */
-body .modal-overlay .modal-content {
-  position: relative !important;
-}
-body .modal-overlay .modal-content button.modal-close {
-  position: absolute !important;
-  top: 16px !important;
-  right: 16px !important;
-  z-index: 9999 !important;
-  margin: 0 !important;
-  padding: 8px !important;
-  background: transparent !important;
-  border: none !important;
-  cursor: pointer !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-body .modal-overlay .modal-content h2 {
-  padding-right: 52px !important;
-  display: block !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
 /* ======================================================
    MOBILE NAVBAR OVERLAP & IMAGE SPACING FIX (screen <= 768px)
    ====================================================== */
