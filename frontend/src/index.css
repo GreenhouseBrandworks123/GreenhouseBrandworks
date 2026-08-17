@@ -2363,24 +2363,20 @@ footer {
     font-size: clamp(1.6rem, 2.2vw, 2.4rem);
   }
 
-  /* --- Right Side: Image Flush Right, Stretching to Left --- */
+  /* --- Right Side: Image Flush Right, Forced Left Gap --- */
   .vision-slider-image-wrapper {
     flex: 0 0 55%;
     width: 55%;
-    /* Forces the container to push content to the far right */
     justify-content: flex-end !important; 
-    /* Completely removes the right gap shown in edited-image_3.png */
     padding-right: 0 !important; 
-    padding-left: 0 !important; 
+    /* This invisible wall forces wide images to start further right */
+    padding-left: 8% !important; 
   }
 
   .vision-image-animate {
-    /* Forces the image to take up the full 55% wrapper width */
     width: 100%; 
     max-height: 85vh; 
-    /* Ensures the image doesn't get cut off while expanding */
     object-fit: contain; 
-    /* Glues the image explicitly to the right edge */
     object-position: right center !important; 
     margin-right: 0 !important;
   }
