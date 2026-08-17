@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { SVGIcon } from './SVGIcon';
 import greenhouseLogo from '../assets/greenhouse-logo.png';
+import './Footer.css';
 
 export const Footer = ({ setCurrentPage }) => {
   // NEW: State to track which mobile dropdown is open
