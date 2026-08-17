@@ -293,10 +293,6 @@ header.scrolled .header-container {
   height: 44px;
 }
 
-.footer-logo-img {
-  height: 36px;
-}
-
 nav {
   display: flex;
   align-items: center;
@@ -1958,58 +1954,11 @@ textarea.form-control {
   color: var(--accent);
 }
 
-.contact-socials {
-  display: flex;
-  gap: 16px;
-  margin-top: 16px;
-}
+/* =======================================================
+   FOOTER STYLES (MASTER BLOCK - DESKTOP & MOBILE ACCORDION)
+======================================================= */
 
-.social-link {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-muted);
-  transition: var(--transition-fast);
-}
-
-.social-link:hover {
-  background-color: var(--accent);
-  color: #ffffff;
-  border-color: var(--accent);
-  transform: translateY(-3px);
-}
-
-.map-card {
-  margin-top: 32px;
-  height: 220px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border);
-  background-color: var(--bg-secondary);
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 24px;
-}
-
-.map-accent-line {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background-color: var(--accent);
-}
-
-/* --- FOOTER --- */
+/* --- 1. GLOBAL & DESKTOP FOOTER --- */
 footer {
   background-color: var(--bg-secondary);
   border-top: 1px solid var(--border);
@@ -2024,6 +1973,10 @@ footer {
   margin-bottom: 60px;
 }
 
+.footer-logo-img {
+  height: 36px;
+}
+
 .footer-brand h3 {
   font-size: 1.6rem;
   margin-bottom: 16px;
@@ -2036,6 +1989,12 @@ footer {
 .footer-brand p {
   margin-bottom: 24px;
   max-width: 320px;
+}
+
+.contact-socials {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
 }
 
 .footer-col h4 {
@@ -2059,19 +2018,6 @@ footer {
 .footer-links a:hover {
   color: var(--accent);
   padding-left: 4px;
-}
-
-.newsletter-form {
-  display: flex;
-  gap: 8px;
-}
-
-.newsletter-form .form-control {
-  padding: 10px 16px;
-}
-
-.newsletter-form .btn {
-  padding: 10px 16px;
 }
 
 .footer-bottom {
@@ -2101,6 +2047,127 @@ footer {
 
 .footer-bottom-links a:hover {
   color: var(--accent);
+}
+
+/* --- 2. ACCORDION DESKTOP DEFAULTS --- */
+@media (min-width: 769px) {
+  .dropdown-arrow {
+    display: none !important; /* No arrows on PC */
+  }
+  .accordion-header {
+    cursor: default;
+  }
+}
+
+/* --- 3. TABLET LAYOUT --- */
+@media (max-width: 992px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+/* --- 4. MOBILE LAYOUT & ACCORDION LOGIC --- */
+@media (max-width: 768px) {
+  footer {
+    padding: 50px 20px 30px; 
+  }
+  
+  .footer-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; 
+    margin-bottom: 30px;
+  }
+
+  .footer-brand {
+    margin-bottom: 24px;
+  }
+  
+  .footer-brand p {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    max-width: 100%;
+  }
+
+  /* --- ACCORDION MAGIC --- */
+  .footer-col {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+    padding-bottom: 16px;
+    margin-bottom: 8px;
+    align-items: flex-start; 
+    text-align: left;
+  }
+  
+  .footer-col:last-child {
+    border-bottom: none;
+    padding-top: 16px;
+  }
+
+  /* Forces text left, arrow right */
+  .accordion-header {
+    width: 100%; 
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    padding: 8px 0;
+    text-align: left;
+  }
+
+  .dropdown-arrow {
+    display: flex;
+    align-items: center;
+    color: var(--accent); 
+    transition: transform 0.3s ease;
+  }
+
+  /* Enlarges arrows to match design */
+  .dropdown-arrow svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 1.5; 
+  }
+
+  .accordion-header.active .dropdown-arrow {
+    transform: rotate(180deg); 
+  }
+
+  /* MAGIC FIX: Explicitly hides the links on mobile until clicked */
+  ul.footer-links {
+    display: none; 
+    width: 100%;
+    padding-top: 16px;
+    padding-bottom: 8px;
+  }
+
+  /* SHOWS the links when clicked */
+  ul.footer-links.open {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+  }
+
+  /* Centers the copyright row */
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    padding-top: 30px;
+  }
+  
+  .footer-bottom-links {
+    justify-content: center;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 }
 
 /* Full Screen Mobile Navigation Drawer Overlay */
@@ -2148,11 +2215,6 @@ footer {
 
 /* RESPONSIVE MEDIA QUERIES */
 @media (max-width: 992px) {
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-  }
-
   .philosophy-steps {
     grid-template-columns: 1fr;
     gap: 24px;
@@ -2196,11 +2258,6 @@ footer {
 
   .job-card .btn {
     width: 100%;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
   }
 }
 /* =========================
@@ -3254,22 +3311,6 @@ button {
   }
   .contact-form-card {
     padding: 24px 16px;
-  }
-  .footer-col {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .footer-col p {
-    text-align: center;
-  }
-  .footer-links {
-    align-items: center;
-    padding-left: 0;
-  }
-  .footer-col .btn-primary {
-    justify-content: center;
   }
 }
 
