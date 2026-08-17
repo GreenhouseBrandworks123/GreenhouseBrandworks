@@ -651,40 +651,62 @@ nav {
    BREAKPOINTS FOR MOBILE, LAPTOP & 1920x1080
    ========================================== */
 
-/* 1. Mobile Devices (Up to 768px) */
+/* 1. Mobile Devices (Up to 768px) - SLEEK OVERRIDE */
 @media (max-width: 768px) {
   .section-container {
     padding: 0 16px;
   }
-
+  
   .section-header {
     margin-bottom: 2rem;
   }
-
+  
+  /* Scaled down the main headers to match the hero section */
   .section-header h2 {
-    font-size: 2.15rem; /* Noticeably bold & clear on mobile */
+    font-size: 2rem !important; 
   }
-
   .section-header p {
-    font-size: 1.05rem; /* Clean readable font size for mobile screens */
-    line-height: 1.55;
+    font-size: 0.95rem !important; 
+    line-height: 1.5;
   }
-
+  
+  /* Tighter spacing between the stacked cards */
   .grid-4 {
-    grid-template-columns: 1fr; /* Stack cards 1-column on mobile */
-    gap: 16px;
+    grid-template-columns: 1fr; 
+    gap: 12px !important; 
   }
-
+  
+  /* Slimmer padding inside the actual cards */
   .service-card {
-    padding: 24px 20px;
+    padding: 20px 16px !important; 
   }
-}
-
-/* 2. Tablets & Small Laptops (769px to 1024px) */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .grid-4 {
-    grid-template-columns: repeat(2, 1fr); /* 2x2 grid for tablet */
-    gap: 20px;
+  
+  /* NEW: Shrunk the massive 56px icons down to a sleek 42px */
+  .service-icon {
+    width: 42px !important;
+    height: 42px !important;
+    margin-bottom: 16px !important;
+    border-radius: 10px !important;
+  }
+  
+  /* Scales the actual SVG drawing inside the icon box */
+  .service-icon svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  
+  /* Slimmed down the text inside the cards so it isn't bulky */
+  .service-card h3 {
+    font-size: 1.15rem !important;
+    margin-bottom: 8px !important;
+  }
+  .service-card p {
+    font-size: 0.9rem !important;
+    margin-bottom: 16px !important;
+    line-height: 1.5 !important;
+  }
+  .service-link {
+    font-size: 0.9rem !important;
   }
 }
 
@@ -2277,7 +2299,7 @@ footer {
     word-break: break-word !important; 
   }
   .vision-subtitle {
-    font-size: clamp(0.8rem, 3vw, 1rem) !important;
+    font-size: clamp(0.8rem, 3vw, 1rem) ! important;
     margin-bottom: 6px !important;
   }
   .vision-highlight {
