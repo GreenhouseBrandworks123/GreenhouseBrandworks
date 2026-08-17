@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { SVGIcon } from './SVGIcon';
 import greenhouseLogo from '../assets/greenhouse-logo.png';
+import './Header.css';
 
 export const Header = ({ currentPage, setCurrentPage }) => {
   const [isScrolled, setIsScrolled] = useState(false);

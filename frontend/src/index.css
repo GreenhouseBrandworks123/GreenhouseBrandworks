@@ -191,228 +191,6 @@ a {
   margin-right: auto;
 }
 
-/* Header & Navigation */
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  background-color: var(--nav-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  transition: var(--transition-fast);
-}
-
-header.scrolled {
-  padding: 0; 
-}
-
-.header-container {
-  position: relative; 
-  display: flex;
-  justify-content: space-between; 
-  align-items: center;
-  width: 90%;
-  max-width: 1400px;
-  margin: 0 auto;
-  
-  /* UPDATED: Increased padding from 10px to 18px to make the header taller! */
-  padding: 18px 0; 
-  
-  transition: var(--transition-fast);
-}
-
-
-/* ─── NEW GREEN CONTACT BUTTON ─── */
-.contact-btn {
-  background-color: var(--accent, #a3e635); /* Your signature green */
-  color: #f2ecec; /* Kept your text color */
-  
-  /* MAGIC FIX: 6px on top/bottom makes it thin, 24px on left/right keeps it wide */
-  padding: 6px 24px; 
-  
-  border-radius: 10px;
-  font-family: var(--font-title);
-  font-weight: 600;
-  font-size: 0.95rem; /* Dropped slightly to match the thinner look */
-  
-  /* Fixed the invalid border rule */
-  border: none; 
-  
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: none; 
-}
-.contact-btn:hover {
-  background-color: var(--accent, #a3e635); /* Slightly darker green when hovered */
-  transform: translateY(-2px); /* Gives it a nice "lift" effect */
-}
-
-/* ─── PC/DESKTOP FIX ONLY (Mobile is completely protected) ─── */
-@media (min-width: 769px) {
-  .contact-btn {
-    display: block; /* Shows the green button on PC */
-  }
-  
-  nav {
-    margin-left: 0; 
-    padding-left: 0;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
-
-header.scrolled .header-container {
-  padding: 8px 0;
-}
-
-.logo {
-  font-family: var(--font-title);
-  font-size: 1.5rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo span {
-  color: var(--accent);
-}
-
-.logo-img {
-  height: 30px !important; 
-  width: auto !important;
-  object-fit: contain;
-  display: block;
-}
-
-.logo-img--scrolled {
-  height: 44px;
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 32px;
-  list-style: none;
-  margin-left: 40px;
-}
-.nav-links a {
-  font-family: var(--font-title);
-  font-weight: 500;
-  font-size: 1rem;
-  transition: var(--transition-fast);
-  position: relative;
-}
-.nav-links a:hover,
-.nav-links a.active {
-  color: var(--accent);
-}
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--accent);
-  transition: var(--transition-fast);
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after {
-  width: 100%;
-}
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-/* Mobile Menu Button */
-.menu-btn {
-  display: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-}
-/* ─── SLEEK & TIGHT MOBILE SIDEBAR ─── */
-.mobile-sidebar-backdrop {
-  position: fixed;
-  inset: 0; 
-  background: rgba(0, 0, 0, 0.65); 
-  z-index: 9998;
-  backdrop-filter: blur(4px);
-}
-
-.mobile-sidebar-drawer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: max-content; 
-  min-width: 130px; 
-  height: 100vh;
-  background-color: #111111; 
-  z-index: 9999;
-  
-  /* MAGIC FIX: Changed the first number from 60px down to 24px */
-  padding: 24px 24px 30px 24px; 
-  
-  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  animation: slideInRight 0.3s ease-out forwards;
-}
-
-@keyframes slideInRight {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
-}
-
-.mobile-sidebar-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  width: 100%;
-  
-  /* 1. Aligns the invisible box to the left */
-  align-items: flex-start; 
-}
-
-
-.mobile-sidebar-links li {
-  width: 100%; /* Ensures the invisible row stretches fully */
-}
-
-.mobile-sidebar-links a {
-  font-family: var(--font-title);
-  color: #e5e7eb;
-  text-decoration: none;
-  font-size: 1.25rem; 
-  font-weight: 500;
-  transition: color 0.2s ease;
-  display: block;
-  
-  /* 2. THE MAGIC FIX: Forces text into a perfectly straight line */
-  text-align: left; 
-}
-
-.mobile-sidebar-links a:hover,
-.mobile-sidebar-links a.active {
-  color: var(--accent);
-}
-
 /* Page Transition animation container */
 .page-container {
   min-height: 100vh;
@@ -2017,15 +1795,6 @@ textarea.form-control {
 }
 
 @media (max-width: 768px) {
-  nav {
-    display: none;
-  }
-
-  .menu-btn {
-    display: block;
-    color: var(--text);
-  }
-
   .hero {
     padding: 60px 0 80px;
   }
@@ -2775,7 +2544,6 @@ button {
 }
 
 @media (max-width: 1024px) {
-  .header-container,
   .hero-container,
   .section-container,
   .brand-promise-anim-wrap {
@@ -2829,7 +2597,6 @@ button {
 }
 
 @media (max-width: 768px) {
-  .header-container,
   .hero-container,
   .section-container,
   .brand-promise-anim-wrap {
@@ -2937,7 +2704,6 @@ button {
   body {
     font-size: 15px;
   }
-  .header-container,
   .hero-container,
   .section-container,
   .brand-promise-anim-wrap {
@@ -2961,10 +2727,6 @@ button {
   select {
     width: 100%;
   }
-  .nav-links {
-    gap: 0.5rem;
-    font-size: 0.95rem;
-  }
   .portfolio-overlay h3 {
     font-size: 1.05rem;
   }
@@ -2977,7 +2739,6 @@ button {
   body {
     font-size: 14px;
   }
-  .header-container,
   .hero-container,
   .section-container,
   .brand-promise-anim-wrap {
@@ -3008,7 +2769,6 @@ button {
   body {
     font-size: 13px;
   }
-  .header-container,
   .hero-container,
   .section-container,
   .brand-promise-anim-wrap {
@@ -3035,7 +2795,6 @@ button {
   body {
     font-size: 12px;
   }
-  .header-container,
   .hero-container,
   .section-container,
   .brand-promise-anim-wrap {
