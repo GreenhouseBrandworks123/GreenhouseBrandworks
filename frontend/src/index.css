@@ -2179,7 +2179,7 @@ footer {
   }
 
   .section {
-    padding: 80px 0;
+    padding: 40px 0 !important;
   }
 
   .job-card {
@@ -2369,23 +2369,30 @@ footer {
    MOBILE RESPONSIVENESS
 ========================= */
 /* ─── ULTIMATE MOBILE SIDE-BY-SIDE OVERRIDE (GRID METHOD) ─── */
+
 @media (max-width: 1024px) {
   .vision-slider, .hero {
-    padding-top: 100px !important; 
-    padding-bottom: 40px !important;
-    min-height: auto !important;
+    min-height: auto !important; 
     height: auto !important;
+    
+    /* 🔥 THE MAGIC FIX: Shrunk the massive top and bottom gaps! */
+    padding-top: 90px !important;    /* Just enough to clear the top header */
+    padding-bottom: 20px !important; /* Pulls the "What we offer" section way up */
+    
+    display: block !important;
+    box-sizing: border-box !important;
   }
   
-  .vision-slider-overlay {
+ .vision-slider-overlay {
     display: grid !important;
-    /* CHANGED: Gave the text 48% and the image 52% to let wide images grow! */
-    grid-template-columns: 48% 52% !important; 
+    grid-template-columns: 50% 50% !important; 
     align-items: center !important;
     width: 100% !important;
-    padding: 0 10px !important; 
-    margin: 0 !important;
+    height: auto !important; 
+    padding: 0 16px !important;
+    margin: 0 auto !important; /* Ensures the grid itself is centered */
     gap: 0 !important;
+    box-sizing: border-box !important;
   }
   
   .vision-slider-content {
@@ -2417,7 +2424,10 @@ footer {
     padding: 0 !important;
     margin: 0 !important;
     display: flex !important;
-    justify-content: flex-end !important; 
+    /* MAGIC FIX 3: Centers the image in its column safely */
+    justify-content: center !important; 
+    align-items: center !important;
+    box-sizing: border-box !important; 
   }
   
   .vision-image-animate, .vision-slider-image {
