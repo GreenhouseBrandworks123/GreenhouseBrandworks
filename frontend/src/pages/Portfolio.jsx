@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './Portfolio.css';
 
 // Import all 20 portfolio images from the portfolio-preview folder
 import p1 from '../assets/portfolio-preview/p1.webp';

@@ -532,73 +532,6 @@ a {
   transform: scale(1.05);
 }
 
-/* ==========================================================================
-   PORTFOLIO PREVIEW / WORK PAGE
-   ========================================================================== */
-
-.portfolio-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 48px;
-}
-
-.filter-btn {
-  padding: 10px 24px;
-  border-radius: 100px;
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border);
-  color: var(--text);
-  font-family: var(--font-title);
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition-fast);
-}
-
-.filter-btn:hover {
-  border-color: var(--accent);
-}
-
-.filter-btn.active {
-  background-color: var(--accent);
-  color: #ffffff;
-  border-color: var(--accent);
-}
-
-/* 1. THE GRID - Dynamic row allocation */
-.portfolio-grid {
-  display: grid;
-  /* Forces all 5 cards in a single row on desktop */
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-  width: 100%;
-  margin-top: 40px;
-}
-
-/* ==========================================================================
-   PORTFOLIO PREVIEW / WORK PAGE (MAIN TILES)
-   ========================================================================== */
-
-.portfolio-card {
-  width: 100%;
-  border-radius: 0px; /* REMOVED: Straight sharp corners as requested */
-  overflow: hidden;
-  position: relative;
-  /* CHANGED: Switched to portrait ratio so tall poster flyers never compress */
-  aspect-ratio: 1 / 1.45; 
-  cursor: pointer;
-  box-shadow: var(--card-shadow);
-  border: 1px solid var(--border);
-}
-
-.portfolio-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* CHANGED: Preserves absolute natural layout dimensions without distortion */
-  background-color: transparent; 
-  display: block;
-  transition: var(--transition-smooth);
-}
 
 .portfolio-overlay {
   position: absolute;
@@ -612,13 +545,6 @@ a {
   transition: var(--transition-fast);
 }
 
-.portfolio-card:hover img {
-  transform: scale(1.05);
-}
-
-.portfolio-card:hover .portfolio-overlay {
-  opacity: 1;
-}
 
 .portfolio-overlay span {
   color: var(--accent);
@@ -648,39 +574,6 @@ a {
   transition: var(--transition-smooth);
 }
 
-.portfolio-card:hover .portfolio-overlay-btn {
-  transform: translateY(0);
-}
-
-/* ==========================================================================
-   RESPONSIVE MEDIA QUERIES
-   ========================================================================== */
-
-/* Tablets / Small Screens (Less than 1024px wide) */
-@media (max-width: 1024px) {
-  .portfolio-grid {
-    /* Transitions to 3 columns so the tall cards don't shrink too narrow to read */
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 16px;
-  }
-}
-
-/* Mobile Devices (Less than 768px wide) */
-@media (max-width: 768px) {
-  .portfolio-grid {
-    /* Turns into a horizontal scrolling container on mobile so user swipe views them seamlessly */
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 16px;
-    padding-bottom: 15px; /* Leaves space for mobile scrollbars */
-  }
-  
-  .portfolio-card {
-    flex: 0 0 75%; /* Cards take up 75% of mobile viewport screen width */
-    scroll-snap-align: start;
-  }
-}
 
 .portfolio-overlay span {
   color: var(--accent);
@@ -708,10 +601,6 @@ a {
   justify-content: center;
   transform: translateY(20px);
   transition: var(--transition-smooth);
-}
-
-.portfolio-card:hover .portfolio-overlay-btn {
-  transform: translateY(0);
 }
 
 /* --- LIGHTBOX SYSTEM --- */
@@ -1122,10 +1011,6 @@ button {
   .stats-container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .portfolio-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
-  }
   .vision-slider-overlay {
     flex-direction: column;
     align-items: center;
@@ -1181,18 +1066,8 @@ button {
   }
   .grid-3,
   .grid-4,
-  .stats-container,
-  .portfolio-grid {
+  .stats-container {
     grid-template-columns: 1fr;
-  }
-  .portfolio-grid {
-    display: grid;
-    overflow: visible;
-    gap: 16px;
-  }
-  .portfolio-card {
-    width: 100%;
-    max-width: 100%;
   }
   .differentiator-row,
   .differentiator-row--reverse {
