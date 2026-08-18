@@ -150,7 +150,6 @@ export const Contact = () => {
                   <p>info@greenhousebrandworks.com</p>
                 </div>
               </div>
-
               <div className="contact-item">
                 <div className="contact-icon">
                   <SVGIcon name="phone" size={20} />

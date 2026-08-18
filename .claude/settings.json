@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash('footer')",
+      "Bash(node -e ' *)"
+    ]
+  }
+}
