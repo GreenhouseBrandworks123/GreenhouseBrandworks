@@ -4,7 +4,7 @@ import aboutusTimeline from '../assets/aboutus/aboutus.avif';  // Timeline image
 import rampUpIcon from '../assets/aboutus/aboutus1.avif';       // Up-arrow icon
 import reachIcon from '../assets/aboutus/aboutus2.avif';        // Expand icon
 import raceIcon from '../assets/aboutus/aboutus3.avif';         // Right-arrow icon
-
+import './About.css';
 export const About = ({ setCurrentPage }) => {
   return (
     <div className="page-container">
