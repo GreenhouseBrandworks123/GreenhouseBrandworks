@@ -1477,50 +1477,6 @@ a {
   animation: textContentFadeIn 0.35s ease-out forwards;
 }
 
-/* --- CAREERS: JOB LISTINGS & FORM --- */
-.job-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.job-card {
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 32px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: var(--transition-fast);
-}
-
-.job-card:hover {
-  background-color: var(--surface-elevated);
-  border-color: var(--accent);
-  box-shadow: var(--card-shadow);
-  transform: translateX(4px);
-}
-
-.job-info h3 {
-  font-size: 1.5rem;
-  margin-bottom: 8px;
-}
-
-.job-tags {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.job-tag {
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 4px 12px;
-  background-color: var(--bg-tertiary);
-  border-radius: 100px;
-}
-
 /* Forms general */
 .form-group {
   margin-bottom: 24px;
@@ -1716,16 +1672,6 @@ textarea.form-control {
 
   .section {
     padding: 40px 0 !important;
-  }
-
-  .job-card {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-  }
-
-  .job-card .btn {
-    width: 100%;
   }
 }
 /* =========================
@@ -2204,15 +2150,6 @@ button {
   .differentiator-text-col {
     max-width: 100%;
   }
-  .job-card {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 24px;
-  }
-  .job-card .btn {
-    width: 100%;
-  }
   .lightbox {
     padding: 20px;
   }
@@ -2306,8 +2243,7 @@ button {
   .section h2 {
     font-size: clamp(1.45rem, 5vw, 1.95rem);
   }
-  .service-card,
-  .job-card {
+  .service-card {
     padding: 20px;
   }
   .portfolio-overlay h3 {
@@ -2364,8 +2300,7 @@ button {
   .btn {
     padding: 12px 20px;
   }
-  .service-card,
-  .job-card {
+  .service-card {
     padding: 16px;
   }
 }

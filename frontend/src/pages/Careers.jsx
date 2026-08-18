@@ -6,7 +6,7 @@ import {
 } from '../firebaseUtils';
 
 import ReCAPTCHA from "react-google-recaptcha";
-
+import './Careers.css';
 export const Careers = () => {
   const [selectedJob, setSelectedJob] = useState(null);
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', portfolio: '', resume: '', message: '' });

@@ -1,0 +1,71 @@
+/* =======================================================
+   CAREERS PAGE STYLES
+======================================================= */
+.job-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.job-card {
+  background-color: var(--bg-secondary, #1a1a1a);
+  border: 1px solid var(--border, #333);
+  border-radius: 12px; 
+  padding: 32px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.job-card:hover {
+  background-color: var(--surface-elevated, #2a2a2a);
+  border-color: var(--accent);
+  transform: translateX(4px);
+}
+
+.job-info {
+  max-width: 80%; /* Keeps text from hitting the button */
+}
+
+.job-info h3 {
+  font-size: 1.6rem;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.job-tags {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.job-tag {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 6px 16px;
+  background-color: var(--bg-tertiary, #222);
+  border-radius: 100px; /* Creates the perfect pill shape */
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+  .job-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 24px;
+  }
+
+  .job-info {
+    max-width: 100%;
+  }
+
+  .job-card .btn {
+    width: 100%;
+  }
+}
