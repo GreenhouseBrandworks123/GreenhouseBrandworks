@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { SVGIcon } from '../components/SVGIcon';
 import { Modal } from '../components/Modal';
 
+import './Services.css';
+
 export const Services = ({ setCurrentPage, setPortfolioFilter }) => {
   const [selectedService, setSelectedService] = useState(null);
 
