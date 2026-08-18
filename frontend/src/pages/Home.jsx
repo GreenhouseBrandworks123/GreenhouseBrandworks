@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 
 import { SVGIcon } from '../components/SVGIcon';
 import  clientsWall from '../assets/client-logos/clients-wall.webp';
+import './Home.css';
 
 
 import slide1 from '../assets/slider-images/slide1.jpeg';
