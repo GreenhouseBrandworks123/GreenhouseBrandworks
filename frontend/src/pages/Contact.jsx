@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { SVGIcon } from '../components/SVGIcon';
 import { saveContactSubmission } from '../firebaseUtils';
 import ReCAPTCHA from "react-google-recaptcha";
+import './Contact.css';
 
 export const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', company: '', message: '' });
@@ -168,8 +169,8 @@ export const Contact = () => {
                 </h4>
                 <p style={{ fontSize: '0.85rem' }}>Indiranagar • Bangalore, India</p>
                 <div style={{ display: 'flex', gap: '8px', marginTop: '12px' }}>
-                  <span className="job-tag" style={{ fontSize: '0.75rem', backgroundColor: 'var(--accent-soft)', color: 'var(--accent)' }}>Active Studio</span>
-                  <span className="job-tag" style={{ fontSize: '0.75rem' }}>Open: 10:30 AM - 6:30 PM</span>
+                  <span className="contact-tag" style={{ fontSize: '0.75rem', backgroundColor: 'var(--accent-soft)', color: 'var(--accent)' }}>Active Studio</span>
+                  <span className="contact-tag" style={{ fontSize: '0.75rem' }}>Open: 10:30 AM - 6:30 PM</span>
                 </div>
                 <div className="map-accent-line"></div>
               </div>

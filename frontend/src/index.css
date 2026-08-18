@@ -1562,47 +1562,6 @@ textarea.form-control {
   margin-bottom: 12px;
 }
 
-/* --- CONTACT SECTION --- */
-.contact-details {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-.contact-item {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-}
-
-.contact-icon {
-  width: 48px;
-  height: 48px;
-  background-color: var(--accent-soft);
-  color: var(--accent);
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  flex-shrink: 0;
-}
-
-.contact-info-text h4 {
-  font-size: 1.1rem;
-  margin-bottom: 6px;
-}
-
-.contact-info-text p,
-.contact-info-text a {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-}
-
-.contact-info-text a:hover {
-  color: var(--accent);
-}
-
 /* Full Screen Mobile Navigation Drawer Overlay */
 .mobile-nav-overlay {
   position: fixed;
@@ -2311,15 +2270,6 @@ button {
   max-width: 100%;
   box-sizing: border-box !important;
 }
-.contact-form-card {
-  background-color: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--card-shadow);
-  padding: 48px;
-  box-sizing: border-box;
-  width: 100%;
-}
 .form-action-buttons {
   display: flex;
   gap: 16px;
@@ -2332,9 +2282,6 @@ button {
   }
   .form-action-buttons .btn {
     width: 100%;
-  }
-  .contact-form-card {
-    padding: 24px 16px;
   }
 }
 
