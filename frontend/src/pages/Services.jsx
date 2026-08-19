@@ -84,7 +84,7 @@ export const Services = ({ setCurrentPage, setPortfolioFilter }) => {
           <p style={{ fontSize: '1.2rem', maxWidth: '700px' }}>
             We deliver services across media streams spanning
             creative concept, design, content collation and writing,
-            print supervision, printing and delivery
+            print supervision, printing and delivery.
           </p>
         </div>
       </section>
