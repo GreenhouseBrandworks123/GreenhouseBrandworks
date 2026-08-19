@@ -214,7 +214,7 @@ const submitErrorMessage =
           <p style={{ fontSize: '1.2rem', maxWidth: '700px' }}>
             We don’t just help our clients grow. We grow with them.
             From freshers to highly experienced professionals, we
-            welcome everyone!But, you must have a yearning to learn and grow and give your absolute best to every job, big or small.
+            welcome everyone! But, you must have a yearning to learn and grow and give your absolute best to every job, big or small.
           </p>
         </div>    
       </section>
